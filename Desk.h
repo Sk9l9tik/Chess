@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#define MAXTURNS 10
+
 #ifndef DESK_H
 #define DESK_H
 
@@ -12,13 +14,26 @@ typedef Figure Desk[8][8];
 
 #endif
 
+#ifndef MOVES_H
+#define MOVES_H
+
+typedef struct Moves {
+	int cord_x;
+	int cord_y;
+	int dist_x;
+	int dist_y;
+	char* hod;
+} Moves;
+
+#endif
 
 #ifndef GAME_H
 #define GAME_H
 
 typedef struct Game {
-	char* name;
-	char** game;
+	char* game_name;
+	Moves game_moves[MAXTURNS];
 } Game;
 
 #endif
+

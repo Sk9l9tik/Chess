@@ -56,8 +56,32 @@ void printDesk(Desk desk) {
 
 
 char* input(char hod[7]) {
-	printf(">");
+	printf("Turn>");
 	int a = scanf("%s", hod);
 	printf("\n");
 	return hod;
+}
+
+
+void initMoves(Moves* moves, char* hod) {
+	//printf("%c\n", hod[4]);
+	
+	moves->cord_x = (hod[0] - 'a');
+	moves->cord_y = 8 - (hod[1] - '0');
+
+	//printf("finX: %d finY: %d\n", hod[3] - 'a', hod[4] - '0');
+
+	moves->dist_x = hod[3] - (hod[0]);
+	moves->dist_y = hod[4] - (hod[1]);		
+	
+
+	moves->hod = hod;
+
+
+	/*
+		printf("%s\n", hod);
+		printf("dX:%d dY:%d\n", dist_x, dist_y); // ia?aou iooe oeao?u
+		printf("X:%d Y:%d\n", moves->cord_x, moves->cord_y);   // ia?aou eii?aeia oeao?u
+		printf("%c %d\n\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color); // ia?aou oeao?u e aa oaaoa
+	*/
 }
