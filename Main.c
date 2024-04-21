@@ -14,7 +14,7 @@
 #include "Moves.h"
 
 void main_menu();
-void new_game(char** game);
+//void new_game(char** game);
 //void game_menu(Moves* game);
 void games_list();
 /*
@@ -239,6 +239,7 @@ void games_list() {
     char* hod = gameMoves[0];
 
     Moves game[MAXTURNS] = { NULL };
+
     for (int i = 0; gameMoves[i] != NULL; i++) {
         initMoves(&game[i], gameMoves[i]);
     }
@@ -255,16 +256,18 @@ void games_list() {
     }
     */
 
-    Game games_list[] = { { "game", game } };
+    printf("%s\n", game[0].hod);
 
+    Game games_list[2] = {{"game", game}};
+
+    printf("%s\n", games_list[0].game_moves[0].hod);
+    
     
     printf("To choice game input game number\n");
-    
     for (int i = 0; i < sizeof(games_list)/sizeof(games_list[0]); i++) {
         printf("\t%d: %s\n", i + 1, games_list[i].game_name);
     }
-   
-    printf("%s\n", games_list[0].game_moves.hod);
+
 
     //printf("%d\n", game[0].cord_x);
 
