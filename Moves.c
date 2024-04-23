@@ -236,12 +236,13 @@ void MoveLeft(Desk desk, Moves* moves) {
 /*Horse move functions*/
 void HorseMoveForward(Desk desk, Moves* moves) {
 	Figure t = { '_',0 };
+	int Flag = 1;
 	if (moves->dist_y > 0) {
 		//printf("X:%d Y:%d\n", moves->cord_x, moves->cord_y);
 		//printf("%c %d\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color);
 		int t_cord_x = moves->cord_x + moves->dist_x;
 		int t_cord_y = moves->cord_y - moves->dist_y;
-		int Flag = 1;
+		 
 		//printf("X:%d Y:%d\n", t_cord_x, t_cord_y);
 		if (desk[t_cord_y][t_cord_x].color == desk[moves->cord_y][moves->cord_x].color) {
 			printf("Illegal turn: %s !!!\n\n", moves->hod);
@@ -257,7 +258,7 @@ void HorseMoveForward(Desk desk, Moves* moves) {
 		//printf("%c %d\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color);
 		int t_cord_x = moves->cord_x - moves->dist_x;
 		int t_cord_y = moves->cord_y + moves->dist_y;
-		int Flag = 1;
+		 
 		//printf("X:%d Y:%d\n", t_cord_x, t_cord_y);
 		if (desk[t_cord_y][t_cord_x].color == desk[moves->cord_y][moves->cord_x].color) {
 			printf("Illegal turn: %s !!!\n\n", moves->hod);
@@ -272,12 +273,13 @@ void HorseMoveForward(Desk desk, Moves* moves) {
 
 void HorseMoveBack(Desk desk, Moves* moves) {
 	Figure t = { '_',0 };
+	int Flag = 1;
 	if (moves->dist_y > 0) {
 		//printf("X:%d Y:%d\n", moves->cord_x, moves->cord_y);
 		//printf("%c %d\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color);
 		int t_cord_x = moves->cord_x + moves->dist_x;
 		int t_cord_y = moves->cord_y + moves->dist_y;
-		int Flag = 1;
+		 
 		//printf("X:%d Y:%d\n", t_cord_x, t_cord_y);
 		if (desk[t_cord_y][t_cord_x].color == desk[moves->cord_y][moves->cord_x].color) {
 			printf("Illegal turn: %s !!!\n\n", moves->hod);
@@ -293,7 +295,7 @@ void HorseMoveBack(Desk desk, Moves* moves) {
 		//printf("%c %d\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color);
 		int t_cord_x = moves->cord_x + moves->dist_x;
 		int t_cord_y = moves->cord_y - moves->dist_y;
-		int Flag = 1;
+		 
 		//printf("X:%d Y:%d\n", t_cord_x, t_cord_y);
 		if (desk[t_cord_y][t_cord_x].color == desk[moves->cord_y][moves->cord_x].color) {
 			printf("Illegal turn: %s !!!\n\n", moves->hod);
