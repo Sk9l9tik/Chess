@@ -63,9 +63,11 @@ char* input(char hod[7]) {
 }
 
 
-void initMoves(Moves* moves, char* hod) {
+void initMoves(Moves* moves) {
 	//printf("%c\n", hod[4]);
 	
+	char* hod = moves->hod;
+
 	moves->cord_x = (hod[0] - 'a');
 	moves->cord_y = 8 - (hod[1] - '0');
 
@@ -73,9 +75,8 @@ void initMoves(Moves* moves, char* hod) {
 
 	moves->dist_x = hod[3] - (hod[0]);
 	moves->dist_y = hod[4] - (hod[1]);		
-	
 
-	moves->hod = hod;
+	//memcpy(moves, hod, sizeof(*hod));
 
 
 	/*

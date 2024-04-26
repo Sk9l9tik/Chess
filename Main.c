@@ -19,11 +19,12 @@ void game_menu(Moves* game, int* size);
 void games_list();
 
 void print_game(Moves* game, int turn, int* size);
-/*
-void insert_turn(Moves* game[MAXTURNS], int number, int size);
-void delete_turn(char** game, int number);
-void modify_turn(char** game, int number);
-*/
+
+void insert_turn(Moves* game, int* size);
+
+void delete_turn(Moves* game, int* size);
+void modify_turn(Moves* game);
+
 
 
 int main() {
@@ -58,79 +59,35 @@ void print_game(Moves* game, int turn, int* size) {
                                                                     //printf("%c %d\n", desk[4][4].figure, desk[4][4].color);
 }
 
-/*
-void insert_turn(Moves* game[MAXTURNS], int number, int size) {                                     //game - massiv of struct turns
 
-    //printf("%s\n", game[1].hod);
-    
-    for (int i = 0; i < size; i++) {
-        printf("%s\n", game[i].hod);
-    }
-    
-    //printf("%s %s %s\n", game[0]->hod, game[1]->hod, game[2]->hod);
-
-
-    
-    game[number] = hod;
-
-    //debug print
-    //printf("%s\n", *(game + number));
-    printf("%p %p %s %s\n", game + number-1, game + number, game[number - 1], game[number]);
-    printf("%p %p %s %s\n", game + number, game + number + 1, game[number], game[number + 1]);
-    printf("%p %p %s %s\n", game + number+1, game + number + 2, game[number+1], game[number + 2]);
-    printf("%p %p %s %s\n", game + number + 2, game + number + 3, game[number + 2], game[number + 3]);
-
-    for (int i = 0; game[i] != 0; i++) {
-        printf("%s ", game[i]);
-    }
-    printf("\n");
-
-    return hod;
-    
-}
-void delete_turn(char** game, int number) {
-    
-    size_t len = 0;
-    for (int i = 0; game[i] != NULL; i++) {
-        len++;
-    }
-    printf("%lld\n", len);
-    
-
-    memmove(game + number, game + number + 1, sizeof(game[0])*len);
-
-
-    //debug print
-    printf("%p %p %s %s\n", game + number - 1, game + number, game[number - 1], game[number]);
-    printf("%p %p %s %s\n", game + number, game + number + 1, game[number], game[number + 1]);
-    printf("%p %p %s %s\n", game + number + 1, game + number + 2, game[number + 1], game[number + 2]);
-    printf("%p %p %s %s\n", game + number + 2, game + number + 3, game[number + 2], game[number + 3]);
-
-    for (int i = 0; game[i] != 0; i++) {
-        printf("%s ", game[i]);
-    }
-    printf("\n");
-}
-void modify_turn(char** game, int number) {
-    char turn[7];
+void insert_turn(Moves* game, int* size) {                                     //game - massiv of struct turns
+    int number;
+    printf("Number turn>");
+    scanf("%d", &number);
+    memmove(game + number + 1, game + number, sizeof(game[0]) * (*size) - number);
     printf("Enter turn>");
-    scanf("%s", turn);
-
-    game[number] = turn;
-
-    //debug print
-    printf("%p %p %s %s\n", game + number - 1, game + number, game[number - 1], game[number]);
-    printf("%p %p %s %s\n", game + number, game + number + 1, game[number], game[number + 1]);
-    printf("%p %p %s %s\n", game + number + 1, game + number + 2, game[number + 1], game[number + 2]);
-    printf("%p %p %s %s\n", game + number + 2, game + number + 3, game[number + 2], game[number + 3]);
-
-    for (int i = 0; game[i] != 0; i++) {
-        printf("%s ", game[i]);
-    }
-    printf("\n");
-
+    scanf("%s", game[number].hod);
+    initMoves(&game[number]);
+    (*size)++;    
 }
-*/
+
+void delete_turn(Moves* game, int* size) {
+    int number;
+    printf("Number turn>");
+    scanf("%d", &number);
+    memmove(game + number, game + number + 1, sizeof(game[0]) * (*size) - number);
+    (*size)--;
+}
+
+void modify_turn(Moves* game) {
+    int number;
+    printf("Number turn>");
+    scanf("%d", &number);
+    printf("Enter turn>");
+    scanf("%s", game[number].hod);
+    initMoves(&game[number]);
+}
+
 
 void new_game(char** game) {
     //char* game[MAXTURNS] = { 0 };
@@ -157,8 +114,6 @@ void new_game(char** game) {
 
 void game_menu(Moves* game, int* size) {
     int k, number;
-    char turn[7];
-
     
     do {
         printf("Choice one and input option number\n"
@@ -190,76 +145,31 @@ void game_menu(Moves* game, int* size) {
                 scanf("%d", &number) != 1) number = -2;                 //|| number > sz_game
             print_game(game, number, size);
             break;
-        case 3:                                                         // make it func
-            printf("Number turn>");
-            scanf("%d", &number);
-
-            //printf("%p %p\n", game, game + 1);
-            //insert_turn(&game, number, size);
-            //printf("%p %p\n", game, game + 1);
-
-            // to func
-            //char turn[7];
-            memmove(game + number + 1, game + number, sizeof(game[0]) * (*size) - number);
-            printf("Enter turn>");
-            scanf("%s", turn);
-            initMoves(&game[number], turn);
-            (*size)++;
-            //
-
-            /* Debug
-            printf("-----\n");
-            for (int i = 0; i < size + 1; i++) {
-                printf("%s\n", game[i].hod);
-            }
-            printf("-----\n");
-            */
+        case 3:                                                         // make it 
+            insert_turn(game, size);
             break;
         case 4:                                                         // make it func
-            printf("Number turn>");
-            scanf("%d", &number);
-            //delete_turn(game, number);
-
-
-            // to func
-            //char turn[7];
-            memmove(game + number, game + number + 1, sizeof(game[0]) * (*size) - number);
-            printf("Enter turn>");
-            scanf("%s", turn);
-            initMoves(&game[number], turn);
-            (*size)--;
-            //
-
+            delete_turn(game, size);
             break;
         case 5:                                                         // make it func
-            printf("Number turn>");
-            scanf("%d", &number);
-            //modify_turn(game, number);
-            
-            // to func
-            //char turn[7];
-            printf("Enter turn>");
-            scanf("%s", turn);
-            initMoves(&game[number], turn);
-            //
-
+            modify_turn(game);
             break;
         }
     } while (k);
     
 }
 
-
 void games_list() {                                                 
     int k, size=0;
     
-    char* gameMoves[MAXTURNS] = {"e2-e4", "e7-e5", NULL};
+    char gameMoves[MAXTURNS][7] = {"e2-e4", "e7-e5", "\0"};
     //* gameMoves2[MAXTURNS] = { "a2-a4", "h7-h5", NULL };
 
-    Moves game[MAXTURNS];
+    Moves game[MAXTURNS] = { 0 };
 
-    for (int i = 0; gameMoves[i] != NULL; i++) {
-        initMoves(&game[i], gameMoves[i]);
+    for (int i = 0; gameMoves[i][0] != '\0'; i++) {
+        memcpy(game[i].hod, gameMoves[i], sizeof(gameMoves[0]));
+        initMoves(&game[i]);
         size++;
     }
 
@@ -295,7 +205,7 @@ void games_list() {
         return;
     else {
         //printf("%s\n", games_list[k - 1].game_moves->hod);
-        printf("%lld\n", sizeof(games_list[k - 1].game_moves) / sizeof(games_list[k - 1].game_moves[0]));
+        //printf("%lld\n", sizeof(games_list[k - 1].game_moves) / sizeof(games_list[k - 1].game_moves[0]));
 
         game_menu(games_list[k - 1].game_moves, &size);
     }
