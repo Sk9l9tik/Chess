@@ -77,7 +77,7 @@ void games_list(Moves* lastgame, int count) {
     cnt++;
 
     if (lastgame->hod[0] != 0) {
-        printf("---%s---\n", count);
+        printf("---%d---\n", count);
         char lastgamename[31] = "last_game";
         memcpy(&games_list[cnt].game_name, lastgamename, sizeof(lastgamename));
         memcpy(&games_list[cnt].game_moves, lastgame, sizeof(*lastgame)*count);
@@ -142,6 +142,7 @@ void main_menu() {
             break;
         case 2:
             count = import_game(game);
+            //printf("---%d---\n", count);
             break;
         case 3:
             games_list(game, count);
