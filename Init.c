@@ -54,15 +54,6 @@ void printDesk(Desk desk) {
 	//printf("\n");
 }
 
-
-char* input(char hod[7]) {
-	printf("Turn>");
-	int a = scanf("%s", hod);
-	printf("\n");
-	return hod;
-}
-
-
 void initMoves(Moves* moves) {
 	//printf("%c\n", hod[4]);
 	

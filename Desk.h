@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+
 #define MAXTURNS 10
 
 #ifndef DESK_H

@@ -128,15 +128,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Figures.c" />
+    <ClCompile Include="Game_menu_functions.c" />
     <ClCompile Include="Init.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Main_Moves.c" />
+    <ClCompile Include="Menu.c" />
     <ClCompile Include="Moves.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Desk.h" />
     <ClInclude Include="Figures.h" />
+    <ClInclude Include="Game_menu_functions.h" />
     <ClInclude Include="Init.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Moves.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
