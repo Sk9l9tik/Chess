@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#define MAXTURNS 10
+#define MAXTURNS 3
 
 #ifndef DESK_H
 #define DESK_H

@@ -73,7 +73,7 @@ void games_list(Moves* lastgame) {
     memcpy(&games_list[0].game_name, &gamename, sizeof(gamename));
     memcpy(&games_list[0].game_moves, &game[0], sizeof(game));
 
-    if (lastgame->cord_x == 0) {
+    if (lastgame->hod[0] == 0) {
         printf("%s\n", "empty!");
     }
 
