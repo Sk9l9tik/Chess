@@ -2,7 +2,7 @@
 
 #include "Desk.h"
 
-void new_game(Moves* game);
+int new_game(Moves* game);
 
 void print_game(Moves* game, int turn, int* size);
 

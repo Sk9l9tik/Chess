@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Figures.c" />
+    <ClCompile Include="Files_functions.c" />
     <ClCompile Include="Game_menu_functions.c" />
     <ClCompile Include="Init.c" />
     <ClCompile Include="Main.c" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <ClInclude Include="Desk.h" />
     <ClInclude Include="Figures.h" />
+    <ClInclude Include="Files_functions.h" />
     <ClInclude Include="Game_menu_functions.h" />
     <ClInclude Include="Init.h" />
     <ClInclude Include="Menu.h" />

@@ -3,8 +3,11 @@
 #include <stdio.h>
 
 #include "Desk.h"
+
 #include "Menu.h"
 #include "Game_menu_functions.h"
+
+#include "Files_functions.h"        
 
 void game_menu(Moves* game, int* size) {
     int k, number;
@@ -26,7 +29,7 @@ void game_menu(Moves* game, int* size) {
 
         switch (k) {
         case 0:
-            games_list(game);
+            games_list(game, 0);
             break;
         case 1:
             print_game(game, -1, size);
@@ -53,8 +56,8 @@ void game_menu(Moves* game, int* size) {
 
 }
 
-void games_list(Moves* lastgame) {
-    int k, size = 0;
+void games_list(Moves* lastgame, int count) {
+    int k, size = 0, cnt = 0;
 
     char gameMoves[MAXTURNS][7] = { "e2-e4", "e7-e5", "\0" };
     //* gameMoves2[MAXTURNS] = { "a2-a4", "h7-h5", NULL };
@@ -67,14 +70,18 @@ void games_list(Moves* lastgame) {
         size++;
     }
 
-    //printf("%s\n", game[0].hod);
     Game games_list[10] = { '\0' };
     char gamename[31] = "game1";
-    memcpy(&games_list[0].game_name, &gamename, sizeof(gamename));
-    memcpy(&games_list[0].game_moves, &game[0], sizeof(game));
+    memcpy(&games_list[0].game_name, gamename, sizeof(gamename));
+    memcpy(&games_list[0].game_moves, game, sizeof(game));
+    cnt++;
 
-    if (lastgame->hod[0] == 0) {
-        printf("%s\n", "empty!");
+    if (lastgame->hod[0] != 0) {
+        printf("---%s---\n", count);
+        char lastgamename[31] = "last_game";
+        memcpy(&games_list[cnt].game_name, lastgamename, sizeof(lastgamename));
+        memcpy(&games_list[cnt].game_moves, lastgame, sizeof(*lastgame)*count);
+
     }
 
 
@@ -114,7 +121,7 @@ void main_menu() {
 
     Moves game[MAXTURNS] = { 0 };
 
-    int k;
+    int k, count=0;
     do {
         printf("Choice one and input option number\n"
             "\t1: New game\n"
@@ -131,13 +138,13 @@ void main_menu() {
         case 0:
             return;
         case 1:
-            new_game(game);
+            count = new_game(game);
             break;
         case 2:
-            //import_game(path);
+            count = import_game(game);
             break;
         case 3:
-            games_list(game);
+            games_list(game, count);
             break;
         case 4:
             //foo(game);

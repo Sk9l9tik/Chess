@@ -7,14 +7,16 @@
 #include "Menu.h"
 #include "Game_menu_functions.h"
 
-void new_game(Moves* game){
+int new_game(Moves* game){
+
+    int count = 0;
 
     Desk desk;
     init(desk);
 
     printDesk(desk);
 
-    char hod[7];
+    //char hod[7];
 
     for (int i = 0; i < MAXTURNS; i++) {
         printf("Enter turn>");
@@ -22,7 +24,9 @@ void new_game(Moves* game){
         initMoves(&game[i]);
         Move(desk, game[i]);
         printDesk(desk);
+        count++;
     }
+    return count;
 }
 
 void print_game(Moves* game, int turn, int* size) {
