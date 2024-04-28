@@ -1,8 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "Desk.h"
+#include "Init.h"
 
 #include "Menu.h"
 #include "Game_menu_functions.h"
@@ -29,7 +31,8 @@ void game_menu(Moves* game, int* size) {
 
         switch (k) {
         case 0:
-            games_list(game, 0);
+            return;
+            //games_list(game, 0);
             break;
         case 1:
             print_game(game, -1, size);
@@ -42,18 +45,17 @@ void game_menu(Moves* game, int* size) {
                 scanf("%d", &number) != 1) number = -2;                 //|| number > sz_game
             print_game(game, number, size);
             break;
-        case 3:                                                         // make it 
+        case 3:                                                          
             insert_turn(game, size);
             break;
-        case 4:                                                         // make it func
+        case 4:                                                         
             delete_turn(game, size);
             break;
-        case 5:                                                         // make it func
+        case 5:                                                         
             modify_turn(game);
             break;
         }
     } while (k);
-
 }
 
 void games_list(Moves* lastgame, int count) {
@@ -77,13 +79,15 @@ void games_list(Moves* lastgame, int count) {
     cnt++;
 
     if (lastgame->hod[0] != 0) {
+        for (int i = 0; lastgame[i].hod[0] != '\0'; i++) {
+            initMoves(&lastgame[i]);
+        }
         printf("---%d---\n", count);
         char lastgamename[31] = "last_game";
         memcpy(&games_list[cnt].game_name, lastgamename, sizeof(lastgamename));
         memcpy(&games_list[cnt].game_moves, lastgame, sizeof(*lastgame)*count);
-
+        //printf("!@\n");
     }
-
 
     /*
     Moves game2[MAXTURNS] = { NULL };
@@ -91,7 +95,6 @@ void games_list(Moves* lastgame, int count) {
         initMoves(&game2[i], gameMoves2[i]);
     }
     */
-
 
 
     printf("To choice game input game number\n");
@@ -149,7 +152,7 @@ void main_menu() {
             break;
         case 4:
             //foo(game);
-            //save_game(game);
+            save_game(game);
             break;
         }
     } while (k);
