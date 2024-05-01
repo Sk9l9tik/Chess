@@ -9,11 +9,11 @@
 #include "Files_functions.h"
 
 int import_game(Moves* game) {
-	char path[200];
+	char* path = malloc(256*sizeof(char));
 	printf("Path game>");
 	scanf("%s", path);																			
 	FILE* GamePath = fopen(path, "r");
-
+	
 	int i = 0;
 	if (GamePath) {
 		while (fgets(game[i].hod, sizeof(game[0].hod) / sizeof(game[0].hod[0]), GamePath)) {
@@ -28,22 +28,21 @@ int import_game(Moves* game) {
 	else {
 		printf("No such file!!!\n");
 	}
+	//free(path);
 	return i;
 }
-
 //	./test_games/test_game.txt
 
-
 void save_game(Moves* game) {
-	char* path = malloc(15);
+	char* path = malloc(sizeof(char)*15);
 	path = "./SavedGames/";
-	char* game_name = malloc(100);
+	char* game_name = malloc(sizeof(char)*256);
 	printf("Game name>");
 	scanf("%s", game_name);
+	strcat(game_name, ".txt");
 
-
-	int len = strlen(path) + strlen(game_name) + 1;
-	char* game_path = malloc(len);
+	size_t len = strlen(path) + strlen(game_name) + 1;
+	char* game_path = malloc(sizeof(char)*len);
 
 	strcpy(game_path, path);
 	strcat(game_path, game_name);
@@ -62,4 +61,7 @@ void save_game(Moves* game) {
 	else {
 		printf("No such file!!!\n");
 	}
-}
+	//free(game_path);
+	//free(path);
+	//free(game_name);
+}	

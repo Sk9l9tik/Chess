@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Directory_Files.c" />
     <ClCompile Include="Figures.c" />
     <ClCompile Include="Files_functions.c" />
     <ClCompile Include="Game_menu_functions.c" />

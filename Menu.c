@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "Desk.h"
 #include "Init.h"
@@ -9,7 +10,10 @@
 #include "Menu.h"
 #include "Game_menu_functions.h"
 
-#include "Files_functions.h"        
+#include "Files_functions.h"      
+
+#include "Directory_files.h"
+
 
 void game_menu(Moves* game, int* size) {
     int k, number;
@@ -62,7 +66,6 @@ void games_list(Moves* lastgame, int count) {
     int k, size = 0, cnt = 0;
 
     char gameMoves[MAXTURNS][7] = { "e2-e4", "e7-e5", "\0" };
-    //* gameMoves2[MAXTURNS] = { "a2-a4", "h7-h5", NULL };
 
     Moves game[MAXTURNS] = { 0 };
 
@@ -151,7 +154,6 @@ void main_menu() {
             games_list(game, count);
             break;
         case 4:
-            //foo(game);
             save_game(game);
             break;
         }

@@ -1,4 +1,4 @@
-﻿#pragma once
+﻿#pragma once 
 
 #ifndef MAXTURNS_H
 #define MAXTURNS_H

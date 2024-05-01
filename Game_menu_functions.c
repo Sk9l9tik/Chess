@@ -1,8 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 
+#include <stdio.h>
+#include <string.h>
 
 #include "Init.h"
-
+#include "Moves.h"
 
 #include "Menu.h"
 #include "Game_menu_functions.h"
@@ -22,7 +24,7 @@ int new_game(Moves* game){
         printf("Enter turn>");
         scanf("%s", game[i].hod);
         initMoves(&game[i]);
-        Move(desk, game[i]);
+        Move(desk, &game[i]);
         printDesk(desk);
         count++;
     }

@@ -39,6 +39,9 @@
     <ClCompile Include="Files_functions.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Directory_Files.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Desk.h">
