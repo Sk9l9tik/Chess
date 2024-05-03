@@ -68,6 +68,7 @@ void games_list(Moves* lastgame, int count) {
     char gameMoves[MAXTURNS][7] = { "e2-e4", "e7-e5", "\0" };
 
     Moves game[MAXTURNS] = { 0 };
+    //Moves* game = (Moves*)malloc(sizeof(Moves) * MAXTURNS);
 
     for (int i = 0; gameMoves[i][0] != '\0'; i++) {
         memcpy(game[i].hod, gameMoves[i], sizeof(gameMoves[0]));
@@ -76,6 +77,8 @@ void games_list(Moves* lastgame, int count) {
     }
 
     Game games_list[10] = { '\0' };
+    //Game* games_list = (Game*)malloc(10 * sizeof(Game));
+
     char gamename[31] = "game1";
     memcpy(&games_list[0].game_name, gamename, sizeof(gamename));
     memcpy(&games_list[0].game_moves, game, sizeof(game));
@@ -112,15 +115,16 @@ void games_list(Moves* lastgame, int count) {
         scanf("%d", &k) != 1)
         k = -1;
 
-    if (k == 0)
+    if (k == 0) {
+        free(game);
         return;
+    }
     else {
         //printf("%s\n", games_list[k - 1].game_moves->hod);
         //printf("%lld\n", sizeof(games_list[k - 1].game_moves) / sizeof(games_list[k - 1].game_moves[0]));
 
         game_menu(games_list[k - 1].game_moves, &size);
     }
-
 }
 
 void main_menu() {
@@ -142,6 +146,7 @@ void main_menu() {
 
         switch (k) {
         case 0:
+            //exit(0);
             return;
         case 1:
             count = new_game(game);
@@ -154,7 +159,7 @@ void main_menu() {
             games_list(game, count);
             break;
         case 4:
-            save_game(game);
+            save_game(game, count);
             break;
         }
     } while (k);

@@ -28,13 +28,13 @@ int import_game(Moves* game) {
 	else {
 		printf("No such file!!!\n");
 	}
-	//free(path);
+	free(path);
 	return i;
 }
 //	./test_games/test_game.txt
 
-void save_game(Moves* game) {
-	char* path = malloc(sizeof(char)*15);
+void save_game(Moves* game, int count) {
+	char* path = malloc(sizeof(char) * 15);
 	path = "./SavedGames/";
 	char* game_name = malloc(sizeof(char)*256);
 	printf("Game name>");
@@ -42,7 +42,7 @@ void save_game(Moves* game) {
 	strcat(game_name, ".txt");
 
 	size_t len = strlen(path) + strlen(game_name) + 1;
-	char* game_path = malloc(sizeof(char)*len);
+	char* game_path = (char*)malloc(sizeof(char)*len);
 
 	strcpy(game_path, path);
 	strcat(game_path, game_name);
@@ -51,17 +51,16 @@ void save_game(Moves* game) {
 	FILE* GamePath = fopen(game_path, "w");
 
 	if (GamePath) {
-		for (int i = 0; game[i].hod[0] != '\0'; i++) {
+		for (int i = 0; i != count; i++) {
 			fputs(game[i].hod, GamePath);
 			fputs("\n", GamePath);
 		}
 		fclose(GamePath);
 		printf("Game has been written\n");
-	}
+	} 
 	else {
 		printf("No such file!!!\n");
 	}
-	//free(game_path);
-	//free(path);
-	//free(game_name);
+
+	free(game_path);
 }	

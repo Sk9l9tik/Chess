@@ -39,7 +39,7 @@ void print_game(Moves* game, int turn, int* size) {
     if (turn == -1) {
 
         printDesk(desk);
-        for (int i = 0; i < *size; i++) {
+        for (int i = 0; i <= *size; i++) {
             printf("Current turn: %s\n", game[i].hod);
             Move(desk, &game[i]);
             printDesk(desk);
