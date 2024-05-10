@@ -36,7 +36,7 @@ typedef struct Moves {
 
 typedef struct Game {
 	char game_name[31];
-	Moves game_moves[MAXTURNS];						//Moves game_moves[MAXTURNS];
+	Moves* game_moves;						//Moves game_moves[MAXTURNS];
 } Game;
 
 #endif

@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Allocate.c" />
     <ClCompile Include="Directory_Files.c" />
     <ClCompile Include="Figures.c" />
     <ClCompile Include="Files_functions.c" />
@@ -138,6 +139,7 @@
     <ClCompile Include="Moves.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Allocate.h" />
     <ClInclude Include="Desk.h" />
     <ClInclude Include="Directory_files.h" />
     <ClInclude Include="Figures.h" />

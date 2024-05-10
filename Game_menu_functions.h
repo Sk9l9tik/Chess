@@ -2,10 +2,10 @@
 
 #include "Desk.h"
 
-int new_game(Moves* game);
+void new_game(Moves** game, int* count);
 
 void print_game(Moves* game, int turn, int* size);
 
-void insert_turn(Moves* game, int* size);
-void delete_turn(Moves* game, int* size);
-void modify_turn(Moves* game);
+void* insert_turn(Moves** game, int* size);
+void* delete_turn(Moves** game, int* size, int flag);
+void modify_turn(Moves** game, int* size);

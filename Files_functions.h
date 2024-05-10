@@ -1,5 +1,5 @@
 #pragma once
 #include "Desk.h"
 
-int import_game(Moves* game);
+void* import_game(Moves** game, int* count);
 void save_game(Moves* game, int count);
