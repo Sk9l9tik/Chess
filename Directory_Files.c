@@ -1,4 +1,4 @@
-//#include <stdio.h>
+﻿
 //#include <dirent.h>
 //#include <string.h>
 //
@@ -12,7 +12,7 @@
 //    if (!dp) {
 //        fprintf(stderr, "Can't open current directory!\n");
 //        return 1;
-//    }
+//    }	
 //
 //    struct dirent* de;
 //    while ((de = readdir(dp))) {

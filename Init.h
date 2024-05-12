@@ -3,5 +3,5 @@
 
 /*init base functions*/
 void init(Desk desk);
-void printDesk(Desk desk);
+int printDesk(Desk desk);
 void initMoves(Moves* moves);

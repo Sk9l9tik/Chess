@@ -25,17 +25,14 @@ void new_game(Moves** game, int* count){
     for (int i = 0; ; i++) {
         allocate_one(game, count);
 
-        printf("Enter turn>");
-        scanf("%s", (*game)[i].hod);
-        if ((*game)[i].hod[0] == '0') {
-
-            //delete_turn(game, count, 1);
-            break;
+        while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), (Move(desk, &(*game)[i]) == 1)) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1
+            if ((*game)[i].hod[0] == '0') {
+                return;
+            }
+            printf("Illegal turn: %s !!!\n\n", (*game)[i].hod);
+            printDesk(desk);
         }
-        initMoves(&(*game)[i]);
-        Move(desk, &(*game)[i]);
         printDesk(desk);
-        
     }
     //return *game;
 }

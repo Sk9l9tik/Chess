@@ -3,27 +3,28 @@
 #include "Moves.h"
 #include "Figures.h"
 
-void Move(Desk desk, Moves* moves) {
+int Move(Desk desk, Moves* moves) {
+	int flag = 0;
 	if (desk[moves->cord_y][moves->cord_x].figure == 'P') {
-		Pawn(desk, moves);
+		flag = Pawn(desk, moves);
 	}
 	else if (desk[moves->cord_y][moves->cord_x].figure == 'N') {
-		Knight(desk, moves);
+		flag = Knight(desk, moves);
 	}
 	else if (desk[moves->cord_y][moves->cord_x].figure == 'R') {
-		Rock(desk, moves);
+		flag = Rock(desk, moves);
 	}
 	else if (desk[moves->cord_y][moves->cord_x].figure == 'B') {
-		Bishop(desk, moves);
+		flag = Bishop(desk, moves);
 	}
 	else if (desk[moves->cord_y][moves->cord_x].figure == 'Q') {
-		Queen(desk, moves);
+		flag = Queen(desk, moves);
 	}
 	else if (desk[moves->cord_y][moves->cord_x].figure == 'K') {
-		King(desk, moves);
+		flag = King(desk, moves);
 	}
 	else {
-		printf("Illegal turn: %s !!!\n\n", moves->hod);
-		return;
+		flag = 1;
 	}
+	return flag;
 }

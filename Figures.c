@@ -5,7 +5,7 @@
 #include "Moves.h"
 
 /*functions figures*/
-void Pawn(Desk desk, Moves* moves) {
+int Pawn(Desk desk, Moves* moves) {
 
 	if (((abs(moves->dist_y) == 2 && moves->cord_y == 1) || (abs(moves->dist_y) == 2 && (moves->cord_y == 6)) || (abs(moves->dist_y) == 1 && moves->dist_x == 0) || (abs(moves->dist_y) == 1 && abs(moves->dist_x) == 1))) {
 		if (abs(moves->dist_x) == moves->dist_y && moves->dist_x < 0) {
@@ -14,6 +14,12 @@ void Pawn(Desk desk, Moves* moves) {
 		else if (abs(moves->dist_x) == moves->dist_y && moves->dist_x > 0) {
 			MoveDiagonalForwardRight(desk, moves);
 		}
+		else if (moves->dist_x == abs(moves->dist_y) && moves->dist_y < 0) {
+			MoveDiagonalBackRight(desk, moves);
+		}
+		else if (moves->dist_x == moves->dist_y && moves->dist_x < 0 && moves->dist_y < 0) {
+			MoveDiagonalBackLeft(desk, moves);
+		}
 		else if (moves->dist_y > 0 && desk[moves->cord_y - 1][moves->cord_x].figure == '_') {
 			//printf("%c %d\n\n", desk[moves->cord_y-1][moves->cord_x].figure, desk[moves->cord_y-1][moves->cord_x].color);
 			MoveForward(desk, moves);
@@ -21,22 +27,19 @@ void Pawn(Desk desk, Moves* moves) {
 		else if (moves->dist_y < 0 && desk[moves->cord_y + 1][moves->cord_x].figure == '_') {
 			MoveBack(desk, moves);
 		}
-
 		else {
-			printf("Illegal turn: %s !!!\n\n", moves->hod);
-			return;
+			//printf("Illegal turn: %s !!!\n\n", moves->hod);
+			return 1;
 		}
-
-
-
 	}
 	else {
-		printf("Illegal turn: %s !!!\n\n", moves->hod);
-		return;
+		//printf("Illegal turn: %s !!!\n\n", moves->hod);
+		return 1;
 	}
+	return 0;
 }
 
-void Knight(Desk desk, Moves* moves) {
+int Knight(Desk desk, Moves* moves) {
 	if (moves->dist_x == 0) {
 		if (moves->dist_y > 0)
 			MoveForward(desk, moves);
@@ -50,12 +53,13 @@ void Knight(Desk desk, Moves* moves) {
 			MoveLeft(desk, moves);
 	}
 	else {
-		printf("Illegal turn: %s !!!\n\n", moves->hod);
-		return;
+		//printf("Illegal turn: %s !!!\n\n", moves->hod);
+		return 1;
 	}
+	return 0;
 }
 
-void Rock(Desk desk, Moves* moves) {
+int Rock(Desk desk, Moves* moves) {
 	if (moves->dist_x == 0) {
 		if (moves->dist_y > 0)
 			MoveForward(desk, moves);
@@ -69,12 +73,13 @@ void Rock(Desk desk, Moves* moves) {
 			MoveLeft(desk, moves);
 	}
 	else {
-		printf("Illegal turn: %s !!!\n\n", moves->hod);
-		return;
+		//printf("Illegal turn: %s !!!\n\n", moves->hod);
+		return 1;
 	}
+	return 0;
 }
 
-void Bishop(Desk desk, Moves* moves) {
+int Bishop(Desk desk, Moves* moves) {
 	if (abs(moves->dist_x) == moves->dist_y && moves->dist_x < 0) {
 		MoveDiagonalForwardLeft(desk, moves);
 	}
@@ -88,12 +93,13 @@ void Bishop(Desk desk, Moves* moves) {
 		MoveDiagonalBackLeft(desk, moves);
 	}
 	else {
-		printf("Illegal turn: %s !!!\n\n", moves->hod);
-		return;
+		//printf("Illegal turn: %s !!!\n\n", moves->hod);
+		return 1;
 	}
+	return 0;
 }
 
-void Queen(Desk desk, Moves* moves) {
+int Queen(Desk desk, Moves* moves) {
 	if (moves->dist_x == 0) {
 		if (moves->dist_y > 0)
 			MoveForward(desk, moves);
@@ -119,15 +125,16 @@ void Queen(Desk desk, Moves* moves) {
 		MoveDiagonalBackLeft(desk, moves);
 	}
 	else {
-		printf("Illegal turn: %s !!!\n\n", moves->hod);
-		return;
+		//printf("Illegal turn: %s !!!\n\n", moves->hod);
+		return 1;
 	}
+	return 0;
 }
 
-void King(Desk desk, Moves* moves) {
+int King(Desk desk, Moves* moves) {
 	if (abs(moves->dist_x) > 1 && abs(moves->dist_y) > 1) {
-		printf("Illegal turn: %s !!!\n\n", moves->hod);
-		return;
+		//printf("Illegal turn: %s !!!\n\n", moves->hod);
+		return 1;
 	}
 	else {
 		if (moves->dist_x == 0) {
@@ -155,8 +162,9 @@ void King(Desk desk, Moves* moves) {
 			MoveDiagonalBackLeft(desk, moves);
 		}
 		else {
-			printf("Illegal turn: %s !!!\n\n", moves->hod);
-			return;
+			//printf("Illegal turn: %s !!!\n\n", moves->hod);
+			return 1;
 		}
 	}
+	return 0;
 }
