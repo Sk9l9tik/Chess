@@ -27,6 +27,7 @@ void new_game(Moves** game, int* count){
 
         while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), (Move(desk, &(*game)[i]) == 1)) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1
             if ((*game)[i].hod[0] == '0') {
+                //delete_turn(game, count, i);
                 return;
             }
             printf("Illegal turn: %s !!!\n\n", (*game)[i].hod);
@@ -45,14 +46,14 @@ void print_game(Moves* game, int turn, int* size) {
     if (turn == -1) {
 
         printDesk(desk);
-        for (int i = 0; i < *size && game[i].hod[0] != '0'; i++) {
+        for (int i = 0; i <= *size && game[i].hod[0] != '0'; i++) {
             printf("Current turn: %s\n", game[i].hod);
             Move(desk, &game[i]);
             printDesk(desk);
         }
     }
     else {
-        for (int i = 0; i != turn && i < *size; i++) {
+        for (int i = 0; i != turn && i <= *size; i++) {
             Move(desk, &game[i]);
             printf("%d\n", i);
         }
@@ -101,26 +102,23 @@ void* insert_turn(Moves** game, int* size) {                                    
     return *game;
 }
 void* delete_turn(Moves** game, int* size, int flag) {
-    int number;
-    printf("Number turn>");
-    scanf("%d", &number);
+    int number = flag;
+    if (flag == 0) {
+        printf("Number turn>");
+        scanf("%d", &number);
+    }
 
-    if (number > *size) {
+
+    if (number > *size || *size == 0) {
         printf("Error number!!1\n");
         return *game;
     }
 
-    if (flag != 0) {
-        memmove(*game + flag, *game + flag + 1, sizeof((*game)[0]) * ((*size - 1) - flag));
-
-        free_one(game, size);
-
-        return *game;
-    }
     
-    memmove(*game + number, *game + number + 1, sizeof((*game)[0]) * ((*size) - number));
 
-    if(*size > 1)
+    memmove(*game + number - 1, *game + number, sizeof((*game)[0]) * ((*size) - number) + 1);
+
+    if(*size >= 1)
         free_one(game, size);
     else 
         strcpy((*game)[*size].hod, "0");

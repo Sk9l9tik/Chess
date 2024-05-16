@@ -23,6 +23,7 @@ void* free_one(Moves** game, int* size){
     Moves* new_game;
     void* t;
     (*size)--;
+    memmove(*game + *size, *game + *size +1 , sizeof((*game)[0]) * ((*size) - *size));
     new_game = realloc(*game, (*size) * sizeof(Moves));
     t = new_game;
     if (!t) {
@@ -30,6 +31,6 @@ void* free_one(Moves** game, int* size){
         (*size)++;
         *game = new_game;
     }
-    strcpy((*game)[*size].hod, "0");
+    //strcpy((*game)[*size].hod, "0");
     return *game;
 }
