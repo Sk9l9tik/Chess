@@ -27,7 +27,7 @@ void new_game(Moves** game, int* count){
 
         while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), (Move(desk, &(*game)[i]) == 1)) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1
             if ((*game)[i].hod[0] == '0') {
-                //delete_turn(game, count, i);
+                free_one(game, count+1);
                 return;
             }
             printf("Illegal turn: %s !!!\n\n", (*game)[i].hod);
@@ -85,7 +85,7 @@ void* insert_turn(Moves** game, int* size) {                                    
 
     memmove(*game + number + 1, *game + number, sizeof((*game)[0]) * ((*size) - number));
 
-    for (int i = 0; i <= *size; i++) {
+    for (int i = 0; i < *size; i++) {
         printf("%s ", (*game)[i].hod);
     }
     printf("\n");
@@ -114,7 +114,6 @@ void* delete_turn(Moves** game, int* size, int flag) {
         return *game;
     }
 
-    
 
     memmove(*game + number - 1, *game + number, sizeof((*game)[0]) * ((*size) - number) + 1);
 

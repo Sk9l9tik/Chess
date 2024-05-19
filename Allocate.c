@@ -8,29 +8,34 @@
 
 
 void* allocate_one(Moves** game, int* size) {
-    Moves* new_game;
-    (*size)++;
-    new_game = realloc(*game, (*size) * sizeof(Moves));
-    if (!new_game)
+    Moves* new_game; // create tmp pointer
+    (*size)++; // raise size
+    new_game = realloc(*game, (*size) * sizeof(Moves)); // reallocate memory with new size
+    if (!new_game){ // check nullprt
         printf("Error malloc new turn!!!!!!\n");
-    strcpy((*game)[*size].hod, "0");
-    *game = new_game;
+        return NULL;
+    }
+    //strcpy((*game)[*size].hod, "0"); // end game
+    *game = new_game; // assigment new pointer
     
-    return *game;
+    return *game; // return new ptr
 }
 
 void* free_one(Moves** game, int* size){
-    Moves* new_game;
-    void* t;
+    Moves* new_game; // create tmp pointer
+    void* t; // create tmp pointer
     (*size)--;
-    memmove(*game + *size, *game + *size +1 , sizeof((*game)[0]) * ((*size) - *size));
-    new_game = realloc(*game, (*size) * sizeof(Moves));
-    t = new_game;
+    //memmove(*game + *size, *game + *size +1 , sizeof((*game)[0]) * ((*size) - *size)); // move data
+    new_game = realloc(*game, (*size) * sizeof(Moves)); // reallocate memory with new size
+    t = new_game; // check nullprt
     if (!t) {
         printf("Error malloc new turn!!!!!!\n");
         (*size)++;
-        *game = new_game;
+        return *game;
     }
+    
+    *game = new_game; // assigment new pointer
+
     //strcpy((*game)[*size].hod, "0");
-    return *game;
+    return *game; // return new ptr
 }

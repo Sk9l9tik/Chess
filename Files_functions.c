@@ -8,39 +8,39 @@
 
 #include "Desk.h"
 
-#include "Files_functions.h"
+#include "Files_functions.h" // include .h file
 
 void* import_game(Moves** game, int* count) {
-	char* path = malloc(256*sizeof(char));
+	char* path = malloc(256 * sizeof(char));
 	printf("Path game>");
-	scanf("%s", path);																			
-	FILE* GamePath = fopen(path, "r");
-	
+	scanf("%s", path);	// input path file																
+	FILE* GamePath = fopen(path, "r"); // make path pointer
+
 	Moves* new_game = NULL;
 	int i = 0;
 	(*count)++;
 	if (GamePath) {
-		while (fgets((*game)[i].hod, sizeof((*game)[0].hod) / sizeof((*game)[0].hod[0]), GamePath)) {
+		while (fgets((*game)[i].hod, sizeof((*game)[0].hod) / sizeof((*game)[0].hod[0]), GamePath)) { // reading string from file
 
 			allocate_one(game, count);
-			if ((*game)[i].hod[2] != '-') {
+			if ((*game)[i].hod[2] != '-') { // An almost useless check
 				free_one(game, count);
 				break;
 			}
-			char* p='\0';
-			p = strchr((*game)[i].hod, '\n');
+			char* p = '\0';
+			p = strchr((*game)[i].hod, '\n'); // Mashing the newline character
 			if (p)	*p = 0;
-			printf("%s\n", (*game)[i].hod);
+			printf("%s\n", (*game)[i].hod); // printing readed turn
 			i++;
 
 		}
-		fclose(GamePath);
+		fclose(GamePath); // Close file
 		//(*count)--;
-		strcpy((*game)[*count-1].hod, "0");
-		
+		strcpy((*game)[*count - 1].hod, "0"); // Check end game
+
 	}
 	else {
-		printf("No such file!!!\n");
+		printf("No such file!!!\n"); // print error readed file
 	}
 
 	free(path);
@@ -49,33 +49,38 @@ void* import_game(Moves** game, int* count) {
 //	./test_games/test_game.txt
 
 void save_game(Moves* game, int count) {
+	if (!game) {
+		printf("No game to save!!!\n");
+		return 0;
+	}
+
 	char* path = malloc(sizeof(char) * 15);
-	path = "./SavedGames/";
-	char* game_name = malloc(sizeof(char)*256);
+	path = "./SavedGames/"; // path saved folder
+	char* game_name = malloc(sizeof(char) * 256);
 	printf("Game name>");
-	scanf("%s", game_name);
-	strcat(game_name, ".txt");
+	scanf("%s", game_name); // input name file
+	strcat(game_name, ".txt"); // add file extention
 
 	size_t len = strlen(path) + strlen(game_name) + 1;
-	char* game_path = (char*)malloc(sizeof(char)*len);
+	char* game_path = (char*)malloc(sizeof(char) * len);
 
 	strcpy(game_path, path);
-	strcat(game_path, game_name);
+	strcat(game_path, game_name); // concatinate path folder and name file
 
 
-	FILE* GamePath = fopen(game_path, "w");
+	FILE* GamePath = fopen(game_path, "w"); // make path pointer
 
 	if (GamePath) {
 		for (int i = 0; i <= count && game[i].hod[0] != '0'; i++) {
-			fputs(game[i].hod, GamePath);
-			fputs("\n", GamePath);
+			fputs(game[i].hod, GamePath); // print game turn in file
+			fputs("\n", GamePath); // print newline character
 		}
-		fclose(GamePath);
-		printf("Game has been written\n");
-	} 
+		fclose(GamePath); // close file
+		printf("Game has been written\n"); // print success write
+	}
 	else {
-		printf("No such file!!!\n");
+		printf("No such file!!!\n"); // print wrong open file
 	}
 
 	free(game_path);
-}	
+}

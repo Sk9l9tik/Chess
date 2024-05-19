@@ -67,6 +67,7 @@ void game_menu(Moves** game, int* size) {
 void* games_list(Moves* lastgame, int* lastgame_size) {
     int k, size = 0, cnt = 0;
 
+
     char gameMoves[MAXTURNS][7] = { "e2-e4", "e7-e5", "0" };
     //Moves game[MAXTURNS] = { 0 };
     Moves* game = (Moves*)malloc(sizeof(Moves) * MAXTURNS);
@@ -128,7 +129,7 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
 
 void main_menu() {
 
-    Moves* game = malloc(sizeof(Moves));
+    Moves* game = NULL;
 
     int k, count=0;
     do {
@@ -150,6 +151,9 @@ void main_menu() {
         case 1:
             count = 0;
             new_game(&game, &count);
+            for (int i = 0; i <= count; i++) {
+                printf("%s\n", (game)[i].hod);
+            }
             break;
         case 2:
             count = 0;
@@ -160,7 +164,7 @@ void main_menu() {
             game = games_list(game, &count);
             break;
         case 4:
-            save_game(game, &count);
+            save_game(game, count);
             break;
         }
     } while (k);
