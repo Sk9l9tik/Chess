@@ -78,3 +78,17 @@ void initMoves(Moves* moves) {
 		printf("%c %d\n\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color); // ia?aou oeao?u e aa oaaoa
 	*/
 }
+
+void initKingsPos(KingsPos* kingspos) {
+	//white
+	
+	kingspos->w_king_x = 4;
+	kingspos->w_king_y = 0;
+
+	//black
+	kingspos->b_king_x = 4;
+	kingspos->b_king_x = 7;
+
+	kingspos->Mate_f = 0;
+	kingspos->Check_f = 0;
+}

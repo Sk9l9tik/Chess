@@ -3,17 +3,19 @@
 #include "Moves.h"
 
 /*Forward-Back move functions*/
-void MoveForward(Desk desk, Moves* moves) {
+int MoveForward(Desk desk, Moves* moves) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
-	int Flag = 1;
+	int Flag = 1; //check_f = kingspos->Check_f;
 
 	for (int i = 1; i <= moves->dist_y; i++) {
 		t_cord_y--;
 		//printf("X:%d Y:%d\n", t_cord_x, t_cord_y);
 		//printf("%c %d\n", desk[t_cord_y][t_cord_x].figure, desk[t_cord_y][t_cord_x].color);
 		if ((t_cord_y + moves->dist_y == moves->cord_y && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color)) {
+			if (desk[t_cord_y][t_cord_x].figure == 'K') 
+				return 1;
 			break;
 		}
 		else if (desk[t_cord_y][t_cord_x].figure != '_') {
@@ -21,20 +23,20 @@ void MoveForward(Desk desk, Moves* moves) {
 			Flag = 0;
 			break;
 		}
-
 	}
 
 	if (Flag == 1) {
 		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 		desk[moves->cord_y][moves->cord_x] = t;
+		return 0;
 	}
 }
 
-void MoveBack(Desk desk, Moves* moves) {
+void MoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
-	int Flag = 1;
+	int Flag = 1, check_f = kingspos->Check_f;
 
 	for (int i = 0; i > moves->dist_y; i--) {
 		t_cord_y++;
@@ -58,11 +60,11 @@ void MoveBack(Desk desk, Moves* moves) {
 
 
 /*Diagonal move functions*/
-void MoveDiagonalForwardLeft(Desk desk, Moves* moves) {
+void MoveDiagonalForwardLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
-	int Flag = 1;
+	int Flag = 1, check_f = kingspos->Check_f;
 
 	for (int i = 1; i <= moves->dist_y; i++) {
 		t_cord_x--;
@@ -91,11 +93,11 @@ void MoveDiagonalForwardLeft(Desk desk, Moves* moves) {
 
 }
 
-void MoveDiagonalForwardRight(Desk desk, Moves* moves) {
+void MoveDiagonalForwardRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
-	int Flag = 1;
+	int Flag = 1, check_f = kingspos->Check_f;
 
 	for (int i = 1; i <= moves->dist_y; i++) {
 		t_cord_x++;
@@ -119,11 +121,11 @@ void MoveDiagonalForwardRight(Desk desk, Moves* moves) {
 	}
 }
 
-void MoveDiagonalBackRight(Desk desk, Moves* moves) {
+void MoveDiagonalBackRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
-	int Flag = 1;
+	int Flag = 1, check_f = kingspos->Check_f;
 
 	for (int i = 0; i > moves->dist_y; i--) {
 		t_cord_x++;
@@ -149,11 +151,11 @@ void MoveDiagonalBackRight(Desk desk, Moves* moves) {
 
 }
 
-void MoveDiagonalBackLeft(Desk desk, Moves* moves) {
+void MoveDiagonalBackLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
-	int Flag = 1;
+	int Flag = 1, check_f = kingspos->Check_f;
 
 	for (int i = 0; i > moves->dist_y; i--) {
 		t_cord_x--;
@@ -179,11 +181,11 @@ void MoveDiagonalBackLeft(Desk desk, Moves* moves) {
 
 
 /*Left-Right move Functions*/
-void MoveRight(Desk desk, Moves* moves) {
+void MoveRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
-	int Flag = 1;
+	int Flag = 1, check_f = kingspos->Check_f;
 
 	for (int i = 1; i <= moves->dist_x; i++) {
 		t_cord_x++;
@@ -205,11 +207,11 @@ void MoveRight(Desk desk, Moves* moves) {
 	}
 }
 
-void MoveLeft(Desk desk, Moves* moves) {
+void MoveLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
-	int Flag = 1;
+	int Flag = 1, check_f = kingspos->Check_f;
 
 	for (int i = 0; i > moves->dist_x; i--) {
 		t_cord_x--;
@@ -234,9 +236,9 @@ void MoveLeft(Desk desk, Moves* moves) {
 
 
 /*Horse move functions*/
-void HorseMoveForward(Desk desk, Moves* moves) {
+void HorseMoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
-	int Flag = 1;
+	int Flag = 1, check_f = kingspos->Check_f;
 	if (moves->dist_y > 0) {
 		//printf("X:%d Y:%d\n", moves->cord_x, moves->cord_y);
 		//printf("%c %d\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color);
@@ -271,9 +273,9 @@ void HorseMoveForward(Desk desk, Moves* moves) {
 	}
 }
 
-void HorseMoveBack(Desk desk, Moves* moves) {
+void HorseMoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
-	int Flag = 1;
+	int Flag = 1, check_f = kingspos->Check_f;
 	if (moves->dist_y > 0) {
 		//printf("X:%d Y:%d\n", moves->cord_x, moves->cord_y);
 		//printf("%c %d\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color);

@@ -7,7 +7,7 @@
 /*init main move function*/
 int Move(Desk desk, Moves* moves);
 /*init Forward-Back move functions*/
-void MoveForward(Desk desk, Moves* moves);
+int MoveForward(Desk desk, Moves* moves);
 void MoveBack(Desk desk, Moves* moves);
 /*init Diagonal move functions*/
 void MoveDiagonalForwardRight(Desk desk, Moves* moves);

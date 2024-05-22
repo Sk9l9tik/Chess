@@ -3,8 +3,11 @@
 #include "Moves.h"
 #include "Figures.h"
 
+#include "CheckMate.h"
+
 int Move(Desk desk, Moves* moves) {
-	int flag = 0;
+	int flag = 0, check_flag = 0;
+	
 	if (desk[moves->cord_y][moves->cord_x].figure == 'P') {
 		flag = Pawn(desk, moves);
 	}

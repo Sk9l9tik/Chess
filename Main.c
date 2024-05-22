@@ -6,6 +6,7 @@
 //#include "Console_Resize.h"
 #include "Menu.h"
 #include "Game_menu_functions.h"
+#include "ChecKMate.h"
 
 #include "Desk.h"
 #include "Init.h"

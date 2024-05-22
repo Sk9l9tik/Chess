@@ -42,3 +42,17 @@ typedef struct Game {
 
 #endif
 
+#ifndef KigsPos_H
+#define KigsPos_H
+
+typedef struct KingsPos {
+	int w_king_x;
+	int w_king_y;
+	int b_king_x;
+	int b_king_y;
+
+	char Check_f;
+	char Mate_f;
+} KingsPos;
+
+#endif

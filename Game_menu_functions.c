@@ -8,6 +8,7 @@
 
 #include "Init.h"
 #include "Moves.h"
+#include "CheckMate.h"
 
 #include "Menu.h"
 #include "Game_menu_functions.h"
@@ -18,14 +19,19 @@ void new_game(Moves** game, int* count){
     Desk desk;
     init(desk);
 
+    KingsPos kingspos;
+    initKingsPos(&kingspos);
+
+
     printDesk(desk);
 
     //char hod[7];
 
     for (int i = 0; ; i++) {
         allocate_one(game, count);
-
-        while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), (Move(desk, &(*game)[i]) == 1)) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1
+        // remake check and add "Check func"
+        // on Check you can move only king or any figure to prevent Check
+        while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), (Move(desk, &(*game)[i]) == 1), Check(desk, *game, &kingspos) == 1) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1
             if ((*game)[i].hod[0] == '0') {
                 free_one(game, count+1);
                 return;

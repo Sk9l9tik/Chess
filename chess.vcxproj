@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Allocate.c" />
+    <ClCompile Include="CheckMate.c" />
     <ClCompile Include="Directory_Files.c" />
     <ClCompile Include="Figures.c" />
     <ClCompile Include="Files_functions.c" />
@@ -137,9 +138,11 @@
     <ClCompile Include="Main_Moves.c" />
     <ClCompile Include="Menu.c" />
     <ClCompile Include="Moves.c" />
+    <ClCompile Include="MovesCheck.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Allocate.h" />
+    <ClInclude Include="CheckMate.h" />
     <ClInclude Include="Desk.h" />
     <ClInclude Include="Directory_files.h" />
     <ClInclude Include="Figures.h" />
@@ -148,6 +151,7 @@
     <ClInclude Include="Init.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Moves.h" />
+    <ClInclude Include="MovesCheck.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

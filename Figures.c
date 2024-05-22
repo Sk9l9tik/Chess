@@ -60,9 +60,11 @@ int Knight(Desk desk, Moves* moves) {
 }
 
 int Rock(Desk desk, Moves* moves) {
+	int check_f = 0;
+
 	if (moves->dist_x == 0) {
 		if (moves->dist_y > 0)
-			MoveForward(desk, moves);
+			check_f = MoveForward(desk, moves);
 		else
 			MoveBack(desk, moves);
 	}
@@ -73,9 +75,10 @@ int Rock(Desk desk, Moves* moves) {
 			MoveLeft(desk, moves);
 	}
 	else {
-		//printf("Illegal turn: %s !!!\n\n", moves->hod);
 		return 1;
 	}
+	if (check_f)
+		return 2; // Check !!!
 	return 0;
 }
 
