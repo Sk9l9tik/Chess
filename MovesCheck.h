@@ -2,4 +2,5 @@
 
 #include "Desk.h"
 
-void MoveForwardCheck(Desk desk, Moves* moves, KingsPos* kingspos);
+//int MoveForwardCheck(Desk desk, Moves* moves, KingsPos* kingspos);
+int MoveBackCheck(Desk desk, Moves* moves, KingsPos* kingspos);

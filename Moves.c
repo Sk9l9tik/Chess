@@ -3,7 +3,7 @@
 #include "Moves.h"
 
 /*Forward-Back move functions*/
-int MoveForward(Desk desk, Moves* moves) {
+int MoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
@@ -32,7 +32,7 @@ int MoveForward(Desk desk, Moves* moves) {
 	}
 }
 
-void MoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
+int MoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
@@ -60,7 +60,7 @@ void MoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
 
 
 /*Diagonal move functions*/
-void MoveDiagonalForwardLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
+int MoveDiagonalForwardLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
@@ -93,7 +93,7 @@ void MoveDiagonalForwardLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 
 }
 
-void MoveDiagonalForwardRight(Desk desk, Moves* moves, KingsPos* kingspos) {
+int MoveDiagonalForwardRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
@@ -121,7 +121,7 @@ void MoveDiagonalForwardRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 	}
 }
 
-void MoveDiagonalBackRight(Desk desk, Moves* moves, KingsPos* kingspos) {
+int MoveDiagonalBackRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
@@ -151,7 +151,7 @@ void MoveDiagonalBackRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 
 }
 
-void MoveDiagonalBackLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
+int MoveDiagonalBackLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
@@ -181,7 +181,7 @@ void MoveDiagonalBackLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 
 
 /*Left-Right move Functions*/
-void MoveRight(Desk desk, Moves* moves, KingsPos* kingspos) {
+int MoveRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
@@ -207,7 +207,7 @@ void MoveRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 	}
 }
 
-void MoveLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
+int MoveLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
@@ -236,7 +236,7 @@ void MoveLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 
 
 /*Horse move functions*/
-void HorseMoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
+int HorseMoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int Flag = 1, check_f = kingspos->Check_f;
 	if (moves->dist_y > 0) {
@@ -273,7 +273,7 @@ void HorseMoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
 	}
 }
 
-void HorseMoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
+int HorseMoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int Flag = 1, check_f = kingspos->Check_f;
 	if (moves->dist_y > 0) {

@@ -4,9 +4,10 @@
 int Check(Desk desk, Moves* moves, KingsPos* kingspos) {
 
 	// white king
-	kingspos->Check_f = 1;
+	int flag = kingspos->Check_f;
 	//main pos
-	MoveForwardCheck(desk, moves, kingspos);
+	//flag = MoveForwardCheck(desk, moves, kingspos);
+	flag = MoveBackCheck(desk, moves, kingspos);
 	//....//
 
 
@@ -20,5 +21,5 @@ int Check(Desk desk, Moves* moves, KingsPos* kingspos) {
 	3) remake "new_game" check right move
 	*/
 
-	return 0;
+	return flag;
 }

@@ -5,18 +5,18 @@
 /*init moves functions*/
 
 /*init main move function*/
-int Move(Desk desk, Moves* moves);
+int Move(Desk desk, Moves* moves, KingsPos* kingspos);
 /*init Forward-Back move functions*/
-int MoveForward(Desk desk, Moves* moves);
-void MoveBack(Desk desk, Moves* moves);
+int MoveForward(Desk desk, Moves* moves, KingsPos* kingspos);
+int MoveBack(Desk desk, Moves* moves, KingsPos* kingspos);
 /*init Diagonal move functions*/
-void MoveDiagonalForwardRight(Desk desk, Moves* moves);
-void MoveDiagonalForwardLeft(Desk desk, Moves* moves);
-void MoveDiagonalBackRight(Desk desk, Moves* moves);
-void MoveDiagonalBackLeft(Desk desk, Moves* moves);
+int MoveDiagonalForwardRight(Desk desk, Moves* moves, KingsPos* kingspos);
+int MoveDiagonalForwardLeft(Desk desk, Moves* moves, KingsPos* kingspos);
+int MoveDiagonalBackRight(Desk desk, Moves* moves, KingsPos* kingspos);
+int MoveDiagonalBackLeft(Desk desk, Moves* moves, KingsPos* kingspos);
 /*init Left-Right move Functions*/
-void MoveRight(Desk desk, Moves* moves);
-void MoveLeft(Desk desk, Moves* moves);
+int MoveRight(Desk desk, Moves* moves, KingsPos* kingspos);
+int MoveLeft(Desk desk, Moves* moves, KingsPos* kingspos);
 /*init Horse move functions*/
-void HorseMoveForward(Desk desk, Moves* moves);
-void HorseMoveBack(Desk desk, Moves* moves);
+int HorseMoveForward(Desk desk, Moves* moves, KingsPos* kingspos);
+int HorseMoveBack(Desk desk, Moves* moves, KingsPos* kingspos);
