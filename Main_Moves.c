@@ -9,22 +9,22 @@ int Move(Desk desk, Moves* moves, KingsPos* kingspos) {
 	int flag = 0, check_flag = 0;
 	
 	if (desk[moves->cord_y][moves->cord_x].figure == 'P') {
-		flag = Pawn(desk, moves);
+		flag = Pawn(desk, moves, kingspos);
 	}
 	else if (desk[moves->cord_y][moves->cord_x].figure == 'N') {
-		flag = Knight(desk, moves);
+		flag = Knight(desk, moves, kingspos);
 	}
 	else if (desk[moves->cord_y][moves->cord_x].figure == 'R') {
-		flag = Rock(desk, moves);
+		flag = Rock(desk, moves, kingspos);
 	}
 	else if (desk[moves->cord_y][moves->cord_x].figure == 'B') {
-		flag = Bishop(desk, moves);
+		flag = Bishop(desk, moves, kingspos);
 	}
 	else if (desk[moves->cord_y][moves->cord_x].figure == 'Q') {
-		flag = Queen(desk, moves);
+		flag = Queen(desk, moves, kingspos);
 	}
 	else if (desk[moves->cord_y][moves->cord_x].figure == 'K') {
-		flag = King(desk, moves);
+		flag = King(desk, moves, kingspos);
 		if (flag != 1) {
 			// king pos...
 		}

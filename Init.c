@@ -15,6 +15,8 @@ void init(Desk desk) {
 	desk[0][3] = Q;
 	desk[0][4] = K;
 
+
+
 	P.color = B.color = R.color = N.color = Q.color = K.color = 1;
 	desk[7][0] = R;
 	desk[7][7] = R;
@@ -39,10 +41,11 @@ void init(Desk desk) {
 				desk[i][j] = n;
 		}
 	}
-	desk[1][4] = n;
 
+	desk[6][4] = n;
+
+	Q.color = 0;
 	desk[5][5] = Q;
-
 }
 
 int printDesk(Desk desk) {

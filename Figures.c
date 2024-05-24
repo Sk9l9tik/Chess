@@ -70,13 +70,13 @@ int Rock(Desk desk, Moves* moves, KingsPos* kingspos) {
 		if (moves->dist_y > 0)
 			check_f = MoveForward(desk, moves, kingspos);
 		else
-			MoveBack(desk, moves, kingspos);
+			check_f = MoveBack(desk, moves, kingspos);
 	}
 	else if (moves->dist_y == 0) {
 		if (moves->dist_x > 0)
-			MoveRight(desk, moves, kingspos);
+			check_f = MoveRight(desk, moves, kingspos);
 		else
-			MoveLeft(desk, moves, kingspos);
+			check_f = MoveLeft(desk, moves, kingspos);
 	}
 	else {
 		return 1;
@@ -113,25 +113,25 @@ int Queen(Desk desk, Moves* moves, KingsPos* kingspos) {
 		if (moves->dist_y > 0)
 			check_f = MoveForward(desk, moves, kingspos);
 		else
-			MoveBack(desk, moves, kingspos);
+			check_f = MoveBack(desk, moves, kingspos);
 	}
 	else if (moves->dist_y == 0) {
 		if (moves->dist_x > 0)
-			MoveRight(desk, moves, kingspos);
+			check_f = MoveRight(desk, moves, kingspos);
 		else
-			MoveLeft(desk, moves, kingspos);
+			check_f = MoveLeft(desk, moves, kingspos);
 	}
 	else if (abs(moves->dist_x) == moves->dist_y && moves->dist_x < 0) {
-		MoveDiagonalForwardLeft(desk, moves, kingspos);
+		check_f = MoveDiagonalForwardLeft(desk, moves, kingspos);
 	}
 	else if (moves->dist_x == moves->dist_y && moves->dist_x > 0 && moves->dist_y > 0) {
-		MoveDiagonalForwardRight(desk, moves, kingspos);
+		check_f = MoveDiagonalForwardRight(desk, moves, kingspos);
 	}
 	else if (moves->dist_x == abs(moves->dist_y) && moves->dist_y < 0) {
-		MoveDiagonalBackRight(desk, moves, kingspos);
+		check_f = MoveDiagonalBackRight(desk, moves, kingspos);
 	}
 	else if (moves->dist_x == moves->dist_y && moves->dist_x < 0 && moves->dist_y < 0) {
-		MoveDiagonalBackLeft(desk, moves, kingspos);
+		check_f = MoveDiagonalBackLeft(desk, moves, kingspos);
 	}
 	else {
 		//printf("Illegal turn: %s !!!\n\n", moves->hod);
