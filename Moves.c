@@ -2,6 +2,8 @@
 
 #include "Moves.h"
 
+#include "CheckMate.h"
+
 /*Forward-Back move functions*/
 int MoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
@@ -25,11 +27,12 @@ int MoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
 		}
 	}
 
-	if (Flag == 1) {
+	if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
 		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 		desk[moves->cord_y][moves->cord_x] = t;
 		return 0;
 	}
+	return 1;
 }
 
 int MoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
@@ -52,9 +55,10 @@ int MoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
 		}
 	}
 
-	if (Flag == 1) {
+	if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
 		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 		desk[moves->cord_y][moves->cord_x] = t;
+		return 0;
 	}
 }
 
@@ -86,9 +90,10 @@ int MoveDiagonalForwardLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 		}
 	}
 
-	if (Flag == 1) {
+	if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
 		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 		desk[moves->cord_y][moves->cord_x] = t;
+		return 0;
 	}
 
 }
@@ -115,9 +120,10 @@ int MoveDiagonalForwardRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 			}
 		}
 	}
-	if (Flag == 1) {
+	if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
 		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 		desk[moves->cord_y][moves->cord_x] = t;
+		return 0;
 	}
 }
 
@@ -143,10 +149,10 @@ int MoveDiagonalBackRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 			}
 		}
 	}
-
-	if (Flag == 1) {
+	if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
 		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 		desk[moves->cord_y][moves->cord_x] = t;
+		return 0;
 	}
 
 }
@@ -173,9 +179,10 @@ int MoveDiagonalBackLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 			}
 		}
 	}
-	if (Flag == 1) {
+	if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
 		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 		desk[moves->cord_y][moves->cord_x] = t;
+		return 0;
 	}
 }
 
@@ -200,10 +207,10 @@ int MoveRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 			break;
 		}
 	}
-
-	if (Flag == 1) {
+	if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
 		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 		desk[moves->cord_y][moves->cord_x] = t;
+		return 0;
 	}
 }
 
@@ -228,9 +235,10 @@ int MoveLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 
 	}
 
-	if (Flag == 1) {
+	if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
 		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 		desk[moves->cord_y][moves->cord_x] = t;
+		return 0;
 	}
 }
 
@@ -251,8 +259,11 @@ int HorseMoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
 			Flag = 0;
 		}
 		else {
-			desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-			desk[moves->cord_y][moves->cord_x] = t;
+			if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
+				desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+				desk[moves->cord_y][moves->cord_x] = t;
+				return 0;
+			}
 		}
 	}
 	else {
@@ -267,8 +278,11 @@ int HorseMoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
 			Flag = 0;
 		}
 		else {
-			desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-			desk[moves->cord_y][moves->cord_x] = t;
+			if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
+				desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+				desk[moves->cord_y][moves->cord_x] = t;
+				return 0;
+			}
 		}
 	}
 }
@@ -288,8 +302,11 @@ int HorseMoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
 			Flag = 0;
 		}
 		else {
-			desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-			desk[moves->cord_y][moves->cord_x] = t;
+			if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
+				desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+				desk[moves->cord_y][moves->cord_x] = t;
+				return 0;
+			}
 		}
 	}
 	else {
@@ -304,8 +321,11 @@ int HorseMoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
 			Flag = 0;
 		}
 		else {
-			desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-			desk[moves->cord_y][moves->cord_x] = t;
+			if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
+				desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+				desk[moves->cord_y][moves->cord_x] = t;
+				return 0;
+			}
 		}
 	}
 }

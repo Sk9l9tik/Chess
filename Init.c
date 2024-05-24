@@ -41,7 +41,7 @@ void init(Desk desk) {
 	}
 	desk[1][4] = n;
 
-	desk[5][5] = R;
+	desk[5][5] = Q;
 
 }
 
