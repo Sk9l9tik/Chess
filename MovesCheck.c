@@ -6,6 +6,7 @@ int MoveBackCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color){
 
 	int flag = 0;
 
+
 	int _king_x;
 	int _king_y;
 
