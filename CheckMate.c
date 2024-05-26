@@ -3,13 +3,22 @@
 
 int Check(Desk desk, Moves* moves, KingsPos* kingspos) {
 
-	// white king
-	int flag = kingspos->Check_f;
-	//main pos
-	flag = MoveForwardCheck(desk, moves, kingspos);
-	if (flag == 2) kingspos->Check_f = 2;
-	flag = MoveBackCheck(desk, moves, kingspos);
-	if (flag == 2) kingspos->Check_f = 2;
+	char color;; // 0 - black 1 - white
+
+	int flag;
+	
+	for (char color = 0; color != 2; color++) {
+
+		flag = kingspos->Check_f;
+
+		//main pos
+		flag = MoveForwardCheck(desk, moves, kingspos, color);
+		if (flag == 2) kingspos->Check_f = 2;
+		flag = MoveBackCheck(desk, moves, kingspos, color);
+		if (flag == 2) kingspos->Check_f = 2;
+
+	}
+
 	//....//
 
 
