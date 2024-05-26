@@ -95,8 +95,8 @@ void initKingsPos(KingsPos* kingspos) {
 	kingspos->w_king_y = 7;
 
 	//black
-	kingspos->b_king_x = 5; // 4
-	kingspos->b_king_y = 3; // 0
+	kingspos->b_king_x = 4; // 4
+	kingspos->b_king_y = 0; // 0
 
 	kingspos->Mate_f = 0;
 	kingspos->Check_f = 0;
