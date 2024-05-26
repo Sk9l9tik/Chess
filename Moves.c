@@ -16,23 +16,23 @@ int MoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
 		//printf("X:%d Y:%d\n", t_cord_x, t_cord_y);
 		//printf("%c %d\n", desk[t_cord_y][t_cord_x].figure, desk[t_cord_y][t_cord_x].color);
 		if ((t_cord_y + moves->dist_y == moves->cord_y && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color)) {
-			if (desk[t_cord_y][t_cord_x].figure == 'K') 
+			if (desk[t_cord_y][t_cord_x].figure == 'K'&& desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color) 
 				return 1;
 			break;
 		}
 		else if (desk[t_cord_y][t_cord_x].figure != '_') {
-			printf("Illegal turn: %s !!!\n\n", moves->hod);
-			Flag = 0;
-			break;
+			return 0;
 		}
 	}
 
-	if (Flag == 1 && Check(desk, moves, kingspos) != 2) {
-		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-		desk[moves->cord_y][moves->cord_x] = t;
-		return 0;
+	desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+	desk[moves->cord_y][moves->cord_x] = t;
+
+	if (kingspos->Check_f != 0 && Check(desk, moves, kingspos) != 0) { //&& Check(desk, moves, kingspos) != 2
+		desk[moves->cord_y][moves->cord_x] = desk[t_cord_y][t_cord_x];
+		desk[t_cord_y][t_cord_x] = t;
 	}
-	return 1;
+	return 0;
 }
 
 int MoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
@@ -46,21 +46,23 @@ int MoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
 		//printf("X:%d Y:%d\n", t_cord_x, t_cord_y);
 		//printf("%c %d\n", desk[t_cord_y][t_cord_x].figure, desk[t_cord_y][t_cord_x].color);
 		if ((t_cord_y + moves->dist_y == moves->cord_y && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color && desk[t_cord_y][t_cord_x].color != 2)) {
-			if (desk[t_cord_y][t_cord_x].figure == 'K')
+			if (desk[t_cord_y][t_cord_x].figure == 'K' && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color)
 				return 1;
 			break;
 		}
 		else if (desk[t_cord_y][t_cord_x].figure != '_') {
-			printf("Illegal turn: %s !!!\n\n", moves->hod);
-			Flag = 0;
-			break;
+			return 0;
 		}
 	}
 
-	if (Flag == 1) {
-		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-		desk[moves->cord_y][moves->cord_x] = t;
+	desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+	desk[moves->cord_y][moves->cord_x] = t;
+
+	if (kingspos->Check_f != 0 && Check(desk, moves, kingspos) != 0) { //&& Check(desk, moves, kingspos) != 2
+		desk[moves->cord_y][moves->cord_x] = desk[t_cord_y][t_cord_x];
+		desk[t_cord_y][t_cord_x] = t;
 	}
+	return 0;
 }
 
 
@@ -81,21 +83,24 @@ int MoveDiagonalForwardLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 			printf("X-dX:%d Y-dY:%d\n", t_cord_x - moves->dist_x, t_cord_y+moves->dist_y);
 			*/
 			if ((t_cord_y + moves->dist_y == moves->cord_y && t_cord_x - moves->dist_x == moves->cord_x && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color)) {
+				if (desk[t_cord_y][t_cord_x].figure == 'K')
+					return 1;
 				break;
 			}
 			else if (desk[t_cord_y][t_cord_x].figure != '_') {
-				printf("Illegal turn: %s !!!\n\n", moves->hod);
-				Flag = 0;
-				break;
+				return 0;
 			}
 		}
 	}
 
-	if (Flag == 1) {
-		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-		desk[moves->cord_y][moves->cord_x] = t;
-	}
+	desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+	desk[moves->cord_y][moves->cord_x] = t;
 
+	if (kingspos->Check_f != 0 && Check(desk, moves, kingspos) != 0) { //&& Check(desk, moves, kingspos) != 2
+		desk[moves->cord_y][moves->cord_x] = desk[t_cord_y][t_cord_x];
+		desk[t_cord_y][t_cord_x] = t;
+	}
+	return 0;
 }
 
 int MoveDiagonalForwardRight(Desk desk, Moves* moves, KingsPos* kingspos) {
@@ -111,49 +116,23 @@ int MoveDiagonalForwardRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 			//printf("X:%d Y:%d\n", moves->cord_x, moves->cord_y);
 			//printf("%c %d\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color);
 			if ((t_cord_y + moves->dist_y == moves->cord_y && t_cord_x - moves->dist_x == moves->cord_x && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color)) {
+				if (desk[t_cord_y][t_cord_x].figure == 'K')
+					return 1;
 				break;
 			}
 			else if (desk[t_cord_y][t_cord_x].figure != '_') {
-				printf("Illegal turn: %s !!!\n\n", moves->hod);
-				Flag = 0;
-				break;
+				return 0;
 			}
 		}
 	}
-	if (Flag == 1) {
-		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-		desk[moves->cord_y][moves->cord_x] = t;
+	desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+	desk[moves->cord_y][moves->cord_x] = t;
+
+	if (kingspos->Check_f != 0 && Check(desk, moves, kingspos) != 0) { //&& Check(desk, moves, kingspos) != 2
+		desk[moves->cord_y][moves->cord_x] = desk[t_cord_y][t_cord_x];
+		desk[t_cord_y][t_cord_x] = t;
 	}
-}
-
-int MoveDiagonalBackRight(Desk desk, Moves* moves, KingsPos* kingspos) {
-	Figure t = { '_',0 };
-	int t_cord_x = moves->cord_x;
-	int t_cord_y = moves->cord_y;
-	int Flag = 1, check_f = kingspos->Check_f;
-
-	for (int i = 0; i > moves->dist_y; i--) {
-		t_cord_x++;
-		t_cord_y++;
-		if (moves->dist_y < 0) {
-			//printf("X:%d Y:%d\n", t_cord_x, t_cord_y);
-			//printf("%c %d\n", desk[t_cord_y][t_cord_x].figure, desk[t_cord_y][t_cord_x].color);
-			if ((t_cord_y + moves->dist_y == moves->cord_y && t_cord_x - moves->dist_x == moves->cord_x && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color)) {
-				break;
-			}
-			else if (desk[t_cord_y][t_cord_x].figure != '_') {
-				printf("Illegal turn: %s !!!\n\n", moves->hod);
-				Flag = 0;
-				break;
-			}
-		}
-	}
-
-	if (Flag == 1) {
-		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-		desk[moves->cord_y][moves->cord_x] = t;
-	}
-
+	return 0;
 }
 
 int MoveDiagonalBackLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
@@ -169,49 +148,59 @@ int MoveDiagonalBackLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 			//printf("X:%d Y:%d\n", moves->cord_x, moves->cord_y);
 			//printf("%c %d\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color);
 			if ((t_cord_y + moves->dist_y == moves->cord_y && t_cord_x - moves->dist_x == moves->cord_x && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color)) {
+				if (desk[t_cord_y][t_cord_x].figure == 'K')
+					return 1;
 				break;
 			}
 			else if (desk[t_cord_y][t_cord_x].figure != '_') {
-				printf("Illegal turn: %s !!!\n\n", moves->hod);
-				Flag = 0;
-				break;
+				return 0;
 			}
 		}
 	}
-	if (Flag == 1) {
-		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-		desk[moves->cord_y][moves->cord_x] = t;
+	desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+	desk[moves->cord_y][moves->cord_x] = t;
+
+	if (kingspos->Check_f != 0 && Check(desk, moves, kingspos) != 0) { //&& Check(desk, moves, kingspos) != 2
+		desk[moves->cord_y][moves->cord_x] = desk[t_cord_y][t_cord_x];
+		desk[t_cord_y][t_cord_x] = t;
 	}
+	return 0;
 }
 
-
-/*Left-Right move Functions*/
-int MoveRight(Desk desk, Moves* moves, KingsPos* kingspos) {
+int MoveDiagonalBackRight(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
 	int t_cord_y = moves->cord_y;
 	int Flag = 1, check_f = kingspos->Check_f;
 
-	for (int i = 1; i <= moves->dist_x; i++) {
+	for (int i = 0; i > moves->dist_y; i--) {
 		t_cord_x++;
-		//printf("X:%d Y:%d\n", moves->cord_x, moves->cord_y);
-		//printf("%c %d\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color);
-		if ((t_cord_x - moves->dist_x == moves->cord_x && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color)) {
-			break;
-		}
-		else if (desk[t_cord_y][t_cord_x].figure != '_') {
-			printf("Illegal turn: %s !!!\n\n", moves->hod);
-			Flag = 0;
-			break;
+		t_cord_y++;
+		if (moves->dist_y < 0) {
+			//printf("X:%d Y:%d\n", t_cord_x, t_cord_y);
+			//printf("%c %d\n", desk[t_cord_y][t_cord_x].figure, desk[t_cord_y][t_cord_x].color);
+			if ((t_cord_y + moves->dist_y == moves->cord_y && t_cord_x - moves->dist_x == moves->cord_x && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color)) {
+				if (desk[t_cord_y][t_cord_x].figure == 'K')
+					return 1;
+				break;
+			}
+			else if (desk[t_cord_y][t_cord_x].figure != '_') {
+				return 0;
+			}
 		}
 	}
 
-	if (Flag == 1) {
-		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-		desk[moves->cord_y][moves->cord_x] = t;
+	desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+	desk[moves->cord_y][moves->cord_x] = t;
+
+	if (kingspos->Check_f != 0 && Check(desk, moves, kingspos) != 0) { //&& Check(desk, moves, kingspos) != 2
+		desk[moves->cord_y][moves->cord_x] = desk[t_cord_y][t_cord_x];
+		desk[t_cord_y][t_cord_x] = t;
 	}
+	return 0;
 }
 
+/*Left-Right move Functions*/
 int MoveLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 	Figure t = { '_',0 };
 	int t_cord_x = moves->cord_x;
@@ -223,20 +212,54 @@ int MoveLeft(Desk desk, Moves* moves, KingsPos* kingspos) {
 		//printf("X:%d Y:%d\n", moves->cord_x, moves->cord_y);
 		//printf("%c %d\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color);
 		if ((t_cord_x - moves->dist_x == moves->cord_x && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color)) {
+			if (desk[t_cord_y][t_cord_x].figure == 'K')
+				return 1;
 			break;
 		}
 		else if (desk[t_cord_y][t_cord_x].figure != '_') {
-			printf("Illegal turn: %s !!!\n\n", moves->hod);
-			Flag = 0;
-			break;
+			return 0;
 		}
 
 	}
 
-	if (Flag == 1) {
-		desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
-		desk[moves->cord_y][moves->cord_x] = t;
+	desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+	desk[moves->cord_y][moves->cord_x] = t;
+
+	if (kingspos->Check_f != 0 && Check(desk, moves, kingspos) != 0) { //&& Check(desk, moves, kingspos) != 2
+		desk[moves->cord_y][moves->cord_x] = desk[t_cord_y][t_cord_x];
+		desk[t_cord_y][t_cord_x] = t;
 	}
+	return 0;
+}
+
+int MoveRight(Desk desk, Moves* moves, KingsPos* kingspos) {
+	Figure t = { '_',0 };
+	int t_cord_x = moves->cord_x;
+	int t_cord_y = moves->cord_y;
+	int Flag = 1, check_f = kingspos->Check_f;
+
+	for (int i = 1; i <= moves->dist_x; i++) {
+		t_cord_x++;
+		//printf("X:%d Y:%d\n", moves->cord_x, moves->cord_y);
+		//printf("%c %d\n", desk[moves->cord_y][moves->cord_x].figure, desk[moves->cord_y][moves->cord_x].color);
+		if ((t_cord_x - moves->dist_x == moves->cord_x && desk[t_cord_y][t_cord_x].color != desk[moves->cord_y][moves->cord_x].color)) {
+			if (desk[t_cord_y][t_cord_x].figure == 'K')
+				return 1;
+			break;
+		}
+		else if (desk[t_cord_y][t_cord_x].figure != '_') {
+			return 0;
+		}
+	}
+
+	desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
+	desk[moves->cord_y][moves->cord_x] = t;
+
+	if (kingspos->Check_f != 0 && Check(desk, moves, kingspos) != 0) { //&& Check(desk, moves, kingspos) != 2
+		desk[moves->cord_y][moves->cord_x] = desk[t_cord_y][t_cord_x];
+		desk[t_cord_y][t_cord_x] = t;
+	}
+	return 0;
 }
 
 
@@ -258,6 +281,7 @@ int HorseMoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
 		else {
 			desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 			desk[moves->cord_y][moves->cord_x] = t;
+			return 0;
 		}
 	}
 	else {
@@ -274,6 +298,7 @@ int HorseMoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {
 		else {
 			desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 			desk[moves->cord_y][moves->cord_x] = t;
+			return 0;
 		}
 	}
 }
@@ -295,6 +320,7 @@ int HorseMoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
 		else {
 			desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 			desk[moves->cord_y][moves->cord_x] = t;
+			return 0;
 		}
 	}
 	else {
@@ -311,6 +337,7 @@ int HorseMoveBack(Desk desk, Moves* moves, KingsPos* kingspos) {
 		else {
 			desk[t_cord_y][t_cord_x] = desk[moves->cord_y][moves->cord_x];
 			desk[moves->cord_y][moves->cord_x] = t;
+			return 0;
 		}
 	}
 }

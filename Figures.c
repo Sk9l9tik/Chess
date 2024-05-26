@@ -9,23 +9,23 @@ int Pawn(Desk desk, Moves* moves, KingsPos* kingspos) {
 	int check_f = 0;
 	if (((abs(moves->dist_y) == 2 && moves->cord_y == 1) || (abs(moves->dist_y) == 2 && (moves->cord_y == 6)) || (abs(moves->dist_y) == 1 && moves->dist_x == 0) || (abs(moves->dist_y) == 1 && abs(moves->dist_x) == 1))) {
 		if (abs(moves->dist_x) == moves->dist_y && moves->dist_x < 0) {
-			MoveDiagonalForwardLeft(desk, moves, kingspos);
+			check_f = MoveDiagonalForwardLeft(desk, moves, kingspos);
 		}
 		else if (abs(moves->dist_x) == moves->dist_y && moves->dist_x > 0) {
-			MoveDiagonalForwardRight(desk, moves, kingspos);
+			check_f = MoveDiagonalForwardRight(desk, moves, kingspos);
 		}
 		else if (moves->dist_x == abs(moves->dist_y) && moves->dist_y < 0) {
-			MoveDiagonalBackRight(desk, moves, kingspos);
+			check_f = MoveDiagonalBackRight(desk, moves, kingspos);
 		}
 		else if (moves->dist_x == moves->dist_y && moves->dist_x < 0 && moves->dist_y < 0) {
-			MoveDiagonalBackLeft(desk, moves, kingspos);
+			check_f = MoveDiagonalBackLeft(desk, moves, kingspos);
 		}
 		else if (moves->dist_y > 0 && desk[moves->cord_y - 1][moves->cord_x].figure == '_') {
 			//printf("%c %d\n\n", desk[moves->cord_y-1][moves->cord_x].figure, desk[moves->cord_y-1][moves->cord_x].color);
 			check_f = MoveForward(desk, moves, kingspos);
 		}
 		else if (moves->dist_y < 0 && desk[moves->cord_y + 1][moves->cord_x].figure == '_') {
-			MoveBack(desk, moves, kingspos);
+			check_f = MoveBack(desk, moves, kingspos);
 		}
 		else {
 			//printf("Illegal turn: %s !!!\n\n", moves->hod);
@@ -47,19 +47,20 @@ int Knight(Desk desk, Moves* moves, KingsPos* kingspos) {
 		if (moves->dist_y > 0)
 			check_f = MoveForward(desk, moves, kingspos);
 		else
-			MoveBack(desk, moves, kingspos);
+			check_f = MoveBack(desk, moves, kingspos);
 	}
 	else if (moves->dist_y == 0) {
 		if (moves->dist_x > 0)
-			MoveRight(desk, moves, kingspos);
+			check_f = MoveRight(desk, moves, kingspos);
 		else
-			MoveLeft(desk, moves, kingspos);
+			check_f = MoveLeft(desk, moves, kingspos);
 	}
 	else {
 		//printf("Illegal turn: %s !!!\n\n", moves->hod);
 		return 1;
 	}
-
+	if (check_f)
+		return 2; // Check !!!
 	return 0;
 }
 
@@ -89,21 +90,23 @@ int Rock(Desk desk, Moves* moves, KingsPos* kingspos) {
 int Bishop(Desk desk, Moves* moves, KingsPos* kingspos) {
 	int check_f = 0;
 	if (abs(moves->dist_x) == moves->dist_y && moves->dist_x < 0) {
-		MoveDiagonalForwardLeft(desk, moves, kingspos);
+		check_f = MoveDiagonalForwardLeft(desk, moves, kingspos);
 	}
 	else if (moves->dist_x == moves->dist_y && moves->dist_x > 0 && moves->dist_y > 0) {
-		MoveDiagonalForwardRight(desk, moves, kingspos);
+		check_f = MoveDiagonalForwardRight(desk, moves, kingspos);
 	}
 	else if (moves->dist_x == abs(moves->dist_y) && moves->dist_y < 0) {
-		MoveDiagonalBackRight(desk, moves, kingspos);
+		check_f = MoveDiagonalBackRight(desk, moves, kingspos);
 	}
 	else if (moves->dist_x == moves->dist_y && moves->dist_x < 0 && moves->dist_y < 0) {
-		MoveDiagonalBackLeft(desk, moves, kingspos);
+		check_f = MoveDiagonalBackLeft(desk, moves, kingspos);
 	}
 	else {
 		//printf("Illegal turn: %s !!!\n\n", moves->hod);
 		return 1;
 	}
+	if (check_f)
+		return 2; // Check !!!
 	return 0;
 }
 
@@ -153,30 +156,32 @@ int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 			if (moves->dist_y > 0)
 				check_f = MoveForward(desk, moves, kingspos);
 			else
-				MoveBack(desk, moves, kingspos);
+				check_f = MoveBack(desk, moves, kingspos);
 		}
 		else if (moves->dist_y == 0) {
 			if (moves->dist_x > 0)
-				MoveRight(desk, moves, kingspos);
+				check_f = MoveRight(desk, moves, kingspos);
 			else
-				MoveLeft(desk, moves, kingspos);
+				check_f = MoveLeft(desk, moves, kingspos);
 		}
 		else if (abs(moves->dist_x) == moves->dist_y && moves->dist_x < 0) {
-			MoveDiagonalForwardLeft(desk, moves, kingspos);
+			check_f = MoveDiagonalForwardLeft(desk, moves, kingspos);
 		}
 		else if (moves->dist_x == moves->dist_y && moves->dist_x > 0 && moves->dist_y > 0) {
-			MoveDiagonalForwardRight(desk, moves, kingspos);
+			check_f = MoveDiagonalForwardRight(desk, moves, kingspos);
 		}
 		else if (moves->dist_x == abs(moves->dist_y) && moves->dist_y < 0) {
-			MoveDiagonalBackRight(desk, moves, kingspos);
+			check_f = MoveDiagonalBackRight(desk, moves, kingspos);
 		}
 		else if (moves->dist_x == moves->dist_y && moves->dist_x < 0 && moves->dist_y < 0) {
-			MoveDiagonalBackLeft(desk, moves, kingspos);
+			check_f = MoveDiagonalBackLeft(desk, moves, kingspos);
 		}
 		else {
 			//printf("Illegal turn: %s !!!\n\n", moves->hod);
 			return 1;
 		}
+		if (check_f)
+			return 2; // Check !!!
 	}
 	return 0;
 }

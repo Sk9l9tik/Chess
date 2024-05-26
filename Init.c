@@ -42,10 +42,12 @@ void init(Desk desk) {
 		}
 	}
 
-	desk[6][4] = n;
+	//desk[1][3] = n;
+	//K.color = 0;
+	//desk[3][5] = K;
 
-	Q.color = 0;
-	desk[5][5] = Q;
+	//Q.color = 0;
+	//desk[5][4] = Q;
 }
 
 int printDesk(Desk desk) {
@@ -93,8 +95,8 @@ void initKingsPos(KingsPos* kingspos) {
 	kingspos->w_king_y = 7;
 
 	//black
-	kingspos->b_king_x = 4;
-	kingspos->b_king_y = 0;
+	kingspos->b_king_x = 5; // 4
+	kingspos->b_king_y = 3; // 0
 
 	kingspos->Mate_f = 0;
 	kingspos->Check_f = 0;

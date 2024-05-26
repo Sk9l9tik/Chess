@@ -3,27 +3,32 @@
 
 int Check(Desk desk, Moves* moves, KingsPos* kingspos) {
 
-	char color;; // 0 - black 1 - white
-
-	int flag;
-	
+	char color; // 0 - black 1 - white
+	kingspos->Check_f = 0;
+	int flag = 0;
 	for (char color = 0; color != 2; color++) {
-
-		flag = kingspos->Check_f;
-
 		//main pos
 		flag = MoveForwardCheck(desk, moves, kingspos, color);
 		if (flag == 2) kingspos->Check_f = 2;
 		flag = MoveBackCheck(desk, moves, kingspos, color);
 		if (flag == 2) kingspos->Check_f = 2;
-
+		flag = MoveDiagonalForwardLeftCheck(desk, moves, kingspos, color);
+		if (flag == 2) kingspos->Check_f = 2;
+		flag = MoveDiagonalForwardRightCheck(desk, moves, kingspos, color);
+		if (flag == 2) kingspos->Check_f = 2;
+		flag = MoveDiagonalBackLeftCheck(desk, moves, kingspos, color);
+		if (flag == 2) kingspos->Check_f = 2;
+		flag = MoveDiagonalBackRightCheck(desk, moves, kingspos, color);
+		if (flag == 2) kingspos->Check_f = 2;
+		flag = MoveLeftCheck(desk, moves, kingspos, color);
+		if (flag == 2) kingspos->Check_f = 2;
+		flag = MoveRightCheck(desk, moves, kingspos, color);
+		if (flag == 2) kingspos->Check_f = 2;
 	}
 
+
 	//....//
-
-
 	//list of pos = ...
-
 
 	/* 
 	0) make it for 2 kings

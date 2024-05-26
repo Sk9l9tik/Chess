@@ -40,10 +40,12 @@ void new_game(Moves** game, int* count){
             if (flag == 2) {
                 printf("Check !!!!\n");
                 printDesk(desk);
-                while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), Move(desk, &(*game)[i], &kingspos) == 1 || Check(desk, &(*game)[i], &kingspos) == 2) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1
-                    printf("Check !!! Illegal turn: %s !!!\n\n", (*game)[i].hod);
+                while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), Move(desk, &(*game)[i], &kingspos) == 1 || Check(desk, &(*game)[i], &kingspos) == 2) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
+                    printf("Check !!! Illegal turn: %s !!!\n", (*game)[i].hod);
                     printDesk(desk);
                 }
+                //kingspos.Check_f = 0;
+                
             }
             else {
                 printf("Enter turn>");
@@ -69,6 +71,7 @@ void new_game(Moves** game, int* count){
                 free_one(game, count + 1);
                 return;
             }
+
             printDesk(desk);
             flag = Check(desk, (*game)[i].hod, &kingspos);
         }
