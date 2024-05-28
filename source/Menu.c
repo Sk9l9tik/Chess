@@ -76,6 +76,8 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
         initMoves(&game[i]);
         size++;
     }
+
+
     Game games_list[10] = { '\0' };
     //Game* games_list = (Game*)malloc(10 * sizeof(Game));
 
@@ -90,9 +92,9 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
 
 
 
-    if ((lastgame)->hod[0] != 0) {
-        for (int i = 0; i <= *lastgame_size /*(lastgame)[i].hod[0] != '0'*/; i++) {
-            initMoves(&(lastgame)[i]);
+    if (lastgame || (lastgame)->hod[0] != 0) {
+        for (int i = 0; i < *lastgame_size /*(lastgame)[i].hod[0] != '0'*/; i++) {
+            initMoves(&(lastgame[i]));
         }
         printf("---%d---\n", *lastgame_size);
         char lastgamename[31] = "last_game";
@@ -100,8 +102,6 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
         games_list[cnt].game_moves = lastgame;
         games_list[cnt].game_size = lastgame_size;
     }
-
-
 
 
 
@@ -151,7 +151,7 @@ void main_menu() {
         case 1:
             count = 0;
             new_game(&game, &count);
-            for (int i = 0; i <= count; i++) {
+            for (int i = 0; i < count; i++) {
                 printf("%s\n", (game)[i].hod);
             }
             break;

@@ -53,6 +53,8 @@ typedef struct KingsPos {
 
 	char Check_f;
 	char Mate_f;
+
+	char color;
 } KingsPos;
 
 #endif

@@ -26,6 +26,7 @@ int Check(Desk desk, Moves* moves, KingsPos* kingspos) {
 		if (flag == 2) kingspos->Check_f = 2;
 		flag = HorseMoveCheck(desk, moves, kingspos, color);
 		if (flag == 2) kingspos->Check_f = 2;
+		if (flag == 2) kingspos->color = color;
 	}
 
 
@@ -40,4 +41,28 @@ int Check(Desk desk, Moves* moves, KingsPos* kingspos) {
 	*/
 
 	return kingspos->Check_f;
+}
+
+void Mate(Desk desk, Moves* moves, KingsPos* kingspos) {
+	char white = 0, black = 0;
+	for (int i = -1; i <= 1; i++) {
+		for (int j = -1; j <= 1; j++) {
+			//if (i == 0 && j == 0 && kingspos->Check_f == 2) continue;
+			kingspos->w_king_x + i;
+			kingspos->w_king_y + j;
+
+			kingspos->b_king_x + i;
+			kingspos->b_king_y + j;
+
+			black += (Check(desk, moves, kingspos, 0) != 0 ? 1 : 0);
+			white += (Check(desk, moves, kingspos, 0) != 0 ? 1 : 0);
+
+		}
+	}
+
+	printf("%d-%d\n", white, black);
+
+	if (kingspos->color == 1 && white == 9) kingspos->Mate_f = 2;
+	else if (kingspos->color == 0 && black == 9) kingspos->Mate_f = 1;
+	else kingspos->Mate_f = 0;
 }
