@@ -10,3 +10,4 @@ int MoveDiagonalBackLeftCheck(Desk desk, Moves* moves, KingsPos* kingspos, char 
 int MoveDiagonalBackRightCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color);
 int MoveLeftCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color);
 int MoveRightCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color);
+int HorseMoveCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color);
