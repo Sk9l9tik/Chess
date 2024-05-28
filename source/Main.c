@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -13,8 +13,11 @@
 #include "../includes/Figures.h"
 #include "../includes/Moves.h"
 
+//#include <locale.h>
+//#include <wchar.h>
+//#include <windows.h>
 
 int main() {
-    main_menu();
+    main_menu(); 
     return 0;
 }

@@ -43,22 +43,24 @@ int Pawn(Desk desk, Moves* moves, KingsPos* kingspos) {
 
 int Knight(Desk desk, Moves* moves, KingsPos* kingspos) {
 	int check_f = 0;
-	if (moves->dist_x == 0) {
-		if (moves->dist_y > 0)
-			check_f = MoveForward(desk, moves, kingspos);
-		else
-			check_f = MoveBack(desk, moves, kingspos);
-	}
-	else if (moves->dist_y == 0) {
-		if (moves->dist_x > 0)
-			check_f = MoveRight(desk, moves, kingspos);
-		else
-			check_f = MoveLeft(desk, moves, kingspos);
-	}
-	else {
-		//printf("Illegal turn: %s !!!\n\n", moves->hod);
+	/*if (moves->dist_x == 0) {*/
+	if (moves->dist_y > 0 && ((abs(moves->dist_y == 2) && abs(moves->dist_x) == 1) || (abs(moves->dist_x == 2) && abs(moves->dist_y) == 1)))
+		check_f = HorseMoveForward(desk, moves, kingspos);
+	else if (moves->dist_y < 0 && ((abs(moves->dist_y == 2) && abs(moves->dist_x) == 1) || (abs(moves->dist_x == 2) && abs(moves->dist_y) == 1)))
+		check_f = HorseMoveBack(desk, moves, kingspos);
+	else
 		return 1;
-	}
+	//}
+	//else if (moves->dist_y == 0) {
+	//	if (moves->dist_x > 0)
+	//		check_f = MoveRight(desk, moves, kingspos);
+	//	else
+	//		check_f = MoveLeft(desk, moves, kingspos);
+	//}
+	//else {
+	//	//printf("Illegal turn: %s !!!\n\n", moves->hod);
+	//	return 1;
+	//}
 	if (check_f)
 		return 2; // Check !!!
 	return 0;
