@@ -93,7 +93,7 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
 
 
     if (lastgame || (lastgame)->hod[0] != 0) {
-        for (int i = 0; i < *lastgame_size /*(lastgame)[i].hod[0] != '0'*/; i++) {
+        for (int i = 0; i <= *lastgame_size /*(lastgame)[i].hod[0] != '0'*/; i++) {
             initMoves(&(lastgame[i]));
         }
         printf("---%d---\n", *lastgame_size);
@@ -151,7 +151,7 @@ void main_menu() {
         case 1:
             count = 0;
             new_game(&game, &count);
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i <= count; i++) {
                 printf("%s\n", (game)[i].hod);
             }
             break;

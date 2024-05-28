@@ -41,14 +41,12 @@ void new_game(Moves** game, int* count){
 
             if (kingspos.Mate_f == 1) {
                 printf("White Win!!!! %d\n", i);
-                //(*game)[i].hod[0] = '0';
-                //free_one(game, count - 1);
+                free_one(game, count);
                 return;
             }
             else if (kingspos.Mate_f == 2) {
                 printf("Black Win!!!!\n");
-                //(*game)[i].hod[0] = '0';
-                //free_one(game, count - 1);
+                free_one(game, count);
                 return;
             }
             else
@@ -95,7 +93,7 @@ void print_game(Moves* game, int turn, int* size) {
     if (turn == -1) {
 
         printDesk(desk);
-        for (int i = 0; i < *size && game[i].hod[0] != '0'; i++) {
+        for (int i = 0; i <= *size && game[i].hod[0] != '0'; i++) {
             printf("Current turn: %s\n", game[i].hod);
             //Move(desk, &game[i], kingspos);
             printDesk(desk);
