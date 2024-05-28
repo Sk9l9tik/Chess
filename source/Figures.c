@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Figures.h"
-#include "Moves.h"
+#include "../includes/Figures.h"
+#include "../includes/Moves.h"
 
 /*functions figures*/
 int Pawn(Desk desk, Moves* moves, KingsPos* kingspos) {

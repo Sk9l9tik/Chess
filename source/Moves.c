@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-#include "Moves.h"
+#include "../includes/Moves.h"
 
-#include "CheckMate.h"
+#include "../includes/CheckMate.h"
 
 /*Forward-Back move functions*/
 int MoveForward(Desk desk, Moves* moves, KingsPos* kingspos) {

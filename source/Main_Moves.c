@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-#include "Moves.h"
-#include "Figures.h"
+#include "../includes/Moves.h"
+#include "../includes/Figures.h"
 
-#include "CheckMate.h"
+#include "../includes/CheckMate.h"
 
 int Move(Desk desk, Moves* moves, KingsPos* kingspos) {
 	int flag = 0, check_flag = 0;

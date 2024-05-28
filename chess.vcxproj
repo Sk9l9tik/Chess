@@ -127,31 +127,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Allocate.c" />
-    <ClCompile Include="CheckMate.c" />
-    <ClCompile Include="Directory_Files.c" />
-    <ClCompile Include="Figures.c" />
-    <ClCompile Include="Files_functions.c" />
-    <ClCompile Include="Game_menu_functions.c" />
-    <ClCompile Include="Init.c" />
-    <ClCompile Include="Main.c" />
-    <ClCompile Include="Main_Moves.c" />
-    <ClCompile Include="Menu.c" />
-    <ClCompile Include="Moves.c" />
-    <ClCompile Include="MovesCheck.c" />
+    <ClCompile Include="source/Allocate.c" />
+    <ClCompile Include="source\CheckMate.c" />
+    <ClCompile Include="source/Directory_Files.c" />
+    <ClCompile Include="source/Figures.c" />
+    <ClCompile Include="source/Files_functions.c" />
+    <ClCompile Include="source/Game_menu_functions.c" />
+    <ClCompile Include="source/Init.c" />
+    <ClCompile Include="source/Main.c" />
+    <ClCompile Include="source/Main_Moves.c" />
+    <ClCompile Include="source/Menu.c" />
+    <ClCompile Include="source/Moves.c" />
+    <ClCompile Include="source/MovesCheck.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Allocate.h" />
-    <ClInclude Include="CheckMate.h" />
-    <ClInclude Include="Desk.h" />
-    <ClInclude Include="Directory_files.h" />
-    <ClInclude Include="Figures.h" />
-    <ClInclude Include="Files_functions.h" />
-    <ClInclude Include="Game_menu_functions.h" />
-    <ClInclude Include="Init.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="Moves.h" />
-    <ClInclude Include="MovesCheck.h" />
+    <ClInclude Include="includes/Allocate.h" />
+    <ClInclude Include="includes/CheckMate.h" />
+    <ClInclude Include="includes/Desk.h" />
+    <ClInclude Include="includes/Directory_files.h" />
+    <ClInclude Include="includes/Figures.h" />
+    <ClInclude Include="includes/Files_functions.h" />
+    <ClInclude Include="includes/Game_menu_functions.h" />
+    <ClInclude Include="includes/Init.h" />
+    <ClInclude Include="includes/Menu.h" />
+    <ClInclude Include="includes/Moves.h" />
+    <ClInclude Include="includes/MovesCheck.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

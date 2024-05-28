@@ -4,15 +4,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "Desk.h"
-#include "Init.h"
+#include "../includes/Desk.h"
+#include "../includes/Init.h"
 
-#include "Menu.h"
-#include "Game_menu_functions.h"
+#include "../includes/Menu.h"
+#include "../includes/Game_menu_functions.h"
 
-#include "Files_functions.h"      
+#include "../includes/Files_functions.h"      
 
-#include "Directory_files.h"
+#include "../includes/Directory_files.h"
 
 
 void game_menu(Moves** game, int* size) {

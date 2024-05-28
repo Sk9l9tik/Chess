@@ -4,11 +4,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "Allocate.h"
+#include "../includes/Allocate.h"
 
-#include "Desk.h"
+#include "../includes/Desk.h"
 
-#include "Files_functions.h" // include .h file
+#include "../includes/Files_functions.h" // include .h file
 
 void* import_game(Moves** game, int* count) {
 	char* path = malloc(256 * sizeof(char));

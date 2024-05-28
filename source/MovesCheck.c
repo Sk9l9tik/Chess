@@ -1,5 +1,5 @@
-#include "Moves.h"
-#include "MovesCheck.h"
+#include "../includes/Moves.h"
+#include "../includes/MovesCheck.h"
 
 int MoveForwardCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color) {
 	Moves tmp;

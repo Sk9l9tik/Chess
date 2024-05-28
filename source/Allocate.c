@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "Allocate.h"
+#include "../includes/Allocate.h"
 
 
 void* allocate_one(Moves** game, int* size) {

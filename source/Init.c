@@ -1,7 +1,7 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 
-#include "Init.h"
+#include "../includes/Init.h"
 
 
 void init(Desk desk) {

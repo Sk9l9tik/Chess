@@ -1,5 +1,5 @@
-#include "CheckMate.h"
-#include "MovesCheck.h"
+#include "../includes/CheckMate.h"
+#include "../includes/MovesCheck.h"
 
 int Check(Desk desk, Moves* moves, KingsPos* kingspos) {
 

@@ -4,14 +4,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "Allocate.h"
+#include "../includes/Allocate.h"
 
-#include "Init.h"
-#include "Moves.h"
-#include "CheckMate.h"
+#include "../includes/Init.h"
+#include "../includes/Moves.h"
+#include "../includes/CheckMate.h"
 
-#include "Menu.h"
-#include "Game_menu_functions.h"
+#include "../includes/Menu.h"
+#include "../includes/Game_menu_functions.h"
 
 void new_game(Moves** game, int* count){
 

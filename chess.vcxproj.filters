@@ -13,72 +13,84 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы заголовков\Includes">
+      <UniqueIdentifier>{f041cca7-d173-4dee-a51d-fb5ed4e31800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\source">
+      <UniqueIdentifier>{00369e44-3809-41d9-b31c-6c472844df98}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Figures.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="source\CheckMate.c">
+      <Filter>Исходные файлы\source</Filter>
     </ClCompile>
-    <ClCompile Include="Moves.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="source/Allocate.c">
+      <Filter>Исходные файлы\source</Filter>
     </ClCompile>
-    <ClCompile Include="Main_Moves.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="source/Directory_Files.c">
+      <Filter>Исходные файлы\source</Filter>
     </ClCompile>
-    <ClCompile Include="Main.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="source/Figures.c">
+      <Filter>Исходные файлы\source</Filter>
     </ClCompile>
-    <ClCompile Include="Init.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="source/Files_functions.c">
+      <Filter>Исходные файлы\source</Filter>
     </ClCompile>
-    <ClCompile Include="Game_menu_functions.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="source/Game_menu_functions.c">
+      <Filter>Исходные файлы\source</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="source/Init.c">
+      <Filter>Исходные файлы\source</Filter>
     </ClCompile>
-    <ClCompile Include="Files_functions.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="source/Main.c">
+      <Filter>Исходные файлы\source</Filter>
     </ClCompile>
-    <ClCompile Include="Directory_Files.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="source/Main_Moves.c">
+      <Filter>Исходные файлы\source</Filter>
     </ClCompile>
-    <ClCompile Include="Allocate.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="source/Menu.c">
+      <Filter>Исходные файлы\source</Filter>
     </ClCompile>
-    <ClCompile Include="CheckMate.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="source/Moves.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="source/MovesCheck.c">
+      <Filter>Исходные файлы\source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Desk.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="includes/Allocate.h">
+      <Filter>Файлы заголовков\Includes</Filter>
     </ClInclude>
-    <ClInclude Include="Moves.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="includes/CheckMate.h">
+      <Filter>Файлы заголовков\Includes</Filter>
     </ClInclude>
-    <ClInclude Include="Init.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="includes/Desk.h">
+      <Filter>Файлы заголовков\Includes</Filter>
     </ClInclude>
-    <ClInclude Include="Figures.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="includes/Directory_files.h">
+      <Filter>Файлы заголовков\Includes</Filter>
     </ClInclude>
-    <ClInclude Include="Game_menu_functions.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="includes/Figures.h">
+      <Filter>Файлы заголовков\Includes</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="includes/Files_functions.h">
+      <Filter>Файлы заголовков\Includes</Filter>
     </ClInclude>
-    <ClInclude Include="Files_functions.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="includes/Game_menu_functions.h">
+      <Filter>Файлы заголовков\Includes</Filter>
     </ClInclude>
-    <ClInclude Include="Directory_files.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="includes/Init.h">
+      <Filter>Файлы заголовков\Includes</Filter>
     </ClInclude>
-    <ClInclude Include="Allocate.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="includes/Menu.h">
+      <Filter>Файлы заголовков\Includes</Filter>
     </ClInclude>
-    <ClInclude Include="CheckMate.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="includes/Moves.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes/MovesCheck.h">
+      <Filter>Файлы заголовков\Includes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
