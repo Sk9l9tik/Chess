@@ -26,7 +26,7 @@ int Check(Desk desk, Moves* moves, KingsPos* kingspos) {
 		if (flag == 2) kingspos->Check_f = 2;
 		flag = HorseMoveCheck(desk, moves, kingspos, color);
 		if (flag == 2) kingspos->Check_f = 2;
-		if (flag == 2) kingspos->color = color;
+		if (kingspos->Check_f == 2) kingspos->color = color;
 	}
 
 
