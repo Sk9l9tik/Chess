@@ -25,8 +25,9 @@ int Move(Desk desk, Moves* moves, KingsPos* kingspos) {
 	}
 	else if (desk[moves->cord_y][moves->cord_x].figure == 'K') {
 		flag = King(desk, moves, kingspos);
-		if (flag != 1) {
+		if (flag == 0) {
 			// king pos...
+
 		}
 	}
 	else {

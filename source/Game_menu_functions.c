@@ -13,6 +13,73 @@
 #include "../includes/Menu.h"
 #include "../includes/Game_menu_functions.h"
 
+//void new_game(Moves** game, int* count) {
+//
+//
+//    Desk desk;
+//    init(desk);
+//
+//    KingsPos kingspos;
+//    initKingsPos(&kingspos);
+//
+//
+//    //printDesk(desk);
+//
+//    //char hod[7];
+//    char color_turn = 1; // 1 - white, 0 - black
+//    int flag = 0;
+//
+//    for (int i = 0; ; i++) {
+//        allocate_one(game, count);
+//        // remake check and add "Check func"
+//        // on Check you can move only king or any figure to prevent Check
+//
+//
+//        if (flag == 2) {
+//
+//            printf("Check !!!!\n");
+//            printDesk(desk);
+//            //printDesk(desk);
+//            while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), Move(desk, &(*game)[i], &kingspos) == 1 || Check(desk, &(*game)[i], &kingspos) == 2) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
+//                printf("Check !!! Illegal turn: %s !!!\n", (*game)[i].hod);
+//                printDesk(desk);
+//            }
+//            kingspos.Check_f = 0;
+//
+//        }
+//        else {
+//            printDesk(desk);
+//            printf("Enter turn>");
+//            fflush(stdin);
+//
+//            if (scanf("%s", (*game)[i].hod) != 1) {
+//                printf("Illegal turn: %s !!!\n\n", (*game)[i].hod);
+//                printDesk(desk);
+//                continue;
+//            }
+//
+//            initMoves(&(*game)[i]);
+//
+//            flag = Move(desk, &(*game)[i], &kingspos);
+//            if (flag == 1) {
+//                printf("Illegal turn: %s !!!\n\n", (*game)[i].hod);
+//                printDesk(desk);
+//                continue;
+//            }
+//        }
+//
+//        if ((*game)[i].hod[0] == '0') {
+//            free_one(game, count + 1);
+//            return;
+//        }
+//
+//        flag = Check(desk, (*game)[i].hod, &kingspos);
+//    }
+//
+//    //return *game;
+//}
+
+
 void new_game(Moves** game, int* count){
 
 
@@ -30,49 +97,43 @@ void new_game(Moves** game, int* count){
     int flag = 0;
     for (int i = 0; ; i++) {
 
+        if (i % 2 == 0) color_turn = 1;
+        else color_turn = 0;
+
+
         allocate_one(game, count);
 
-        printDesk(desk);
-        if (i != 0) {
-            flag = Check(desk, (*game)[i].hod, &kingspos);
-            if (flag == 2) {
-                Mate(desk, &(*game)[i], &kingspos);
-                if (kingspos.Mate_f == 1) {
-                    //(*game)[i].hod[0] = '0';
-                    printf("White Win!!!! %d\n", i);
-                    free_one(game, count);
-                    return;
-                }
-                else if (kingspos.Mate_f == 2) {
-                    printf("Black Win!!!!\n");
-                    free_one(game, count);
-                    return;
-                }
-                printf("Check !!!!\n");
-                while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), Move(desk, &(*game)[i], &kingspos) == 1 || Check(desk, &(*game)[i], &kingspos) == 2) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
-                    printf("Check !!! Illegal turn: %s !!!\n", (*game)[i].hod);
-                    printDesk(desk);
-                }
-            }
-            while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), Move(desk, &(*game)[i], &kingspos) == 1) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
-                if ((*game)[i].hod[0] == '0') {
-                    free_one(game, count);
-                    return;
-                }
-                printf("Illegal turn: %s !!!\n", (*game)[i].hod);
+        printf("%d - %d\n", kingspos.color, color_turn);
+        flag = Check(desk, (*game)[i].hod, &kingspos);
+        if (flag == 2) {
+            printf("Check !!!!\n");
+            printDesk(desk);
+            while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), Move(desk, &(*game)[i], &kingspos) == 1 || Check(desk, &(*game)[i], &kingspos) == 2) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
+                printf("Check !!! Illegal turn: %s !!!\n", (*game)[i].hod);
                 printDesk(desk);
             }
         }
         else {
-            while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), Move(desk, &(*game)[i], &kingspos) == 1) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
+            printDesk(desk);
+            while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), Move(desk, &(*game)[i], &kingspos) == 1 || Check(desk, &(*game)[i], &kingspos) == 2) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
                 if ((*game)[i].hod[0] == '0') {
                     free_one(game, count);
                     return;
+                }
+                printf("%d - %d\n", kingspos.color, color_turn);
+                if (kingspos.Check_f == 2 && kingspos.color == color_turn) {
+                    printf("Check !!! Illegal turn: %s !!!\n", (*game)[i].hod);
+                    printDesk(desk);
+                }
+                else {
+                    break;
                 }
                 printf("Illegal turn: %s !!!\n", (*game)[i].hod);
                 printDesk(desk);
             }
         }
+
+
         // remake check and add "Check func"
         // on Check you can move only king or any figure to prevent Check
 

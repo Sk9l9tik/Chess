@@ -397,8 +397,8 @@ int HorseMoveCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color) {
 	}
 	
 
-	for (int i = -2; i <= 2; i += 4) {
-		for (int j = -1; j <= 1; j += 2) {
+	for (int i = -1; i <= 1; i += 2) {
+		for (int j = -2; j <= 2; j += 4) {
 			tmp.dist_x = j;
 			tmp.dist_y = i;
 
