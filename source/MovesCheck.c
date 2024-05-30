@@ -38,7 +38,7 @@ int MoveForwardCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color) {
 		}
 
 
-		if ((_king_y <= 0 || desk[_king_y][_king_x].color != 2)) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((_king_y <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -92,7 +92,7 @@ int MoveBackCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color){
 		//	tmp.dist_y = kingspos->b_king_y - _king_y;
 		//}
 
-		if ((_king_y >= 7 || desk[_king_y][_king_x].color != 2)) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((_king_y >= 7 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 
@@ -137,7 +137,7 @@ int MoveDiagonalForwardLeftCheck(Desk desk, Moves* moves, KingsPos* kingspos, ch
 			tmp.dist_y = _king_y - kingspos->b_king_y;
 		}
 
-		if ((_king_y <= 0 || _king_x <= 0 || desk[_king_y][_king_x].color != 2)) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((_king_y <= 0 || _king_x <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -182,7 +182,7 @@ int MoveDiagonalForwardRightCheck(Desk desk, Moves* moves, KingsPos* kingspos, c
 			tmp.dist_y = _king_y - kingspos->b_king_y;
 		}
 
-		if ((_king_y <= 0 || _king_x >= 7 || desk[_king_y][_king_x].color != 2)) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((_king_y <= 0 || _king_x >= 7 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -227,7 +227,7 @@ int MoveDiagonalBackLeftCheck(Desk desk, Moves* moves, KingsPos* kingspos, char 
 			tmp.dist_y = _king_y - kingspos->b_king_y;
 		}
 
-		if ((_king_y >= 7 || _king_x <= 0 || desk[_king_y][_king_x].color != 2)) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((_king_y >= 7 || _king_x <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -273,7 +273,7 @@ int MoveDiagonalBackRightCheck(Desk desk, Moves* moves, KingsPos* kingspos, char
 		}
 
 
-		if ((_king_y >= 7 || _king_x >= 7 || desk[_king_y][_king_x].color != 2)) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((_king_y >= 7 || _king_x >= 7 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -320,7 +320,7 @@ int MoveLeftCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color) {
 		}
 
 
-		if ((_king_x <= 0 || desk[_king_y][_king_x].color != 2)) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((_king_x <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -367,7 +367,7 @@ int MoveRightCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color) {
 		}
 
 
-		if ((_king_x >= 7 || desk[_king_y][_king_x].color != 2)) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((_king_x >= 7 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -402,10 +402,10 @@ int HorseMoveCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color) {
 			tmp.dist_x = j;
 			tmp.dist_y = i;
 
-			if ((_king_y + i >= 7 || _king_x + j >= 7 || _king_y + i <= 0 || _king_x + j <= 0 || desk[_king_y][_king_x].color != 2)) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+			if ((_king_y + i >= 7 || _king_x + j >= 7 || _king_y + i <= 0 || _king_x + j <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 				flag = 1;
 			}
-			else if ((_king_y + j >= 7 || _king_x + i >= 7 || _king_y + j <= 0 || _king_x + i <= 0 || desk[_king_y][_king_x].color != 2)) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+			else if ((_king_y + j >= 7 || _king_x + i >= 7 || _king_y + j <= 0 || _king_x + i <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 				flag = 1;
 			}
 
