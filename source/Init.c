@@ -100,4 +100,7 @@ void initKingsPos(KingsPos* kingspos) {
 
 	kingspos->Mate_f = 0;
 	kingspos->Check_f = 0;
+
+	kingspos->w_count = 0;
+	kingspos->b_count = 0;
 }

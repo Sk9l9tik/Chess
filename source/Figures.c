@@ -149,11 +149,38 @@ int Queen(Desk desk, Moves* moves, KingsPos* kingspos) {
 
 int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 	int check_f = 0;
-	if (abs(moves->dist_x) > 1 && abs(moves->dist_y) > 1) {
+	Figure t = { '_', 2 };
+	if (kingspos->w_count == 0 && desk[7][4].color == 1 && desk[7][4].figure == 'K') {
+		if (moves->dist_x == 2 && desk[7][7].figure == 'R' && MoveRight(desk, moves, kingspos) == 0) {
+			/*desk[moves->cord_y][moves->cord_x - 1] = desk[moves->cord_y][moves->cord_x + 1];
+			desk[moves->cord_y][moves->cord_x + 1] = t;*/
+			desk[7][5] = desk[7][7];
+			desk[7][7] = t;
+		}
+		else if (moves->dist_x == -2 && desk[7][0].figure == 'R' && MoveLeft(desk, moves, kingspos) == 0) {
+			desk[7][3] = desk[7][0];
+			desk[7][0] = t;
+		}
+	}
+	else if (kingspos->b_count == 0 && desk[0][4].color == 0 && desk[7][4].figure == 'K') {
+		if (moves->dist_x == 2 && desk[0][7].figure == 'R' && MoveRight(desk, moves, kingspos) == 0) {
+			/*desk[moves->cord_y][moves->cord_x - 1] = desk[moves->cord_y][moves->cord_x + 1];
+			desk[moves->cord_y][moves->cord_x + 1] = t;*/
+			desk[0][5] = desk[0][7];
+			desk[0][7] = t;
+		}
+		else if (moves->dist_x == -2 && desk[0][0].figure == 'R' && MoveLeft(desk, moves, kingspos) == 0) {
+			desk[0][3] = desk[0][0];
+			desk[0][0] = t;
+		}
+	}
+	
+	else if (abs(moves->dist_x) > 1 && abs(moves->dist_y) > 1) {
 		//printf("Illegal turn: %s !!!\n\n", moves->hod);
 		return 1;
 	}
 	else {
+
 		if (moves->dist_x == 0) {
 			if (moves->dist_y > 0)
 				check_f = MoveForward(desk, moves, kingspos);
@@ -185,5 +212,9 @@ int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 		if (check_f)
 			return 2; // Check !!!
 	}
+	
+	if (desk[moves->cord_y + moves->dist_y][moves->cord_x + moves->dist_x].color == 1) kingspos->w_count++;
+	else kingspos->b_count++;
+
 	return 0;
 }

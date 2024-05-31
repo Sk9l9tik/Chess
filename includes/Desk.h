@@ -56,6 +56,9 @@ typedef struct KingsPos {
 
 	char color;
 	char color_turn;
+
+	int w_count;
+	int b_count;
 } KingsPos;
 
 #endif
