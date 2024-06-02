@@ -13,11 +13,12 @@
 #include "../includes/Figures.h"
 #include "../includes/Moves.h"
 
-//#include <locale.h>
+#include <locale.h>
 //#include <wchar.h>
 //#include <windows.h>
 
 int main() {
+    setlocale(LC_ALL, "");
     main_menu(); 
     return 0;
 }

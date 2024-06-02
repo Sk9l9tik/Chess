@@ -47,3 +47,8 @@ int Check(Desk desk, Moves* moves, KingsPos* kingspos) {
 
 	return kingspos->Check_f;
 }
+
+void Mate(Desk desk, Moves* moves, KingsPos* kingspos) {
+	
+	return 0;
+}

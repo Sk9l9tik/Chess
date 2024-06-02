@@ -6,39 +6,39 @@ int MoveForwardCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color) {
 
 	int flag = 0;
 
-	int _king_x;
-	int _king_y;
+	int king_x;
+	int king_y;
 
 	// white
 	if (color == 1) {
-		_king_x = kingspos->w_king_x;
-		_king_y = kingspos->w_king_y;
+		king_x = kingspos->w_king_x;
+		king_y = kingspos->w_king_y;
 	}
 	// black
 	else {
-		_king_x = kingspos->b_king_x;
-		_king_y = kingspos->b_king_y;
+		king_x = kingspos->b_king_x;
+		king_y = kingspos->b_king_y;
 	}
 
 	int i = 1;
 	while (1) {
-		_king_y--;
+		king_y--;
 
-		tmp.cord_x = _king_x;
-		tmp.cord_y = _king_y;
+		tmp.cord_x = king_x;
+		tmp.cord_y = king_y;
 
 
 		if (color == 1) {
-			tmp.dist_x = _king_x - kingspos->w_king_x;
-			tmp.dist_y = _king_y - kingspos->w_king_y;
+			tmp.dist_x = king_x - kingspos->w_king_x;
+			tmp.dist_y = king_y - kingspos->w_king_y;
 		}
 		else {
-			tmp.dist_x = _king_x - kingspos->b_king_x;
-			tmp.dist_y = _king_y - kingspos->b_king_y ;
+			tmp.dist_x = king_x - kingspos->b_king_x;
+			tmp.dist_y = king_y - kingspos->b_king_y ;
 		}
 
 
-		if ((_king_y <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((king_y <= 0 || desk[king_y][king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -54,45 +54,45 @@ int MoveBackCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color){
 	int flag = 0;
 
 
-	int _king_x;
-	int _king_y;
+	int king_x;
+	int king_y;
 
 	// white
 	if (color == 1) {
-		_king_x = kingspos->w_king_x;
-		_king_y = kingspos->w_king_y;
+		king_x = kingspos->w_king_x;
+		king_y = kingspos->w_king_y;
 	}
 	// black
 	else {
-		_king_x = kingspos->b_king_x;
-		_king_y = kingspos->b_king_y;
+		king_x = kingspos->b_king_x;
+		king_y = kingspos->b_king_y;
 	}
 
 	while (1) {
-		_king_y++;
+		king_y++;
 
-		tmp.cord_x = _king_x;
-		tmp.cord_y = _king_y;
+		tmp.cord_x = king_x;
+		tmp.cord_y = king_y;
 
 		if (color == 1) {
-			tmp.dist_x = _king_x - kingspos->w_king_x;
-			tmp.dist_y = _king_y - kingspos->w_king_y;
+			tmp.dist_x = king_x - kingspos->w_king_x;
+			tmp.dist_y = king_y - kingspos->w_king_y;
 		}
 		else {
-			tmp.dist_x = _king_x - kingspos->b_king_x;
-			tmp.dist_y = _king_y - kingspos->b_king_y;
+			tmp.dist_x = king_x - kingspos->b_king_x;
+			tmp.dist_y = king_y - kingspos->b_king_y;
 		}
 
 		//if (color == 1) {
-		//	tmp.dist_x = kingspos->w_king_x - _king_x;
-		//	tmp.dist_y = kingspos->w_king_y - _king_y;
+		//	tmp.dist_x = kingspos->w_king_x - king_x;
+		//	tmp.dist_y = kingspos->w_king_y - king_y;
 		//}
 		//else {
-		//	tmp.dist_x = kingspos->b_king_x - _king_x;
-		//	tmp.dist_y = kingspos->b_king_y - _king_y;
+		//	tmp.dist_x = kingspos->b_king_x - king_x;
+		//	tmp.dist_y = kingspos->b_king_y - king_y;
 		//}
 
-		if ((_king_y >= 7 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((king_y >= 7 || desk[king_y][king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 
@@ -107,37 +107,37 @@ int MoveDiagonalForwardLeftCheck(Desk desk, Moves* moves, KingsPos* kingspos, ch
 
 	int flag = 0;
 
-	int _king_x;
-	int _king_y;
+	int king_x;
+	int king_y;
 
 	// white
 	if (color == 1) {
-		_king_x = kingspos->w_king_x;
-		_king_y = kingspos->w_king_y;
+		king_x = kingspos->w_king_x;
+		king_y = kingspos->w_king_y;
 	}
 	// black
 	else {
-		_king_x = kingspos->b_king_x;
-		_king_y = kingspos->b_king_y;
+		king_x = kingspos->b_king_x;
+		king_y = kingspos->b_king_y;
 	}
 
 	while (1) {
-		_king_x--;
-		_king_y--;
+		king_x--;
+		king_y--;
 
-		tmp.cord_x = _king_x;
-		tmp.cord_y = _king_y;
+		tmp.cord_x = king_x;
+		tmp.cord_y = king_y;
 
 		if (color == 1) {
-			tmp.dist_x = kingspos->w_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->w_king_y;
+			tmp.dist_x = kingspos->w_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->w_king_y;
 		}
 		else {
-			tmp.dist_x = kingspos->b_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->b_king_y;
+			tmp.dist_x = kingspos->b_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->b_king_y;
 		}
 
-		if ((_king_y <= 0 || _king_x <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((king_y <= 0 || king_x <= 0 || desk[king_y][king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -152,37 +152,37 @@ int MoveDiagonalForwardRightCheck(Desk desk, Moves* moves, KingsPos* kingspos, c
 
 	int flag = 0;
 
-	int _king_x;
-	int _king_y;
+	int king_x;
+	int king_y;
 
 	// white
 	if (color == 1) {
-		_king_x = kingspos->w_king_x;
-		_king_y = kingspos->w_king_y;
+		king_x = kingspos->w_king_x;
+		king_y = kingspos->w_king_y;
 	}
 	// black
 	else {
-		_king_x = kingspos->b_king_x;
-		_king_y = kingspos->b_king_y;
+		king_x = kingspos->b_king_x;
+		king_y = kingspos->b_king_y;
 	}
 
 	while (1) {
-		_king_x++;
-		_king_y--;
+		king_x++;
+		king_y--;
 
-		tmp.cord_x = _king_x;
-		tmp.cord_y = _king_y;
+		tmp.cord_x = king_x;
+		tmp.cord_y = king_y;
 
 		if (color == 1) {
-			tmp.dist_x = kingspos->w_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->w_king_y;
+			tmp.dist_x = kingspos->w_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->w_king_y;
 		}
 		else {
-			tmp.dist_x = kingspos->b_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->b_king_y;
+			tmp.dist_x = kingspos->b_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->b_king_y;
 		}
 
-		if ((_king_y <= 0 || _king_x >= 7 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((king_y <= 0 || king_x >= 7 || desk[king_y][king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -197,37 +197,37 @@ int MoveDiagonalBackLeftCheck(Desk desk, Moves* moves, KingsPos* kingspos, char 
 
 	int flag = 0;
 
-	int _king_x;
-	int _king_y;
+	int king_x;
+	int king_y;
 
 	// white
 	if (color == 1) {
-		_king_x = kingspos->w_king_x;
-		_king_y = kingspos->w_king_y;
+		king_x = kingspos->w_king_x;
+		king_y = kingspos->w_king_y;
 	}
 	// black
 	else {
-		_king_x = kingspos->b_king_x;
-		_king_y = kingspos->b_king_y;
+		king_x = kingspos->b_king_x;
+		king_y = kingspos->b_king_y;
 	}
 
 	while (1) {
-		_king_x--;
-		_king_y++;
+		king_x--;
+		king_y++;
 
-		tmp.cord_x = _king_x;
-		tmp.cord_y = _king_y;
+		tmp.cord_x = king_x;
+		tmp.cord_y = king_y;
 
 		if (color == 1) {
-			tmp.dist_x = kingspos->w_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->w_king_y;
+			tmp.dist_x = kingspos->w_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->w_king_y;
 		}
 		else {
-			tmp.dist_x = kingspos->b_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->b_king_y;
+			tmp.dist_x = kingspos->b_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->b_king_y;
 		}
 
-		if ((_king_y >= 7 || _king_x <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((king_y >= 7 || king_x <= 0 || desk[king_y][king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -242,38 +242,38 @@ int MoveDiagonalBackRightCheck(Desk desk, Moves* moves, KingsPos* kingspos, char
 
 	int flag = 0;
 
-	int _king_x;
-	int _king_y;
+	int king_x;
+	int king_y;
 
 	// white
 	if (color == 1) {
-		_king_x = kingspos->w_king_x;
-		_king_y = kingspos->w_king_y;
+		king_x = kingspos->w_king_x;
+		king_y = kingspos->w_king_y;
 	}
 	// black
 	else {
-		_king_x = kingspos->b_king_x;
-		_king_y = kingspos->b_king_y;
+		king_x = kingspos->b_king_x;
+		king_y = kingspos->b_king_y;
 	}
 
 	while (1) {
-		_king_x++;
-		_king_y++;
+		king_x++;
+		king_y++;
 
-		tmp.cord_x = _king_x;
-		tmp.cord_y = _king_y;
+		tmp.cord_x = king_x;
+		tmp.cord_y = king_y;
 
 		if (color == 1) {
-			tmp.dist_x = kingspos->w_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->w_king_y;
+			tmp.dist_x = kingspos->w_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->w_king_y;
 		}
 		else {
-			tmp.dist_x = kingspos->b_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->b_king_y;
+			tmp.dist_x = kingspos->b_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->b_king_y;
 		}
 
 
-		if ((_king_y >= 7 || _king_x >= 7 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((king_y >= 7 || king_x >= 7 || desk[king_y][king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -288,39 +288,39 @@ int MoveLeftCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color) {
 
 	int flag = 0;
 
-	int _king_x;
-	int _king_y;
+	int king_x;
+	int king_y;
 
 	// white
 	if (color == 1) {
-		_king_x = kingspos->w_king_x;
-		_king_y = kingspos->w_king_y;
+		king_x = kingspos->w_king_x;
+		king_y = kingspos->w_king_y;
 	}
 	// black
 	else {
-		_king_x = kingspos->b_king_x;
-		_king_y = kingspos->b_king_y;
+		king_x = kingspos->b_king_x;
+		king_y = kingspos->b_king_y;
 	}
 
 	int i = 1;
 	while (1) {
-		_king_x--;
+		king_x--;
 
-		tmp.cord_x = _king_x;
-		tmp.cord_y = _king_y;
+		tmp.cord_x = king_x;
+		tmp.cord_y = king_y;
 
 
 		if (color == 1) {
-			tmp.dist_x = kingspos->w_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->w_king_y;
+			tmp.dist_x = kingspos->w_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->w_king_y;
 		}
 		else {
-			tmp.dist_x = kingspos->b_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->b_king_y;
+			tmp.dist_x = kingspos->b_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->b_king_y;
 		}
 
 
-		if ((_king_x <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((king_x <= 0 || desk[king_y][king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -335,39 +335,39 @@ int MoveRightCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color) {
 
 	int flag = 0;
 
-	int _king_x;
-	int _king_y;
+	int king_x;
+	int king_y;
 
 	// white
 	if (color == 1) {
-		_king_x = kingspos->w_king_x;
-		_king_y = kingspos->w_king_y;
+		king_x = kingspos->w_king_x;
+		king_y = kingspos->w_king_y;
 	}
 	// black
 	else {
-		_king_x = kingspos->b_king_x;
-		_king_y = kingspos->b_king_y;
+		king_x = kingspos->b_king_x;
+		king_y = kingspos->b_king_y;
 	}
 
 	int i = 1;
 	while (1) {
-		_king_x++;
+		king_x++;
 
-		tmp.cord_x = _king_x;
-		tmp.cord_y = _king_y;
+		tmp.cord_x = king_x;
+		tmp.cord_y = king_y;
 
 
 		if (color == 1) {
-			tmp.dist_x = kingspos->w_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->w_king_y;
+			tmp.dist_x = kingspos->w_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->w_king_y;
 		}
 		else {
-			tmp.dist_x = kingspos->b_king_x - _king_x;
-			tmp.dist_y = _king_y - kingspos->b_king_y;
+			tmp.dist_x = kingspos->b_king_x - king_x;
+			tmp.dist_y = king_y - kingspos->b_king_y;
 		}
 
 
-		if ((_king_x >= 7 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+		if ((king_x >= 7 || desk[king_y][king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 			break;
 		}
 	}
@@ -382,18 +382,18 @@ int HorseMoveCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color) {
 
 	int flag = 0;
 
-	int _king_x;
-	int _king_y;
+	int king_x;
+	int king_y;
 
 	// white
 	if (color == 1) {
-		_king_x = kingspos->w_king_x;
-		_king_y = kingspos->w_king_y;
+		king_x = kingspos->w_king_x;
+		king_y = kingspos->w_king_y;
 	}
 	// black
 	else {
-		_king_x = kingspos->b_king_x;
-		_king_y = kingspos->b_king_y;
+		king_x = kingspos->b_king_x;
+		king_y = kingspos->b_king_y;
 	}
 	
 
@@ -402,25 +402,25 @@ int HorseMoveCheck(Desk desk, Moves* moves, KingsPos* kingspos, char color) {
 			tmp.dist_x = j;
 			tmp.dist_y = i;
 
-			if ((_king_y + i >= 7 || _king_x + j >= 7 || _king_y + i <= 0 || _king_x + j <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+			if ((king_y + i >= 7 || king_x + j >= 7 || king_y + i <= 0 || king_x + j <= 0 || desk[king_y][king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 				flag = 1;
 			}
-			else if ((_king_y + j >= 7 || _king_x + i >= 7 || _king_y + j <= 0 || _king_x + i <= 0 || desk[_king_y][_king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
+			else if ((king_y + j >= 7 || king_x + i >= 7 || king_y + j <= 0 || king_x + i <= 0 || desk[king_y][king_x].figure != '_')) { //desk[kingspos->b_king_y][kingspos->b_king_x].color
 				flag = 1;
 			}
 
-			//printf("%c\n", desk[_king_y + tmp.dist_y][_king_x + tmp.dist_x].figure);
-			if (desk[_king_y + tmp.dist_y][_king_x + tmp.dist_x].figure == 'N' &&
-				desk[_king_y + tmp.dist_y][_king_x + tmp.dist_x].color != desk[_king_y][_king_x].color)
+			//printf("%c\n", desk[king_y + tmp.dist_y][king_x + tmp.dist_x].figure);
+			if (desk[king_y + tmp.dist_y][king_x + tmp.dist_x].figure == 'N' &&
+				desk[king_y + tmp.dist_y][king_x + tmp.dist_x].color != desk[king_y][king_x].color)
 				return 2;
 			
 
 			tmp.dist_x = i;
 			tmp.dist_y = j;
 
-			//printf("%c\n", desk[_king_y + tmp.dist_y][_king_x + tmp.dist_x].figure);
-			if (desk[_king_y + tmp.dist_y][_king_x + tmp.dist_x].figure == 'N' &&
-				desk[_king_y + tmp.dist_y][_king_x + tmp.dist_x].color != desk[_king_y][_king_x].color)
+			//printf("%c\n", desk[king_y + tmp.dist_y][king_x + tmp.dist_x].figure);
+			if (desk[king_y + tmp.dist_y][king_x + tmp.dist_x].figure == 'N' &&
+				desk[king_y + tmp.dist_y][king_x + tmp.dist_x].color != desk[king_y][king_x].color)
 				return 2;
 		}
 	}

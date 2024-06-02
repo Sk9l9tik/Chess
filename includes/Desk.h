@@ -57,8 +57,19 @@ typedef struct KingsPos {
 	char color;
 	char color_turn;
 
-	int w_count;
-	int b_count;
+	int wk_count;
+	int bk_count;
+	int wrl_count;
+	int wrr_count;
+	int brl_count;
+	int brr_count;
+
+
+	int check_figure_x;
+	int check_figure_y;
+	int dfigure_x;
+	int dfigure_y;
+
 } KingsPos;
 
 #endif

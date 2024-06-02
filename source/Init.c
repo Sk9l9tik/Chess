@@ -101,6 +101,16 @@ void initKingsPos(KingsPos* kingspos) {
 	kingspos->Mate_f = 0;
 	kingspos->Check_f = 0;
 
-	kingspos->w_count = 0;
-	kingspos->b_count = 0;
+	kingspos->wk_count = 0;
+	kingspos->bk_count = 0;
+	kingspos->wrl_count = 0;
+	kingspos->brl_count = 0;
+	kingspos->wrr_count = 0;
+	kingspos->brr_count = 0;
+
+	kingspos->check_figure_x = 0;
+	kingspos->check_figure_y = 0;
+	kingspos->dfigure_x = 0;
+	kingspos->dfigure_y = 0;
+
 }

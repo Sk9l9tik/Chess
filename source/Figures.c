@@ -44,9 +44,9 @@ int Pawn(Desk desk, Moves* moves, KingsPos* kingspos) {
 int Knight(Desk desk, Moves* moves, KingsPos* kingspos) {
 	int check_f = 0;
 	/*if (moves->dist_x == 0) {*/
-	if (moves->dist_y > 0 && ((abs(moves->dist_y == 2) && abs(moves->dist_x) == 1) || (abs(moves->dist_x == 2) && abs(moves->dist_y) == 1)))
+	if (moves->dist_y > 0 && (((abs(moves->dist_y) == 2) && abs(moves->dist_x) == 1) || (abs(moves->dist_x) == 2) && abs(moves->dist_y) == 1))
 		check_f = HorseMoveForward(desk, moves, kingspos);
-	else if (moves->dist_y < 0 && ((abs(moves->dist_y == 2) && abs(moves->dist_x) == 1) || (abs(moves->dist_x == 2) && abs(moves->dist_y) == 1)))
+	else if (moves->dist_y < 0 && (((abs(moves->dist_y) == 2) && abs(moves->dist_x) == 1) || (abs(moves->dist_x) == 2) && abs(moves->dist_y) == 1))
 		check_f = HorseMoveBack(desk, moves, kingspos);
 	else
 		return 1;
@@ -84,6 +84,18 @@ int Rock(Desk desk, Moves* moves, KingsPos* kingspos) {
 	else {
 		return 1;
 	}
+
+	if (desk[moves->cord_y + moves->dist_y][moves->cord_x + moves->dist_x].color == 1)
+		if (desk[moves->cord_y][moves->cord_x].figure == '_' && moves->cord_x == 7)
+			kingspos->wrr_count++;
+		else if (desk[moves->cord_y][moves->cord_x].figure == '_' && moves->cord_x == 0)
+			kingspos->wrl_count++;
+	else 
+		if (desk[moves->cord_y][moves->cord_x].figure == '_' && moves->cord_x == 7)
+			kingspos->brr_count++;
+		else if (desk[moves->cord_y][moves->cord_x].figure == '_' && moves->cord_x == 0)
+			kingspos->brl_count++;
+
 	if (check_f)
 		return 2; // Check !!!
 	return 0;
@@ -150,7 +162,7 @@ int Queen(Desk desk, Moves* moves, KingsPos* kingspos) {
 int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 	int check_f = 0;
 	Figure t = { '_', 2 };
-	if (kingspos->w_count == 0 && desk[7][4].color == 1 && desk[7][4].figure == 'K') {
+	if (kingspos->wk_count == 0 && ((kingspos->wrr_count == 0 && desk[7][7].figure == 'R') || (kingspos->wrl_count == 0 && desk[7][0].figure == 'R')) && desk[7][4].color == 1 && desk[7][4].figure == 'K') {
 		if (moves->dist_x == 2 && desk[7][7].figure == 'R' && MoveRight(desk, moves, kingspos) == 0) {
 			/*desk[moves->cord_y][moves->cord_x - 1] = desk[moves->cord_y][moves->cord_x + 1];
 			desk[moves->cord_y][moves->cord_x + 1] = t;*/
@@ -162,7 +174,7 @@ int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 			desk[7][0] = t;
 		}
 	}
-	else if (kingspos->b_count == 0 && desk[0][4].color == 0 && desk[7][4].figure == 'K') {
+	else if (kingspos->bk_count == 0 && ((kingspos->brr_count == 0 && desk[0][7].figure == 'R') || (kingspos->brl_count == 0 && desk[0][0].figure == 'R')) && desk[0][4].color == 0 && desk[7][4].figure == 'K') {
 		if (moves->dist_x == 2 && desk[0][7].figure == 'R' && MoveRight(desk, moves, kingspos) == 0) {
 			/*desk[moves->cord_y][moves->cord_x - 1] = desk[moves->cord_y][moves->cord_x + 1];
 			desk[moves->cord_y][moves->cord_x + 1] = t;*/
@@ -174,7 +186,7 @@ int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 			desk[0][0] = t;
 		}
 	}
-	
+
 	else if (abs(moves->dist_x) > 1 && abs(moves->dist_y) > 1) {
 		//printf("Illegal turn: %s !!!\n\n", moves->hod);
 		return 1;
@@ -213,8 +225,8 @@ int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 			return 2; // Check !!!
 	}
 	
-	if (desk[moves->cord_y + moves->dist_y][moves->cord_x + moves->dist_x].color == 1) kingspos->w_count++;
-	else kingspos->b_count++;
+	if (desk[moves->cord_y + moves->dist_y][moves->cord_x + moves->dist_x].color == 1) kingspos->wk_count++;
+	else kingspos->bk_count++;
 
 	return 0;
 }
