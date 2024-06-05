@@ -8,6 +8,7 @@
 int Move(Desk desk, Moves* moves, KingsPos* kingspos) {
 	int flag = 0, check_flag = 0;
 	
+
 	if (desk[moves->cord_y][moves->cord_x].figure == 'P') {
 		flag = Pawn(desk, moves, kingspos);
 	}

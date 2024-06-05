@@ -98,7 +98,7 @@ void initKingsPos(KingsPos* kingspos) {
 	kingspos->b_king_x = 4; // 4
 	kingspos->b_king_y = 0; // 0
 
-	kingspos->Mate_f = 0;
+	kingspos->cMate_f = 0;
 	kingspos->Check_f = 0;
 
 	kingspos->wk_count = 0;

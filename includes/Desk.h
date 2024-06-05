@@ -52,7 +52,8 @@ typedef struct KingsPos {
 	int b_king_y;
 
 	char Check_f;
-	char Mate_f;
+	char cMate_f;
+	char Mate_color;
 
 	char color;
 	char color_turn;

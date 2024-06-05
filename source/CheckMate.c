@@ -1,4 +1,4 @@
-#include "../includes/Moves.h"
+﻿#include "../includes/Moves.h"
 
 #include "../includes/CheckMate.h"
 #include "../includes/MovesCheck.h"
@@ -48,7 +48,61 @@ int Check(Desk desk, Moves* moves, KingsPos* kingspos) {
 	return kingspos->Check_f;
 }
 
-void Mate(Desk desk, Moves* moves, KingsPos* kingspos) {
+int Mate(Desk desk, KingsPos* kingspos, int color_turn) { //!!!! delete Moves* moves
+	char color; // 0 - black 1 - white
+	kingspos->cMate_f = 0;
+	int flag = 0, check_f = kingspos->Check_f, cmate_f = 0;
+
+
+	Moves tmove;
+
+	kingspos->cMate_f = 1;
+	int i = 0;
+	for (int x = 0; x < 8; x++) { // perebor vseh figur
+		for (int y = 0; y < 8; y++) {
+
+			if (color_turn != desk[y][x].color) continue;
+
+
+			for (int dx = -8; dx <= 8; dx++) { // peremeshenie figur
+				for (int dy = -8; dy <= 8; dy++) {
+
+					//init move
+					tmove.cord_x = x;
+					tmove.cord_y = y;
+					tmove.dist_x = dx;
+					tmove.dist_y = dy;
+
+
+					flag = Move(desk, &tmove, kingspos);
+
+					//printf("%d-%d %d,%d: %d - %d\n", x, y, dx, dy, flag, i);
+					i++;
+
+					if (check_f == 0 && flag == 0) {
+						kingspos->cMate_f = 0;
+						return 0;
+					}
+					else if (check_f == 2 && flag == 0) {
+						kingspos->cMate_f = 0;
+						return 0;
+					}
+
+				}
+			}
+		}
+	}
 	
+	//int x = 1, y = 0; // отладить короля, коня
+
+
+	if (check_f == 0 && flag != 0) return 1; // pat
+	else if (check_f == 2 && flag != 0) {	 //mate
+		kingspos->Mate_color = color_turn;
+		return 2;
+	} 
+
+	kingspos->cMate_f = 0;
+
 	return 0;
 }

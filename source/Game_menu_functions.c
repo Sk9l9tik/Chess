@@ -96,17 +96,41 @@ void new_game(Moves** game, int* count){
 
     //char hod[7];
     kingspos.color_turn = 1; // 1 - white, 0 - black
-    int flag = 0;
+    int flag = 0, mate_flag = 0;
     for (int i = 0; ; i++) {
 
         if (i % 2 == 0) kingspos.color_turn = 1;
         else kingspos.color_turn = 0;
 
-
         allocate_one(game, count);
 
-        printf("%d - %d\n", kingspos.color, kingspos.color_turn);
+        //printf("%d - %d\n", kingspos.color, kingspos.color_turn);
+
+
         flag = Check(desk, (*game)[i].hod, &kingspos);
+
+
+        mate_flag = Mate(desk, &kingspos, kingspos.color_turn);
+
+        if (mate_flag == 2) {
+            if (kingspos.Mate_color == 0) {
+                printf("End Game. Win White!!!\n");\
+                printDesk(desk);
+                return;
+            }
+            else {
+                printf("End Game. Win Black!!!\n");
+                printDesk(desk);
+                return;
+            }
+        }
+        else if (mate_flag == 1) {
+            printf("End Game. Draw!!!\n");
+            printDesk(desk);
+            return;
+        }
+
+
         if (flag == 2) {
             printf("Check !!!!\n");
             printDesk(desk);
