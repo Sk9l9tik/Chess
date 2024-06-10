@@ -24,6 +24,7 @@ void* import_game(Moves** game, int* count) {
 
 			allocate_one(game, count);
 			if ((*game)[i].hod[2] != '-') { // An almost useless check
+				printf("Wrong turn: %s\n", (*game)[i].hod);
 				free_one(game, count);
 				break;
 			}

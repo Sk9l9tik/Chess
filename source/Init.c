@@ -1,5 +1,6 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "../includes/Init.h"
 
@@ -47,7 +48,7 @@ void init(Desk desk) {
 	//desk[3][5] = K;
 
 	//Q.color = 0;
-	//desk[5][4] = Q;
+	//desk[1][5] = n;
 }
 
 int printDesk(Desk desk) {
@@ -64,10 +65,20 @@ int printDesk(Desk desk) {
 	return 0;
 }
 
-void initMoves(Moves* moves) {
+void initMoves(Moves* moves, int color_turn) {
 	//printf("%c\n", hod[4]);
-	
-	char* hod = moves->hod;
+	char* hod;
+
+	if (color_turn == 1 && moves->hod[0] == 'O' && moves->hod[1] == '-' && moves->hod[2] == 'O' && moves->hod[3] != '-')
+		hod = "e1-g1";
+	else if (color_turn == 1 && moves->hod[0] == 'O' && moves->hod[1] == '-' && moves->hod[2] == 'O' && moves->hod[3] == '-' && moves->hod[4] == 'O' && moves->hod[5] != '-')
+		hod = "e1-c1";
+	else if (color_turn == 0 && moves->hod[0] == 'O' && moves->hod[1] == '-' && moves->hod[2] == 'O' && moves->hod[3] != '-')
+		hod = "e8-g8";
+	else if (color_turn == 0 && moves->hod[0] == 'O' && moves->hod[1] == '-' && moves->hod[2] == 'O' && moves->hod[3] == '-' && moves->hod[4] == 'O' && moves->hod[5] != '-')
+		hod = "e8-c8";
+	else
+		hod = moves->hod;
 
 	moves->cord_x = (hod[0] - 'a');
 	moves->cord_y = 8 - (hod[1] - '0');
@@ -107,10 +118,5 @@ void initKingsPos(KingsPos* kingspos) {
 	kingspos->brl_count = 0;
 	kingspos->wrr_count = 0;
 	kingspos->brr_count = 0;
-
-	kingspos->check_figure_x = 0;
-	kingspos->check_figure_y = 0;
-	kingspos->dfigure_x = 0;
-	kingspos->dfigure_y = 0;
 
 }

@@ -22,10 +22,10 @@ typedef Figure Desk[8][8];
 #define MOVES_H
 
 typedef struct Moves {
-	int cord_x;
-	int cord_y;
-	int dist_x;
-	int dist_y;
+	char cord_x;
+	char cord_y;
+	char dist_x;
+	char dist_y;
 	char hod[7];
 } Moves;
 
@@ -46,10 +46,10 @@ typedef struct Game {
 #define KigsPos_H
 
 typedef struct KingsPos {
-	int w_king_x;
-	int w_king_y;
-	int b_king_x;
-	int b_king_y;
+	char w_king_x;
+	char w_king_y;
+	char b_king_x;
+	char b_king_y;
 
 	char Check_f;
 	char cMate_f;
@@ -58,18 +58,12 @@ typedef struct KingsPos {
 	char color;
 	char color_turn;
 
-	int wk_count;
-	int bk_count;
-	int wrl_count;
-	int wrr_count;
-	int brl_count;
-	int brr_count;
-
-
-	int check_figure_x;
-	int check_figure_y;
-	int dfigure_x;
-	int dfigure_y;
+	char wk_count;
+	char bk_count;
+	char wrl_count;
+	char wrr_count;
+	char brl_count;
+	char brr_count;
 
 } KingsPos;
 

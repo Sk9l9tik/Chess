@@ -104,7 +104,7 @@ void new_game(Moves** game, int* count){
 
         allocate_one(game, count);
 
-        //printf("%d - %d\n", kingspos.color, kingspos.color_turn);
+        printf("%d - %d\n", kingspos.color, kingspos.color_turn);
 
 
         flag = Check(desk, (*game)[i].hod, &kingspos);
@@ -134,14 +134,14 @@ void new_game(Moves** game, int* count){
         if (flag == 2) {
             printf("Check !!!!\n");
             printDesk(desk);
-            while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), Move(desk, &(*game)[i], &kingspos) != 0 || Check(desk, &(*game)[i], &kingspos) == 2) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
+            while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i], kingspos.color_turn), Move(desk, &(*game)[i], &kingspos) != 0 || Check(desk, &(*game)[i], &kingspos) == 2) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
                 printf("Check !!! Illegal turn: %s !!!\n", (*game)[i].hod);
                 printDesk(desk);
             }
         }
         else {
             printDesk(desk);
-            while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i]), Move(desk, &(*game)[i], &kingspos) != 0) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
+            while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i], kingspos.color_turn), Move(desk, &(*game)[i], &kingspos) != 0) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
                 if ((*game)[i].hod[0] == '0') {
                     free_one(game, count);
                     return;
@@ -168,7 +168,7 @@ void new_game(Moves** game, int* count){
 }
 
 
-void print_game(Moves* game, int turn, int* size) {
+void print_game(Moves* game, KingsPos* kingspos, int turn, int* size) {
 
     Desk desk;
     init(desk);
@@ -176,15 +176,15 @@ void print_game(Moves* game, int turn, int* size) {
     if (turn == -1) {
 
         printDesk(desk);
-        for (int i = 0; i <= *size && game[i].hod[0] != '0'; i++) {
+        for (int i = 0; i < *size && game[i].hod[0] != '0'; i++) {
             printf("Current turn: %s\n", game[i].hod);
-            //Move(desk, &game[i], kingspos);
+            Move(desk, &game[i], kingspos);
             printDesk(desk);
         }
     }
     else {
         for (int i = 0; i != turn && i <= *size; i++) {
-            //Move(desk, &game[i]);
+            Move(desk, &game[i], kingspos);
             printf("%d\n", i);
         }
         printDesk(desk);
@@ -193,7 +193,7 @@ void print_game(Moves* game, int turn, int* size) {
     //printf("%c %d\n", desk[4][4].figure, desk[4][4].color);
 }
 
-void* insert_turn(Moves** game, int* size) {                                     // allocate new memory!!!
+void* insert_turn(Moves** game, int color_turn, int* size) {                                     // allocate new memory!!!
     int number;
     
     printf("Number turn>");
@@ -222,7 +222,7 @@ void* insert_turn(Moves** game, int* size) {                                    
 
     printf("Enter turn>");
     scanf("%s", (*game)[number].hod);
-    initMoves(&(*game)[number]);
+    initMoves(&(*game)[number], color_turn);
 
     for (int i = 0; i <= *size; i++) {
         printf("%s ", (*game)[i].hod);
@@ -254,7 +254,7 @@ void* delete_turn(Moves** game, int* size, int flag) {
 
     return *game;
 }
-void modify_turn(Moves** game, int* size) {
+void modify_turn(Moves** game, int color_turn, int* size) {
     int number;
     printf("Number turn>");
     scanf("%d", &number);
@@ -264,6 +264,6 @@ void modify_turn(Moves** game, int* size) {
     }
     printf("Enter turn>");
     scanf("%s", (*game)[number].hod);
-    initMoves(&(*game)[number]);
+    initMoves(&(*game)[number], color_turn);
 }
 

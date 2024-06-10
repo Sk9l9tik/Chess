@@ -48,7 +48,7 @@ int Knight(Desk desk, Moves* moves, KingsPos* kingspos) {
 		else if (moves->dist_y == 2 && moves->dist_x == -1 && desk[moves->cord_y - 2][moves->cord_x - 1].color == desk[moves->cord_y][moves->cord_x].color) return 1;
 		else if (moves->dist_y == 1 && moves->dist_x == -2 && desk[moves->cord_y - 1][moves->cord_x - 2].color == desk[moves->cord_y][moves->cord_x].color) return 1;
 		else
-			check_f = HorseMoveForward(desk, moves, kingspos);
+			check_f = HorseMove(desk, moves, kingspos);
 
 	else if (((moves->dist_y == -2 && abs(moves->dist_x) == 1) || ((abs(moves->dist_x) == 2) && moves->dist_y == -1)) && moves->cord_x + moves->dist_x <= 7 && moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y <= 7)
 		if (moves->dist_y == -2 && moves->dist_x == 1 && desk[moves->cord_y + 2][moves->cord_x + 1].color == desk[moves->cord_y][moves->cord_x].color) return 1;
@@ -56,20 +56,9 @@ int Knight(Desk desk, Moves* moves, KingsPos* kingspos) {
 		else if (moves->dist_y == -2 && moves->dist_x == -1 && desk[moves->cord_y + 2][moves->cord_x - 1].color == desk[moves->cord_y][moves->cord_x].color) return 1;
 		else if (moves->dist_y == -1 && moves->dist_x == -2 && desk[moves->cord_y + 1][moves->cord_x - 2].color == desk[moves->cord_y][moves->cord_x].color) return 1;
 		else
-			check_f = HorseMoveBack(desk, moves, kingspos);
+			check_f = HorseMove(desk, moves, kingspos);
 	else
 		return 1;
-	//}
-	//else if (moves->dist_y == 0) {
-	//	if (moves->dist_x > 0)
-	//		check_f = MoveRight(desk, moves, kingspos);
-	//	else
-	//		check_f = MoveLeft(desk, moves, kingspos);
-	//}
-	//else {
-	//	//printf("Illegal turn: %s !!!\n\n", moves->hod);
-	//	return 1;
-	//}
 	return check_f;
 }
 
@@ -116,7 +105,7 @@ int Bishop(Desk desk, Moves* moves, KingsPos* kingspos) {
 	else if (moves->dist_x == moves->dist_y && moves->dist_x > 0 && moves->dist_y > 0 && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y >= 0) { // if (t_cord_y < 0 || t_cord_x > 7) return -1; x++ y--
 		check_f = MoveDiagonalForwardRight(desk, moves, kingspos);
 	}
-	else if (moves->dist_x == moves->dist_y && moves->dist_x < 0 && moves->dist_y < 0 && moves->dist_y > 0 && moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x < 0) return -1; x-- y++
+	else if (moves->dist_x == moves->dist_y && moves->dist_x < 0 && moves->dist_y < 0 && moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x < 0) return -1; x-- y++
 		check_f = MoveDiagonalBackLeft(desk, moves, kingspos);
 	}
 	else if (moves->dist_x == abs(moves->dist_y) && moves->dist_y < 0 && moves->dist_y > 0 && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x > 7) return -1; x++ y++
@@ -153,7 +142,7 @@ int Queen(Desk desk, Moves* moves, KingsPos* kingspos) {
 	else if (moves->dist_x == moves->dist_y && moves->dist_x > 0 && moves->dist_y > 0 && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y >= 0) { // if (t_cord_y < 0 || t_cord_x > 7) return -1; x++ y--
 		check_f = MoveDiagonalForwardRight(desk, moves, kingspos);
 	}
-	else if (moves->dist_x == moves->dist_y && moves->dist_x < 0 && moves->dist_y < 0 && moves->dist_y > 0 && moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x < 0) return -1; x-- y++
+	else if (moves->dist_x == moves->dist_y && moves->dist_x < 0 && moves->dist_y < 0 && moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x < 0) return -1; x-- y++
 		check_f = MoveDiagonalBackLeft(desk, moves, kingspos);
 	}
 	else if (moves->dist_x == abs(moves->dist_y) && moves->dist_y < 0 && moves->dist_y > 0 && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x > 7) return -1; x++ y++
@@ -169,7 +158,7 @@ int Queen(Desk desk, Moves* moves, KingsPos* kingspos) {
 int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 	int check_f = 0;
 	Figure t = { '_', 2 };
-	if (kingspos->wk_count == 0 && ((kingspos->wrr_count == 0 && desk[7][7].figure == 'R') || (kingspos->wrl_count == 0 && desk[7][0].figure == 'R')) && desk[7][4].color == 1 && desk[7][4].figure == 'K') {
+	if (moves->hod[0] == 'O' && kingspos->color_turn == 1 && kingspos->wk_count == 0 && ((kingspos->wrr_count == 0 && desk[7][7].figure == 'R') || (kingspos->wrl_count == 0 && desk[7][0].figure == 'R')) && desk[7][4].color == 1 && desk[7][4].figure == 'K') {
 		if (moves->dist_x == 2 && desk[7][7].figure == 'R' && MoveRight(desk, moves, kingspos) == 0) {
 			/*desk[moves->cord_y][moves->cord_x - 1] = desk[moves->cord_y][moves->cord_x + 1];
 			desk[moves->cord_y][moves->cord_x + 1] = t;*/
@@ -183,7 +172,7 @@ int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 		else 
 			return 1;
 	}
-	else if (kingspos->bk_count == 0 && ((kingspos->brr_count == 0 && desk[0][7].figure == 'R') || (kingspos->brl_count == 0 && desk[0][0].figure == 'R')) && desk[0][4].color == 0 && desk[7][4].figure == 'K') {
+	else if (moves->hod[0] == 'O' && kingspos->color_turn == 0 && kingspos->bk_count == 0 && ((kingspos->brr_count == 0 && desk[0][7].figure == 'R') || (kingspos->brl_count == 0 && desk[0][0].figure == 'R')) && desk[0][4].color == 0 && desk[7][4].figure == 'K') {
 		if (moves->dist_x == 2 && desk[0][7].figure == 'R' && MoveRight(desk, moves, kingspos) == 0) {
 			/*desk[moves->cord_y][moves->cord_x - 1] = desk[moves->cord_y][moves->cord_x + 1];
 			desk[moves->cord_y][moves->cord_x + 1] = t;*/

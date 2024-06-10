@@ -15,7 +15,7 @@
 #include "../includes/Directory_files.h"
 
 
-void game_menu(Moves** game, int* size) {
+void game_menu(Moves** game,KingsPos* kingspos, int* size) {
     int k, number;
 
     do {
@@ -39,7 +39,7 @@ void game_menu(Moves** game, int* size) {
             //games_list(game, 0);
             break;
         case 1:
-            print_game(*game, -1, size);
+            print_game(*game, kingspos, -1, size);
             break;
         case 2:
             //int sz_game = sizeof(*game) / sizeof(*game[0]);
@@ -47,33 +47,35 @@ void game_menu(Moves** game, int* size) {
             while (printf("Number turn>"),
                 fflush(stdin),
                 scanf("%d", &number) != 1) number = -2;                 //|| number > sz_game
-            print_game(*game, number, size);
+            print_game(*game, kingspos, number, size);
             break;
         case 3:                                                          
             //printf("%s %s\n", (*game)[*size - 2].hod, (*game)[*size - 1].hod);
-            insert_turn(game, size);
+            insert_turn(game, kingspos->color_turn, size);
             //printf("%s %s %s\n", (*game)[*size - 3].hod, (*game)[*size - 2].hod, (*game)[*size-1].hod);
             break;
         case 4:                                                         
             delete_turn(game, size, 0);
             break;
         case 5:                                                         
-            modify_turn(game, size);
+            modify_turn(game, kingspos->color_turn, size);
             break;
         }
     } while (k);
 }
 
 void* games_list(Moves* lastgame, int* lastgame_size) {
-    int k, size = 0, cnt = 0;
+    KingsPos kingspos;
+    initKingsPos(&kingspos);
 
+    int k, size = 0, cnt = 0;
 
     char gameMoves[MAXTURNS][7] = { "e2-e4", "e7-e5", "0" };
     //Moves game[MAXTURNS] = { 0 };
     Moves* game = (Moves*)malloc(sizeof(Moves) * MAXTURNS);
     for (int i = 0; gameMoves[i][0] != '0'; i++) {
         memcpy(game[i].hod, gameMoves[i], sizeof(gameMoves[0]));
-        initMoves(&game[i]);
+        initMoves(&game[i], kingspos.color_turn);
         size++;
     }
 
@@ -92,36 +94,44 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
 
 
 
-    if (lastgame || (lastgame)->hod[0] != 0) {
-        for (int i = 0; i <= *lastgame_size /*(lastgame)[i].hod[0] != '0'*/; i++) {
-            initMoves(&(lastgame[i]));
+    if (lastgame != NULL) {
+        if (lastgame->hod[0] != 0) {
+            for (int i = 0; i <= *lastgame_size /*(lastgame)[i].hod[0] != '0'*/; i++) {
+                initMoves(&(lastgame[i]), kingspos.color_turn);
+            }
+            printf("---%d---\n", *lastgame_size);
+            char lastgamename[31] = "last_game";
+            memcpy(&games_list[cnt].game_name, lastgamename, sizeof(lastgamename));
+            games_list[cnt].game_moves = lastgame;
+            games_list[cnt].game_size = lastgame_size;
         }
-        printf("---%d---\n", *lastgame_size);
-        char lastgamename[31] = "last_game";
-        memcpy(&games_list[cnt].game_name, lastgamename, sizeof(lastgamename));
-        games_list[cnt].game_moves = lastgame;
-        games_list[cnt].game_size = lastgame_size;
     }
-
-
 
     printf("To choice game input game number\n");
-    for (int i = 0; i < MAXTURNS && games_list[i].game_name[0] != '\0'; i++) {
+    int i;
+    for (i = 0; games_list[i].game_name[0] != '\0'; i++) {
         printf("\t%d: %s\n", i + 1, games_list[i].game_name);
     }
-
     printf("\t0: Return back\n");
+
     while (printf(">"),
         fflush(stdin),
-        scanf("%d", &k) != 1)
-        k = -1;
+        scanf("%d", &k) != 1 || k > i || k < 0) {
+        printf("Innvalin game number!\n");
+        printf("To choice game input game number\n");
+        int i;
+        for (i = 0; games_list[i].game_name[0] != '\0'; i++) {
+            printf("\t%d: %s\n", i + 1, games_list[i].game_name);
+        }
+        printf("\t0: Return back\n");
+    }
 
     if (k == 0) {
         //free(game);
         return;
     }
     else {
-        game_menu(&games_list[k - 1].game_moves, games_list[k - 1].game_size);
+        game_menu(&games_list[k - 1].game_moves, &kingspos, games_list[k - 1].game_size);
         //printf("%d %s %s %s\n", size, (games_list[k - 1].game_moves)[size - 3].hod, (games_list[k - 1].game_moves)[size - 2].hod, (games_list[k - 1].game_moves)[size - 1].hod);
         return games_list[k - 1].game_moves;
     }
@@ -136,7 +146,7 @@ void main_menu() {
         printf("Choice one and input option number\n"
             "\t1: New game\n"
             "\t2: Import game\n"
-            "\t3: Choice game\n"
+            "\t3: Choice game to edit\n"
             "\t4: Save last game\n"
             "\t0: Exit\n"
             ">");
@@ -151,7 +161,7 @@ void main_menu() {
         case 1:
             count = 0;
             new_game(&game, &count);
-            for (int i = 0; i <= count; i++) {
+            for (int i = 0; i < count; i++) {
                 printf("%s\n", (game)[i].hod);
             }
             break;

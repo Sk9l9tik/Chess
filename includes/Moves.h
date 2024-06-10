@@ -18,5 +18,4 @@ int MoveDiagonalBackLeft(Desk desk, Moves* moves, KingsPos* kingspos);
 int MoveRight(Desk desk, Moves* moves, KingsPos* kingspos);
 int MoveLeft(Desk desk, Moves* moves, KingsPos* kingspos);
 /*init Horse move functions*/
-int HorseMoveForward(Desk desk, Moves* moves, KingsPos* kingspos);
-int HorseMoveBack(Desk desk, Moves* moves, KingsPos* kingspos);
+int HorseMove(Desk desk, Moves* moves, KingsPos* kingspos);
