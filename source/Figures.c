@@ -6,25 +6,26 @@
 
 /*functions figures*/
 int Pawn(Desk desk, Moves* moves, KingsPos* kingspos) {
+	Figure Qw = { 'Q', 1 }, Qb = {'Q', 0};
 	int check_f = 0;
 	if ((moves->dist_y == -2 && moves->cord_y == 1 && moves->dist_x == 0) || (moves->dist_y == 2 && moves->cord_y == 6 && moves->dist_x == 0) || (abs(moves->dist_y) == 1 && moves->dist_x == 0) || (abs(moves->dist_y) == 1 && abs(moves->dist_x) == 1)) {
-		if (moves->dist_x == -1 && moves->dist_y == 1 && desk[moves->cord_y-1][moves->cord_x-1].color != 2 && desk[moves->cord_y - 1][moves->cord_x - 1].color != desk[moves->cord_y][moves->cord_x].color && moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y >= 0) {
+		if (moves->dist_x == -1 && moves->dist_y == 1 && desk[moves->cord_y-1][moves->cord_x-1].color != 2 && desk[moves->cord_y - 1][moves->cord_x - 1].color != desk[moves->cord_y][moves->cord_x].color && moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y >= 0 && desk[moves->cord_y][moves->cord_x].color == 1) {
 			check_f = MoveDiagonalForwardLeft(desk, moves, kingspos);
 		}
-		else if (moves->dist_x == 1 && moves->dist_y == 1 && desk[moves->cord_y - 1][moves->cord_x + 1].color != 2 && desk[moves->cord_y - 1][moves->cord_x + 1].color != desk[moves->cord_y][moves->cord_x].color && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y >= 0) {
+		else if (moves->dist_x == 1 && moves->dist_y == 1 && desk[moves->cord_y - 1][moves->cord_x + 1].color != 2 && desk[moves->cord_y - 1][moves->cord_x + 1].color != desk[moves->cord_y][moves->cord_x].color && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y >= 0 && desk[moves->cord_y][moves->cord_x].color == 1) {
 			check_f = MoveDiagonalForwardRight(desk, moves, kingspos);
 		}
-		else if (moves->dist_x == -1 && moves->dist_y == -1 && desk[moves->cord_y + 1][moves->cord_x - 1].color != 2 && desk[moves->cord_y + 1][moves->cord_x - 1].color != desk[moves->cord_y][moves->cord_x].color && moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y <= 7) {
+		else if (moves->dist_x == -1 && moves->dist_y == -1 && desk[moves->cord_y + 1][moves->cord_x - 1].color != 2 && desk[moves->cord_y + 1][moves->cord_x - 1].color != desk[moves->cord_y][moves->cord_x].color && moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y <= 7 && desk[moves->cord_y][moves->cord_x].color == 0) {
 			check_f = MoveDiagonalBackLeft(desk, moves, kingspos);
 		}
-		else if (moves->dist_x == 1 && moves->dist_y == -1 && desk[moves->cord_y + 1][moves->cord_x + 1].color != 2 && desk[moves->cord_y + 1][moves->cord_x + 1].color != desk[moves->cord_y][moves->cord_x].color && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y <= 7) {
+		else if (moves->dist_x == 1 && moves->dist_y == -1 && desk[moves->cord_y + 1][moves->cord_x + 1].color != 2 && desk[moves->cord_y + 1][moves->cord_x + 1].color != desk[moves->cord_y][moves->cord_x].color && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y <= 7 && desk[moves->cord_y][moves->cord_x].color == 0) {
 			check_f = MoveDiagonalBackRight(desk, moves, kingspos);
 		}
-		else if (moves->dist_y > 0 && moves->dist_x == 0 && desk[moves->cord_y - moves->dist_y][moves->cord_x].figure == '_') {
+		else if (moves->dist_y > 0 && moves->dist_x == 0 && desk[moves->cord_y - moves->dist_y][moves->cord_x].figure == '_' && desk[moves->cord_y][moves->cord_x].color == 1) {
 			//printf("%c %d\n\n", desk[moves->cord_y-1][moves->cord_x].figure, desk[moves->cord_y-1][moves->cord_x].color);
 			check_f = MoveForward(desk, moves, kingspos);
 		}
-		else if (moves->dist_y < 0 && moves->dist_x == 0 && desk[moves->cord_y - moves->dist_y][moves->cord_x].figure == '_') {
+		else if (moves->dist_y < 0 && moves->dist_x == 0 && desk[moves->cord_y - moves->dist_y][moves->cord_x].figure == '_' && desk[moves->cord_y][moves->cord_x].color == 0) {
 			check_f = MoveBack(desk, moves, kingspos);
 		}
 		else {
@@ -36,6 +37,12 @@ int Pawn(Desk desk, Moves* moves, KingsPos* kingspos) {
 		//printf("Illegal turn: %s !!!\n\n", moves->hod);
 		return 1;
 	}
+
+	if (desk[0][moves->cord_x + moves->dist_x].figure == 'P' && desk[0][moves->cord_x + moves->dist_x].color == 1)
+		desk[0][moves->cord_x + moves->dist_x] = Qw;
+	else if (desk[7][moves->cord_x + moves->dist_x].figure == 'P' && desk[7][moves->cord_x + moves->dist_x].color == 0)
+		desk[7][moves->cord_x + moves->dist_x] = Qb;
+
 	return check_f;
 }
 
@@ -108,7 +115,7 @@ int Bishop(Desk desk, Moves* moves, KingsPos* kingspos) {
 	else if (moves->dist_x == moves->dist_y && moves->dist_x < 0 && moves->dist_y < 0 && moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x < 0) return -1; x-- y++
 		check_f = MoveDiagonalBackLeft(desk, moves, kingspos);
 	}
-	else if (moves->dist_x == abs(moves->dist_y) && moves->dist_y < 0 && moves->dist_y > 0 && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x > 7) return -1; x++ y++
+	else if (moves->dist_x == abs(moves->dist_y) && moves->dist_y < 0 && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x > 7) return -1; x++ y++
 		check_f = MoveDiagonalBackRight(desk, moves, kingspos);
 	}
 	else {
@@ -123,7 +130,7 @@ int Queen(Desk desk, Moves* moves, KingsPos* kingspos) {
 	if (moves->dist_x == 0) {
 		if (moves->dist_y > 0 && moves->cord_y - moves->dist_y >= 0) //if (t_cord_y < 0) return -1;
 			check_f = MoveForward(desk, moves, kingspos);
-		else if (moves->cord_y + moves->dist_y <= 7) //if (t_cord_y > 7) return -1;
+		else if (moves->dist_y < 0 && moves->cord_y + moves->dist_y <= 7) //if (t_cord_y > 7) return -1;
 			check_f = MoveBack(desk, moves, kingspos);
 		else 
 			return 1;
@@ -131,7 +138,7 @@ int Queen(Desk desk, Moves* moves, KingsPos* kingspos) {
 	else if (moves->dist_y == 0) {
 		if (moves->dist_x > 0 && moves->cord_x + moves->dist_x <= 7) //if (t_cord_x > 7) return -1;
 			check_f = MoveRight(desk, moves, kingspos);
-		else if (moves->cord_x + moves->dist_x >= 0) //if (t_cord_x < 0) return -1;
+		else if (moves->dist_x < 0 && moves->cord_x + moves->dist_x >= 0) //if (t_cord_x < 0) return -1;
 			check_f = MoveLeft(desk, moves, kingspos);
 		else
 			return 1;
@@ -145,7 +152,7 @@ int Queen(Desk desk, Moves* moves, KingsPos* kingspos) {
 	else if (moves->dist_x == moves->dist_y && moves->dist_x < 0 && moves->dist_y < 0 && moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x < 0) return -1; x-- y++
 		check_f = MoveDiagonalBackLeft(desk, moves, kingspos);
 	}
-	else if (moves->dist_x == abs(moves->dist_y) && moves->dist_y < 0 && moves->dist_y > 0 && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x > 7) return -1; x++ y++
+	else if (moves->dist_x == abs(moves->dist_y) && moves->dist_y < 0 && moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y <= 7) { // if (t_cord_y > 7 || t_cord_x > 7) return -1; x++ y++
 		check_f = MoveDiagonalBackRight(desk, moves, kingspos);
 	}
 	else {
@@ -187,7 +194,7 @@ int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 			return 1;
 	}
 
-	else if (abs(moves->dist_x) > 1 && abs(moves->dist_y) > 1) {
+	else if (abs(moves->dist_x) > 1 || abs(moves->dist_y) > 1) {
 		//printf("Illegal turn: %s !!!\n\n", moves->hod);
 		return 1;
 	}
@@ -196,14 +203,18 @@ int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 		if (moves->dist_x == 0) {
 			if (moves->dist_y > 0)
 				check_f = MoveForward(desk, moves, kingspos);
-			else
+			else if (moves->dist_y < 0)
 				check_f = MoveBack(desk, moves, kingspos);
+			else
+				return 1;
 		}
 		else if (moves->dist_y == 0) {
 			if (moves->dist_x > 0)
 				check_f = MoveRight(desk, moves, kingspos);
-			else
+			else if (moves->dist_x < 0)
 				check_f = MoveLeft(desk, moves, kingspos);
+			else
+				return 1;
 
 		}
 		else if (abs(moves->dist_x) == moves->dist_y && moves->dist_x < 0) {
@@ -229,5 +240,5 @@ int King(Desk desk, Moves* moves, KingsPos* kingspos) {
 	if (desk[moves->cord_y + moves->dist_y][moves->cord_x + moves->dist_x].color == 1) kingspos->wk_count++;
 	else kingspos->bk_count++;
 
-	return 0;
+	return check_f;
 }

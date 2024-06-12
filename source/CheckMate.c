@@ -30,6 +30,8 @@ int Check(Desk desk, Moves* moves, KingsPos* kingspos) {
 		if (flag == 2) kingspos->Check_f = 2;
 		if (kingspos->Check_f == 2) {
 			kingspos->color = color;
+			moves->hod[5] = '+';
+			moves->hod[6] = '\0';
 			break;
 		}
 	}
@@ -49,39 +51,37 @@ int Mate(Desk desk, KingsPos* kingspos, int color_turn) { //!!!! delete Moves* m
 	for (int x = 0; x < 8; x++) { // perebor vseh figur
 		for (int y = 0; y < 8; y++) {
 
-			if (color_turn != desk[y][x].color) continue;
+		if (color_turn != desk[y][x].color) continue;
+
+		for (int dx = -8; dx <= 8; dx++) { // peremeshenie figur
+			for (int dy = -8; dy <= 8; dy++) {
+				//init move
+				tmove.cord_x = x;
+				tmove.cord_y = y;
+				tmove.dist_x = dx;
+				tmove.dist_y = dy;
 
 
+				flag = Move(desk, &tmove, kingspos);
+
+				//printf("%d-%d %d,%d: %d - %d\n", x, y, dx, dy, flag, i);
+				i++;
+
+				if (check_f == 0 && flag == 0) {
+					kingspos->cMate_f = 0;
+					return 0;
+				}
+				else if (check_f == 2 && flag == 0) {
+					kingspos->cMate_f = 0;
+					return 0;
+				}
+			}
+		}
 		}
 	}
 	
-	int x = 2, y = 0; // отладить короля, коня
-	for (int dx = -8; dx <= 8; dx++) { // peremeshenie figur
-		for (int dy = -8; dy <= 8; dy++) {
-
-			//init move
-			tmove.cord_x = x;
-			tmove.cord_y = y;
-			tmove.dist_x = dx;
-			tmove.dist_y = dy;
-
-
-			flag = Move(desk, &tmove, kingspos);
-
-			//printf("%d-%d %d,%d: %d - %d\n", x, y, dx, dy, flag, i);
-			i++;
-
-			if (check_f == 0 && flag == 0) {
-				kingspos->cMate_f = 0;
-				return 0;
-			}
-			else if (check_f == 2 && flag == 0) {
-				kingspos->cMate_f = 0;
-				return 0;
-			}
-
-		}
-	}
+	//int x = 6, y = 0; // отладить короля, коня
+	
 
 	if (check_f == 0 && flag != 0) return 1; // pat
 	else if (check_f == 2 && flag != 0) {	 //mate

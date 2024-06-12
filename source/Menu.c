@@ -161,9 +161,9 @@ void main_menu() {
         case 1:
             count = 0;
             new_game(&game, &count);
-            for (int i = 0; i < count; i++) {
-                printf("%s\n", (game)[i].hod);
-            }
+            //for (int i = 0; i < count; i++) {
+            //    printf("%s\n", (game)[i].hod);
+            //}
             break;
         case 2:
             count = 0;

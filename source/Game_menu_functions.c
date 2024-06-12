@@ -107,19 +107,21 @@ void new_game(Moves** game, int* count){
         printf("%d - %d\n", kingspos.color, kingspos.color_turn);
 
 
-        flag = Check(desk, (*game)[i].hod, &kingspos);
+        //flag = Check(desk, (*game)[i].hod, &kingspos);
 
 
         mate_flag = Mate(desk, &kingspos, kingspos.color_turn);
 
         if (mate_flag == 2) {
             if (kingspos.Mate_color == 0) {
-                printf("End Game. Win White!!!\n");\
+                printf("End Game. Win White!!!\n");
+                free_one(game, count);
                 printDesk(desk);
                 return;
             }
             else {
                 printf("End Game. Win Black!!!\n");
+                free_one(game, count);
                 printDesk(desk);
                 return;
             }

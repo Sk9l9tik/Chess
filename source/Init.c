@@ -1,5 +1,7 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
+#include <io.h>
+#include <fcntl.h>
 #include <string.h>
 
 #include "../includes/Init.h"
@@ -43,12 +45,12 @@ void init(Desk desk) {
 		}
 	}
 
-	//desk[1][3] = n;
+	//desk[7][0] = n;
 	//K.color = 0;
 	//desk[3][5] = K;
 
 	//Q.color = 0;
-	//desk[1][5] = n;
+	//desk[1][3] = n;
 }
 
 int printDesk(Desk desk) {
@@ -86,7 +88,7 @@ void initMoves(Moves* moves, int color_turn) {
 	//printf("finX: %d finY: %d\n", hod[3] - 'a', hod[4] - '0');
 
 	moves->dist_x = hod[3] - (hod[0]);
-	moves->dist_y = hod[4] - (hod[1]);		
+	moves->dist_y = (hod[4] - (hod[1]));
 
 	//memcpy(moves, hod, sizeof(*hod));
 
