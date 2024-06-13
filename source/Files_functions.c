@@ -18,16 +18,15 @@ void* import_game(Moves** game, int* count) {
 
 	Moves* new_game = NULL;
 	int i = 0;
-	(*count)++;
+	//(*count)++;
 	if (GamePath) {
-		while (fgets((*game)[i].hod, sizeof((*game)[0].hod) / sizeof((*game)[0].hod[0]), GamePath)) { // reading string from file
-
-			allocate_one(game, count);
-			if ((*game)[i].hod[2] != '-') { // An almost useless check
-				printf("Wrong turn: %s\n", (*game)[i].hod);
-				free_one(game, count);
-				break;
-			}
+		printf("The file was opened successfully\n");
+		while (allocate_one(game, count), fgets((*game)[i].hod, sizeof((*game)[0].hod) / sizeof((*game)[0].hod[0]), GamePath)) { // reading string from file
+			//if ((*game)[i].hod[2] != '-') { // An almost useless check
+			//	printf("Wrong turn: %s\n", (*game)[i].hod);
+			//	free_one(game, count);
+			//	break;
+			//}
 			char* p = '\0';
 			p = strchr((*game)[i].hod, '\n'); // Mashing the newline character
 			if (p)	*p = 0;
@@ -38,7 +37,6 @@ void* import_game(Moves** game, int* count) {
 		fclose(GamePath); // Close file
 		//(*count)--;
 		strcpy((*game)[*count - 1].hod, "0"); // Check end game
-
 	}
 	else {
 		printf("No such file!!!\n"); // print error readed file
@@ -72,7 +70,7 @@ void save_game(Moves* game, int count) {
 	FILE* GamePath = fopen(game_path, "w"); // make path pointer
 
 	if (GamePath) {
-		for (int i = 0; i <= count && game[i].hod[0] != '0'; i++) {
+		for (int i = 0; i < count && game[i].hod[0] != '0'; i++) {
 			fputs(game[i].hod, GamePath); // print game turn in file
 			fputs("\n", GamePath); // print newline character
 		}

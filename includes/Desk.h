@@ -26,7 +26,7 @@ typedef struct Moves {
 	char cord_y;
 	char dist_x;
 	char dist_y;
-	char hod[7];
+	char hod[8];
 } Moves;
 
 #endif

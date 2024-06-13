@@ -83,7 +83,9 @@ int Mate(Desk desk, KingsPos* kingspos, int color_turn) { //!!!! delete Moves* m
 	//int x = 6, y = 0; // отладить короля, коня
 	
 
-	if (check_f == 0 && flag != 0) return 1; // pat
+	if (check_f == 0 && flag != 0) {		 // pat
+		return 1;
+	}
 	else if (check_f == 2 && flag != 0) {	 //mate
 		kingspos->Mate_color = color_turn;
 		return 2;

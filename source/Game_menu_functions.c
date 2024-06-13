@@ -117,18 +117,25 @@ void new_game(Moves** game, int* count){
                 printf("End Game. Win White!!!\n");
                 free_one(game, count);
                 printDesk(desk);
+                (*game)[*count - 1].hod[5] = '#';
+                (*game)[*count - 1].hod[6] = 0;
                 return;
             }
             else {
                 printf("End Game. Win Black!!!\n");
                 free_one(game, count);
                 printDesk(desk);
+                (*game)[*count - 1].hod[5] = '#';
+                (*game)[*count - 1].hod[6] = 0;
                 return;
             }
         }
         else if (mate_flag == 1) {
             printf("End Game. Draw!!!\n");
+            free_one(game, count);
             printDesk(desk);
+            (*game)[*count - 1].hod[5] = '=';
+            (*game)[*count - 1].hod[6] = 0;
             return;
         }
 
@@ -210,10 +217,10 @@ void* insert_turn(Moves** game, int color_turn, int* size) {                    
 
     allocate_one(game, size);
 
-    for (int i = 0; i <= *size; i++) {
-        printf("%s ", (*game)[i].hod);
-    }
-    printf("\n");
+    //for (int i = 0; i <= *size; i++) {
+    //    printf("%s ", (*game)[i].hod);
+    //}
+    //printf("\n");
 
     memmove(*game + number + 1, *game + number, sizeof((*game)[0]) * ((*size) - number));
 
@@ -226,10 +233,10 @@ void* insert_turn(Moves** game, int color_turn, int* size) {                    
     scanf("%s", (*game)[number].hod);
     initMoves(&(*game)[number], color_turn);
 
-    for (int i = 0; i <= *size; i++) {
-        printf("%s ", (*game)[i].hod);
-    }
-    printf("\n");
+    //for (int i = 0; i <= *size; i++) {
+    //    printf("%s ", (*game)[i].hod);
+    //}
+    //printf("\n");
 
     return *game;
 }
