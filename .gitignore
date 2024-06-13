@@ -1,6 +1,8 @@
 .vs/
 x64/
-*.vcx*
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
 *.sln
 *.exe
 *.out

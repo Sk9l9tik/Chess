@@ -50,7 +50,7 @@ void* import_game(Moves** game, int* count) {
 void save_game(Moves* game, int count) {
 	if (!game) {
 		printf("No game to save!!!\n");
-		return 0;
+		return;
 	}
 
 	char* path = malloc(sizeof(char) * 15);

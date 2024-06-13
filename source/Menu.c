@@ -128,7 +128,7 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
 
     if (k == 0) {
         //free(game);
-        return;
+        return games_list[k - 1].game_moves;
     }
     else {
         game_menu(&games_list[k - 1].game_moves, &kingspos, games_list[k - 1].game_size);
