@@ -3,6 +3,7 @@
 
 <!--Блок информации о репозитории в бейджах-->
 ![Static Badge](https://img.shields.io/badge/Sk9l9tik-Chess-Chess)
+[![Github stats](https://img.shields.io/github/downloads/Sk9l9tik/Chess/total.svg?style=for-the-badge&color=red)](https://somsubhra.github.io/github-release-stats/?username=Sk9l9tik&repository=Chess)
 ![GitHub top language](https://img.shields.io/github/languages/top/Sk9l9tik/Chess)
 ![GitHub](https://img.shields.io/github/license/Sk9l9tik/Chess)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Sk9l9tik/Chess)
