@@ -149,6 +149,7 @@ void new_game(Moves** game, int* count){
             }
         }
         else {
+            /*printf("%s\n", (*game + i - 1)->hod);*/
             printDesk(desk);
             while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i], kingspos.color_turn), Move(desk, &(*game)[i], &kingspos) != 0) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
                 if ((*game)[i].hod[0] == '0') {

@@ -651,3 +651,28 @@ int HorseMove(Desk desk, Moves* moves, KingsPos* kingspos) {
 		}
 	return 0;
 }
+
+char Taking_on_the_pass(Desk desk, Moves* moves, char quater) {
+	if (quater == 1 && (desk[moves->cord_y - 1][moves->cord_x + 1].color == 2 && (moves - 1)->cord_y == 1 && desk[moves->cord_y][moves->cord_x + 1].figure == 'P' && desk[moves->cord_y][moves->cord_x + 1].color == 0)) {
+		Figure n = { '_', 2 };
+		desk[moves->cord_y][moves->cord_x + 1] = n;
+		return 1;
+	}
+	else if (quater == 2 && (desk[moves->cord_y - 1][moves->cord_x - 1].color == 2 && (moves - 1)->cord_y == 1 && desk[moves->cord_y][moves->cord_x - 1].figure == 'P' && desk[moves->cord_y][moves->cord_x - 1].color == 0)) {
+		Figure n = { '_', 2 };
+		desk[moves->cord_y][moves->cord_x - 1] = n;
+		return 1;
+	}
+	else if (quater == 3 && (desk[moves->cord_y + 1][moves->cord_x - 1].color == 2 && (moves - 1)->cord_y == 6 && desk[moves->cord_y][moves->cord_x - 1].figure == 'P' && desk[moves->cord_y][moves->cord_x - 1].color == 1)) {
+		Figure n = { '_', 2 };
+		desk[moves->cord_y][moves->cord_x - 1] = n;
+		return 1;
+	}
+	else if (quater == 4 && (desk[moves->cord_y + 1][moves->cord_x + 1].color == 2 && (moves - 1)->cord_y == 6 && desk[moves->cord_y][moves->cord_x + 1].figure == 'P' && desk[moves->cord_y][moves->cord_x + 1].color == 1)) {
+		Figure n = { '_', 2 };
+		desk[moves->cord_y][moves->cord_x + 1] = n;
+		return 1;
+	}
+	else
+		return 0;
+}

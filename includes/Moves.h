@@ -14,8 +14,10 @@ int MoveDiagonalForwardRight(Desk desk, Moves* moves, KingsPos* kingspos);
 int MoveDiagonalForwardLeft(Desk desk, Moves* moves, KingsPos* kingspos);
 int MoveDiagonalBackRight(Desk desk, Moves* moves, KingsPos* kingspos);
 int MoveDiagonalBackLeft(Desk desk, Moves* moves, KingsPos* kingspos);
-/*init Left-Right move Functions*/
+/*init Left-Right move functions*/
 int MoveRight(Desk desk, Moves* moves, KingsPos* kingspos);
 int MoveLeft(Desk desk, Moves* moves, KingsPos* kingspos);
 /*init Horse move functions*/
 int HorseMove(Desk desk, Moves* moves, KingsPos* kingspos);
+/*init taking on the pass function*/
+char Taking_on_the_pass(Desk desk, Moves* moves, char quater);

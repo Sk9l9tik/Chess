@@ -63,7 +63,7 @@ int printDesk(Desk desk) {
 		printf("%d|", 8 - i);
 		for (int j = 0; j < 8; j++) {
 			_setmode(_fileno(stdout), _O_WTEXT);
-			if (desk[i][j].color == 1) {
+			if (desk[i][j].color == 0) {
 				if (desk[i][j].figure == 'K')
 					wprintf(L"♔ ");
 				else if (desk[i][j].figure == 'Q')
@@ -77,7 +77,7 @@ int printDesk(Desk desk) {
 				else if (desk[i][j].figure == 'P')
 					wprintf(L"♙ ");
 			}
-			else if (desk[i][j].color == 0) {
+			else if (desk[i][j].color == 1) {
 				if (desk[i][j].figure == 'K')
 					wprintf(L"♚ ");
 				else if (desk[i][j].figure == 'Q')
