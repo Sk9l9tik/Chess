@@ -1,11 +1,14 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
-//#include <io.h>
-//#include <fcntl.h>
 #include <string.h>
 
 #include "../includes/Init.h"
 
+
+#ifdef _WIN32
+#include <io.h>
+#include <fcntl.h>
+#endif // _WIN32
 
 void init(Desk desk) {
 	Figure P = { 'P',0 }, B = { 'B',0 }, R = { 'R',0 }, N = { 'N',0 }, Q = { 'Q',0 }, K = { 'K',0 }, n = { '_',2 };
@@ -52,7 +55,57 @@ void init(Desk desk) {
 	//Q.color = 0;
 	//desk[1][3] = n;
 }
-
+#ifdef _WIN32
+int printDesk(Desk desk) {
+	fflush(stdin);
+	
+	for (int i = 0; i < 8; i++) {
+		printf("%d|", 8 - i);
+		for (int j = 0; j < 8; j++) {
+			_setmode(_fileno(stdout), _O_WTEXT);
+			if (desk[i][j].color == 1) {
+				if (desk[i][j].figure == 'K')
+					wprintf(L"♔ ");
+				else if (desk[i][j].figure == 'Q')
+					wprintf(L"♕ ");
+				else if (desk[i][j].figure == 'R')
+					wprintf(L"♖ ");
+				else if (desk[i][j].figure == 'B')
+					wprintf(L"♗ ");
+				else if (desk[i][j].figure == 'N')
+					wprintf(L"♘ ");
+				else if (desk[i][j].figure == 'P')
+					wprintf(L"♙ ");
+			}
+			else if (desk[i][j].color == 0) {
+				if (desk[i][j].figure == 'K')
+					wprintf(L"♚ ");
+				else if (desk[i][j].figure == 'Q')
+					wprintf(L"♛ ");
+				else if (desk[i][j].figure == 'R')
+					wprintf(L"♜ ");
+				else if (desk[i][j].figure == 'B')
+					wprintf(L"♝ ");
+				else if (desk[i][j].figure == 'N')
+					wprintf(L"♞ ");
+				else if (desk[i][j].figure == 'P')
+					wprintf(L"♟ ");
+			}
+			else {
+				
+				wprintf(L"  ");;
+			}
+			_setmode(_fileno(stdout), _O_TEXT);
+		}
+		printf("\n");
+	}
+	printf("  ---------------\n");
+	printf("  A B C D E F G H\n\n");
+	//printf("\n");
+	
+	return 0;
+}
+#elif defined __unix__
 int printDesk(Desk desk) {
 	for (int i = 0; i < 8; i++) {
 		printf("%d|", 8 - i);
@@ -66,6 +119,9 @@ int printDesk(Desk desk) {
 	//printf("\n");
 	return 0;
 }
+#endif // __WIN32
+
+
 
 void initMoves(Moves* moves, int color_turn) {
 	//printf("%c\n", hod[4]);
