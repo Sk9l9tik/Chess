@@ -8,7 +8,7 @@
 ![GitHub](https://img.shields.io/github/license/Sk9l9tik/Chess)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Sk9l9tik/Chess)
 ![GitHub issues](https://img.shields.io/github/issues/Sk9l9tik/Chess)
-![](https://p16-bot-sign-va.ciciai.com/tos-maliva-i-58bqazb02t-us/99ae837a4f804b97875105a3a1ff091e.png~tplv-58bqazb02t-image.image?rk3s=68e6b6b5&x-expires=1721287377&x-signature=d0jcgShOVnJda7ivEHJIrtN7ij0%3D)
+
 <!--Установка-->
 
 ## Установка под Windows
