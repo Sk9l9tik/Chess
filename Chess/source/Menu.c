@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
 
 #include "../includes/Desk.h"
 #include "../includes/Init.h"
@@ -17,7 +18,7 @@
 
 void game_menu(Moves** game,KingsPos* kingspos, int* size) {
     int k, number;
-
+   
     do {
         printf("Choice one and input option number\n"
             "\t1: Watch game\n"
@@ -31,7 +32,6 @@ void game_menu(Moves** game,KingsPos* kingspos, int* size) {
         fflush(stdin);
         if (scanf("%d", &k) != 1) k = -1;
         
-
 
         switch (k) {
         case 0:
@@ -65,6 +65,7 @@ void game_menu(Moves** game,KingsPos* kingspos, int* size) {
 }
 
 void* games_list(Moves* lastgame, int* lastgame_size) {
+    
     KingsPos kingspos;
     initKingsPos(&kingspos);
 
@@ -138,7 +139,7 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
 }
 
 void main_menu() {
-
+  
     Moves* game = NULL;
 
     int k, count=0;

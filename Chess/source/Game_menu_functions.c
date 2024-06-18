@@ -84,6 +84,7 @@
 
 void new_game(Moves** game, int* count){
 
+    system("cls");
 
     Desk desk;
     init(desk);
@@ -107,7 +108,7 @@ void new_game(Moves** game, int* count){
         printf("%d - %d\n", kingspos.color, kingspos.color_turn);
 
 
-        //flag = Check(desk, (*game)[i].hod, &kingspos);
+        flag = Check(desk, (*game)[i].hod, &kingspos);
 
 
         mate_flag = Mate(desk, &kingspos, kingspos.color_turn);

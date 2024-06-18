@@ -10,16 +10,16 @@ int Pawn(Desk desk, Moves* moves, KingsPos* kingspos) {
 	int check_f = 0;
 	//printf("%s\n", (moves - 1)->hod);
 	if ((moves->dist_y == -2 && moves->cord_y == 1 && moves->dist_x == 0) || (moves->dist_y == 2 && moves->cord_y == 6 && moves->dist_x == 0) || (abs(moves->dist_y) == 1 && moves->dist_x == 0) || (abs(moves->dist_y) == 1 && abs(moves->dist_x) == 1)) {
-		if (moves->dist_x == -1 && moves->dist_y == 1 && ((desk[moves->cord_y-1][moves->cord_x-1].color != 2 && desk[moves->cord_y - 1][moves->cord_x - 1].color != desk[moves->cord_y][moves->cord_x].color) || (Taking_on_the_pass(desk, moves, 2))) /*&& moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y >= 0 && desk[moves->cord_y][moves->cord_x].color == 1*/) {
+		if (moves->dist_x == -1 && moves->dist_y == 1 && ((desk[moves->cord_y-1][moves->cord_x-1].color != 2 && desk[moves->cord_y - 1][moves->cord_x - 1].color != desk[moves->cord_y][moves->cord_x].color) || (Taking_on_the_pass(desk, moves, 2))) && desk[moves->cord_y][moves->cord_x].color == 1 /*&& moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y >= 0 */) {
 			check_f = MoveDiagonalForwardLeft(desk, moves, kingspos);
 		}
-		else if (moves->dist_x == 1 && moves->dist_y == 1 && ((desk[moves->cord_y - 1][moves->cord_x + 1].color != 2 && desk[moves->cord_y - 1][moves->cord_x + 1].color != desk[moves->cord_y][moves->cord_x].color) || (Taking_on_the_pass(desk, moves, 1))) /*&& moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y >= 0 && desk[moves->cord_y][moves->cord_x].color == 1*/) {
+		else if (moves->dist_x == 1 && moves->dist_y == 1 && ((desk[moves->cord_y - 1][moves->cord_x + 1].color != 2 && desk[moves->cord_y - 1][moves->cord_x + 1].color != desk[moves->cord_y][moves->cord_x].color) || (Taking_on_the_pass(desk, moves, 1))) && desk[moves->cord_y][moves->cord_x].color == 1 /*&& moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y >= 0 */) {
 			check_f = MoveDiagonalForwardRight(desk, moves, kingspos);
 		}
-		else if (moves->dist_x == -1 && moves->dist_y == -1 && ((desk[moves->cord_y + 1][moves->cord_x - 1].color != 2 && desk[moves->cord_y + 1][moves->cord_x - 1].color != desk[moves->cord_y][moves->cord_x].color) || (Taking_on_the_pass(desk, moves, 3))) /*&& moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y <= 7 && desk[moves->cord_y][moves->cord_x].color == 0*/) {
+		else if (moves->dist_x == -1 && moves->dist_y == -1 && ((desk[moves->cord_y + 1][moves->cord_x - 1].color != 2 && desk[moves->cord_y + 1][moves->cord_x - 1].color != desk[moves->cord_y][moves->cord_x].color) || (Taking_on_the_pass(desk, moves, 3))) && desk[moves->cord_y][moves->cord_x].color == 0 /*&& moves->cord_x + moves->dist_x >= 0 && moves->cord_y + moves->dist_y <= 7 */) {
 			check_f = MoveDiagonalBackLeft(desk, moves, kingspos);
 		}
-		else if (moves->dist_x == 1 && moves->dist_y == -1 && ((desk[moves->cord_y + 1][moves->cord_x + 1].color != 2 && desk[moves->cord_y + 1][moves->cord_x + 1].color != desk[moves->cord_y][moves->cord_x].color) || (Taking_on_the_pass(desk, moves, 3))) /*&& moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y <= 7 && desk[moves->cord_y][moves->cord_x].color == 0*/) {
+		else if (moves->dist_x == 1 && moves->dist_y == -1 && ((desk[moves->cord_y + 1][moves->cord_x + 1].color != 2 && desk[moves->cord_y + 1][moves->cord_x + 1].color != desk[moves->cord_y][moves->cord_x].color) || (Taking_on_the_pass(desk, moves, 3))) && desk[moves->cord_y][moves->cord_x].color == 0 /*&& moves->cord_x + moves->dist_x <= 7 && moves->cord_y + moves->dist_y <= 7 */) {
 			check_f = MoveDiagonalBackRight(desk, moves, kingspos);
 		}
 		else if (moves->dist_y > 0 && moves->dist_x == 0 && desk[moves->cord_y - moves->dist_y][moves->cord_x].figure == '_' && desk[moves->cord_y][moves->cord_x].color == 1) {
@@ -30,12 +30,10 @@ int Pawn(Desk desk, Moves* moves, KingsPos* kingspos) {
 			check_f = MoveBack(desk, moves, kingspos);
 		}
 		else {
-			//printf("Illegal turn: %s !!!\n\n", moves->hod);
 			return 1;
 		}
 	}
 	else {
-		//printf("Illegal turn: %s !!!\n\n", moves->hod);
 		return 1;
 	}
 

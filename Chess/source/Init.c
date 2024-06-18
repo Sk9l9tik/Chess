@@ -58,7 +58,6 @@ void init(Desk desk) {
 #ifdef _WIN32
 int printDesk(Desk desk) {
 	fflush(stdin);
-	
 	for (int i = 0; i < 8; i++) {
 		printf("%d|", 8 - i);
 		for (int j = 0; j < 8; j++) {
@@ -92,8 +91,7 @@ int printDesk(Desk desk) {
 					wprintf(L"♟ ");
 			}
 			else {
-				
-				wprintf(L"  ");;
+				wprintf(L"_ ");
 			}
 			_setmode(_fileno(stdout), _O_TEXT);
 		}
@@ -101,7 +99,6 @@ int printDesk(Desk desk) {
 	}
 	printf("  ---------------\n");
 	printf("  A B C D E F G H\n\n");
-	//printf("\n");
 	
 	return 0;
 }
