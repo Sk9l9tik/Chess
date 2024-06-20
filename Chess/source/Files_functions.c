@@ -54,7 +54,13 @@ void save_game(Moves* game, int count) {
 	}
 
 	char* path = malloc(sizeof(char) * 15);
-	path = "./SavedGames/"; // path saved folder
+#ifdef BUILD_CMAKE and _WIN32
+	path = "../../SavedGames/"; // path saved folder
+#elif BUILD_CMAKE and __unix__
+	path = "../SavedGames/";
+#else
+	path = "./SavedGames/";
+#endif
 	char* game_name = malloc(sizeof(char) * 256);
 	printf("Game name>");
 	scanf("%s", game_name); // input name file

@@ -91,7 +91,7 @@ int printDesk(Desk desk) {
 					wprintf(L"♟ ");
 			}
 			else {
-				wprintf(L"_ ");
+				wprintf(L"- ");
 			}
 			_setmode(_fileno(stdout), _O_TEXT);
 		}

@@ -17,6 +17,8 @@ SET(SRCS
 	Chess/source/MovesCheck.c
 )
 
+add_definitions(-DBUILD_CMAKE)
+
 add_library(clib STATIC ${SRCS})
 target_include_directories(clib PUBLIC "Chess/includes")
 

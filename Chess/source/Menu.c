@@ -17,6 +17,8 @@
 
 
 void game_menu(Moves** game,KingsPos* kingspos, int* size) {
+    system("cls");
+
     int k, number;
    
     do {
@@ -65,7 +67,7 @@ void game_menu(Moves** game,KingsPos* kingspos, int* size) {
 }
 
 void* games_list(Moves* lastgame, int* lastgame_size) {
-    
+    system("cls");
     KingsPos kingspos;
     initKingsPos(&kingspos);
 
@@ -100,7 +102,7 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
             for (int i = 0; i <= *lastgame_size /*(lastgame)[i].hod[0] != '0'*/; i++) {
                 initMoves(&(lastgame[i]), kingspos.color_turn);
             }
-            printf("---%d---\n", *lastgame_size);
+            //printf("---%d---\n", *lastgame_size);
             char lastgamename[31] = "last_game";
             memcpy(&games_list[cnt].game_name, lastgamename, sizeof(lastgamename));
             games_list[cnt].game_moves = lastgame;
@@ -139,11 +141,12 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
 }
 
 void main_menu() {
-  
+    
     Moves* game = NULL;
 
     int k, count=0;
     do {
+        system("cls");
         printf("Choice one and input option number\n"
             "\t1: New game\n"
             "\t2: Import game\n"
@@ -168,7 +171,7 @@ void main_menu() {
             break;
         case 2:
             count = 0;
-            import_game(&game, &count);
+            game = import_game(&game, &count);
             //printf("---%d---\n", count);
             break;
         case 3:

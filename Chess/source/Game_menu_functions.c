@@ -84,7 +84,7 @@
 
 void new_game(Moves** game, int* count){
 
-    system("cls");
+    //system("cls");
 
     Desk desk;
     init(desk);
@@ -99,13 +99,13 @@ void new_game(Moves** game, int* count){
     kingspos.color_turn = 1; // 1 - white, 0 - black
     int flag = 0, mate_flag = 0;
     for (int i = 0; ; i++) {
-
+        
         if (i % 2 == 0) kingspos.color_turn = 1;
         else kingspos.color_turn = 0;
 
         allocate_one(game, count);
 
-        printf("%d - %d\n", kingspos.color, kingspos.color_turn);
+        //printf("%d - %d\n", kingspos.color, kingspos.color_turn);
 
 
         flag = Check(desk, (*game)[i].hod, &kingspos);
@@ -142,29 +142,38 @@ void new_game(Moves** game, int* count){
 
 
         if (flag == 2) {
+            system("cls");
             printf("Check !!!!\n");
             printDesk(desk);
             while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i], kingspos.color_turn), Move(desk, &(*game)[i], &kingspos) != 0 || Check(desk, &(*game)[i], &kingspos) == 2) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
-                printf("Check !!! Illegal turn: %s !!!\n", (*game)[i].hod);
                 printDesk(desk);
+                printf("Check !!! Illegal turn: %s !!!\n\n", (*game)[i].hod);
+                printf("Current color turn: %s\n", kingspos.color_turn == 1 ? "WHITE" : "BLACK");
             }
         }
         else {
-            /*printf("%s\n", (*game + i - 1)->hod);*/
+            system("cls");
             printDesk(desk);
-            while (printf("Enter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i], kingspos.color_turn), Move(desk, &(*game)[i], &kingspos) != 0) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
+            if(i != 0)
+                printf("Last turn: %s\n", (*game)[i-1].hod);
+            while (printf("Current color turn: %s\n", kingspos.color_turn == 1 ? "WHITE" : "BLACK"), printf("\nEnter turn>"), fflush(stdin), scanf("%s", (*game)[i].hod) != 1, initMoves(&(*game)[i], kingspos.color_turn), (desk[(*game)[i].cord_y][(*game)[i].cord_x].color != kingspos.color_turn) ? 1 : 0 || Move(desk, &(*game)[i], &kingspos) != 0) { //(Move(desk, &(*game)[i]) == 1 && (*game)[i].hod[0] != '0') || Move(desk, &(*game)[i]) != 1  
                 if ((*game)[i].hod[0] == '0') {
                     free_one(game, count);
                     return;
                 }
-                printf("%d - %d\n", kingspos.color, kingspos.color_turn);
                 if (kingspos.Check_f == 2 ) { // && kingspos.color == color_turn
-                    printf("Check !!! Illegal turn: %s !!!\n", (*game)[i].hod);
+                    system("cls");
                     printDesk(desk);
+                    printf("Check !!! Illegal turn: %s !!!\n", (*game)[i].hod);
+                    printf("Last turn: %s\n", (*game)[i - 1].hod);
+                    //printf("Current color turn: %s\n", kingspos.color_turn == 1 ? "WHITE" : "BLACK");
                 }
                 else {
-                    printf("Illegal turn: %s !!!\n", (*game)[i].hod);
+                    system("cls");
                     printDesk(desk);
+                    printf("Illegal turn: %s !!!\n", (*game)[i].hod);
+                    printf("Last turn: %s\n", (*game)[i - 1].hod);
+                    //printf("Current color turn: %s\n", kingspos.color_turn == 1 ? "WHITE" : "BLACK");
                 }
 
             }
