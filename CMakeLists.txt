@@ -15,6 +15,7 @@ SET(SRCS
 	Chess/source/Menu.c
 	Chess/source/Moves.c
 	Chess/source/MovesCheck.c
+	Chess/source/OnlineConnection.c
 )
 
 add_definitions(-DBUILD_CMAKE)

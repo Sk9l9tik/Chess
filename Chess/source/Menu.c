@@ -15,6 +15,8 @@
 
 #include "../includes/Directory_files.h"
 
+#include "../includes/OnlineConnection.h"
+
 
 void game_menu(Moves** game,KingsPos* kingspos, int* size) {
     system("cls");
@@ -140,6 +142,33 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
     }
 }
 
+void OnlineGameMenu(Moves** game, int* count) {
+    int k;
+    do {
+        system("cls");
+        printf("Choice one and input option number\n"
+            "\t1: Create game (server)\n"
+            "\t2: Connect to game (client)\n"
+            "\t0: Exit\n"
+            ">");
+
+        fflush(stdin);
+        if (scanf("%d", &k) != 1) k = -1;
+
+        switch (k) {
+        case 0:
+            free(game);
+            return;
+        case 1:
+            Server();
+            break;
+        case 2:
+            Client();
+            break;
+        }
+    } while (k);
+}
+
 void main_menu() {
     
     Moves* game = NULL;
@@ -149,9 +178,10 @@ void main_menu() {
         system("cls");
         printf("Choice one and input option number\n"
             "\t1: New game\n"
-            "\t2: Import game\n"
-            "\t3: Choice game to edit\n"
-            "\t4: Save last game\n"
+            "\t2: Online game\n"
+            "\t3: Import game\n"
+            "\t4: Choice game to edit\n"
+            "\t5: Save last game\n"
             "\t0: Exit\n"
             ">");
 
@@ -165,19 +195,18 @@ void main_menu() {
         case 1:
             count = 0;
             new_game(&game, &count);
-            //for (int i = 0; i < count; i++) {
-            //    printf("%s\n", (game)[i].hod);
-            //}
             break;
         case 2:
+            OnlineGameMenu(&game, &count);
+        case 3:
             count = 0;
             game = import_game(&game, &count);
             //printf("---%d---\n", count);
             break;
-        case 3:
+        case 4:
             game = games_list(game, &count);
             break;
-        case 4:
+        case 5:
             save_game(game, count);
             break;
         }
