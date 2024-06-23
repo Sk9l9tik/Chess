@@ -11,7 +11,7 @@
 
 <!--Установка-->
 
-## Установка под Windows
+## Установка под Windows через CMake
 
 У вас должны быть установлены [зависимости проекта](https://github.com/Sk9l9tik/Chess#зависимости)
 
@@ -39,7 +39,32 @@
 
 ```./Chess.exe```
 
+
+## Установка под Windows через Visual Studio
+
+У вас должны быть установлены [зависимости проекта](https://github.com/Sk9l9tik/Chess#зависимости)
+
+1. Клонирование репозитория 
+
+```git clone https://github.com/Sk9l9tik/Chess.git```
+
+2.  Перейти в директорию Chess.
+
+```cd Chess```
+
+3. Открыть проект Chess.sln
+
+5. Выбрать тип сборки Release
+
+6. Запустить борку, кликнув зеленый треугольник
+
+![](https://sun9-42.userapi.com/impg/XDh7oGFxF4vIQ3xZUKq1jtKSLkvGYi7HowQX3g/9geXqDLGCAo.jpg?size=393x34&quality=96&sign=abd09b4a2299b911654eccc38af25726&type=album)
+
+7. Запустится программа  Chess.exe, расположеная по пути ```x64/Release```
+
+
 ## Установка под Linux (Пока не поддерживаются символы фигур)
+
 У вас должны быть установлены [зависимости проекта](https://github.com/Sk9l9tik/Chess#зависимости)
 
 1. Клонирование репозитория 

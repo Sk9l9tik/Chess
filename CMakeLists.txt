@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 project("Chess")
 
-#enable_testing()
-
 SET(SRCS
 	Chess/source/Allocate.c
 	Chess/source/CheckMate.c

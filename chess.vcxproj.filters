@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков\Includes">
+      <UniqueIdentifier>{f041cca7-d173-4dee-a51d-fb5ed4e31800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\source">
+      <UniqueIdentifier>{00369e44-3809-41d9-b31c-6c472844df98}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Chess/source/Files_functions.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Chess/source/Game_menu_functions.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Chess/source/Init.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Chess/source/Main.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Chess/source/Main_Moves.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Chess/source/Menu.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Chess/source/Moves.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Chess/source/MovesCheck.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Chess/source/Allocate.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Chess/source\CheckMate.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Chess/source/Directory_Files.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Chess/source/Figures.c">
+      <Filter>Исходные файлы\source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Chess/includes/Allocate.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Chess/includes/CheckMate.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Chess/includes/Desk.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Chess/includes/Directory_files.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Chess/includes/Figures.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Chess/includes/Files_functions.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Chess/includes/Game_menu_functions.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Chess/includes/Init.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Chess/includes/Menu.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Chess/includes/Moves.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Chess/includes/MovesCheck.h">
+      <Filter>Файлы заголовков\Includes</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

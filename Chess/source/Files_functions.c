@@ -54,6 +54,7 @@ void save_game(Moves* game, int count) {
 	}
 
 	char* path = malloc(sizeof(char) * 15);
+	system("mkdir SavedGames");
 	path = "./SavedGames/"; // path saved folder
 	char* game_name = malloc(sizeof(char) * 256);
 	printf("Game name>");
