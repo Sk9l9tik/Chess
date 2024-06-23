@@ -1,7 +1,7 @@
 #pragma once
 
 #include <winsock2.h>
+#include "../includes/Desk.h"
 
-int Server();
-int Client();
+void OnlineGame(Moves** game, int* count);
 char* ServerIP(WSADATA wsa_Data);

@@ -142,33 +142,6 @@ void* games_list(Moves* lastgame, int* lastgame_size) {
     }
 }
 
-void OnlineGameMenu(Moves** game, int* count) {
-    int k;
-    do {
-        system("cls");
-        printf("Choice one and input option number\n"
-            "\t1: Create game (server)\n"
-            "\t2: Connect to game (client)\n"
-            "\t0: Exit\n"
-            ">");
-
-        fflush(stdin);
-        if (scanf("%d", &k) != 1) k = -1;
-
-        switch (k) {
-        case 0:
-            free(game);
-            return;
-        case 1:
-            Server();
-            break;
-        case 2:
-            Client();
-            break;
-        }
-    } while (k);
-}
-
 void main_menu() {
     
     Moves* game = NULL;
@@ -197,7 +170,8 @@ void main_menu() {
             new_game(&game, &count);
             break;
         case 2:
-            OnlineGameMenu(&game, &count);
+            OnlineGame(&game, &count);
+            break;
         case 3:
             count = 0;
             game = import_game(&game, &count);
